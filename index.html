@@ -29,7 +29,7 @@
         
         #canvas-container, #atelier-canvas-container {
             width: 100%;
-            height: 500px;
+            height: 600px;
             cursor: grab;
             border-radius: 2.5rem;
             background: radial-gradient(circle at center, #1a1a1a 0%, var(--dark) 100%);
@@ -52,22 +52,11 @@
         }
         .riel-card:hover { transform: translateY(-10px); }
         
-        /* Swatch Styles */
         .color-swatch {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            border: 2px solid white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 2px solid white;
+            cursor: pointer; transition: all 0.3s ease;
         }
-        .color-swatch:hover { transform: scale(1.1); }
-        .color-swatch.active { 
-            transform: scale(1.25); 
-            border-color: var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
+        .color-swatch.active { transform: scale(1.3); border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
 
         .btn-luxury {
             position: relative;
@@ -105,6 +94,12 @@
             transition-delay: 0s;
         }
 
+        .dropdown-menu.force-hide {
+            visibility: hidden !important;
+            opacity: 0 !important;
+            transition: none !important;
+        }
+
         .brand-text {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -116,7 +111,7 @@
         .layer-btn {
             background: #f3f4f6;
             border: 1px solid transparent;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             border-radius: 1.2rem;
             font-size: 11px;
             text-transform: uppercase;
@@ -134,60 +129,92 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .current-color-dot {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
         }
         
-        .custom-scroll::-webkit-scrollbar { display: none; }
+        .insta-title { text-decoration: none; color: inherit; }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Header / Navigation -->
     <nav class="fixed top-0 w-full z-[100] glass-nav px-8 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <button onclick="showPage('home')" class="brand-text text-3xl hover:opacity-70 transition text-black font-bold">MunayChatika</button>
-            <div class="hidden md:flex space-x-12 text-[12px] uppercase tracking-[0.25em] font-semibold items-center text-black">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-black">
+            <button onclick="showPage('home')" class="brand-text text-3xl hover:opacity-70 transition text-black">MunayChatika</button>
+            
+            <div class="hidden md:flex space-x-10 text-[12px] uppercase tracking-[0.25em] font-semibold items-center text-black">
+                
                 <div class="relative dropdown-parent">
-                    <button class="btn-luxury flex items-center gap-2 py-2">Catálogo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden">
-                        <div class="p-3 text-black text-black">
+                    <button class="btn-luxury flex items-center gap-2 py-2">
+                        Aretes 2026
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="earring-dropdown" class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden text-black">
+                        <div class="p-3">
                             <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                                <div><span class="block serif text-xl">Margarita</span><span class="block text-[9px] text-neutral-500 uppercase">Esencia Floral</span></div><span>→</span>
+                                <div><span class="block serif text-xl">Margarita</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Esencia Floral</span></div><span>→</span>
                             </button>
                             <button onclick="handleModelSelect('gota')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                                <div><span class="block serif text-xl">Gota</span><span class="block text-[9px] text-neutral-500 uppercase">Minimalismo</span></div><span>→</span>
+                                <div><span class="block serif text-xl text-black">Gota Clásica</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Minimalismo</span></div><span>→</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <button onclick="scrollToAtelier()" class="btn-luxury text-gold">El Atelier</button>
+
+                <div class="relative dropdown-parent text-black">
+                    <button class="btn-luxury flex items-center gap-2 py-2">COLLARES <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden text-black">
+                        <div class="p-3">
+                            <button onclick="handleNecklaceSelect('gargantilla')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                                <span class="block serif text-xl">Gargantilla Solar</span><span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative dropdown-parent text-black">
+                    <button class="btn-luxury flex items-center gap-2 py-2">GANCHOS <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden text-black">
+                        <div class="p-3">
+                            <button onclick="handleHookSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                                <span class="block serif text-xl">Gancho Margarita</span><span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="showPage('atelier')" class="btn-luxury text-gold">EL ATELIER</button>
             </div>
-            <a href="https://wa.me/51927412063" target="_blank" class="bg-black text-white px-8 py-3 text-[11px] uppercase tracking-widest font-bold shadow-xl">CONTACTOS</a>
+
+            <a href="https://wa.me/51927412063" target="_blank" class="bg-black text-white px-8 py-3 text-[11px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl font-bold">CONTACTOS</a>
         </div>
     </nav>
 
     <!-- PAGE: HOME -->
-    <section id="page-home" class="view-section active pt-48 pb-32 overflow-hidden text-black">
+    <section id="page-home" class="view-section active pt-48 pb-32 text-black">
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-6 z-10">
                     <div class="flex items-center gap-4 mb-8">
-                        <span class="text-[10px] uppercase tracking-[0.5em] text-neutral-400">Edición 2026</span>
+                        <span class="text-[10px] uppercase tracking-[0.5em] text-neutral-400 font-semibold">EDICIÓN 2026</span>
                         <div class="w-12 h-px bg-gold"></div>
                         <span class="text-[10px] uppercase tracking-[0.5em] text-neutral-400 italic">Cusco, Perú</span>
                     </div>
-                    <h1 class="text-7xl lg:text-[8rem] lg:leading-[0.85] serif mb-10 tracking-tighter">Esencia <br><span class="italic font-light">Esculpida</span></h1>
-                    <p class="text-xl text-neutral-500 font-light leading-relaxed mb-12 max-w-lg">Diseño contemporáneo con alma ancestral. Historias moldeadas a mano con paciencia y amor.</p>
+                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="insta-title group">
+                        <h1 class="text-7xl lg:text-[8rem] lg:leading-[0.85] serif mb-10 tracking-tighter">Esencia <br><span class="italic font-light group-hover:text-gold transition-colors duration-500">Esculpida</span></h1>
+                    </a>
+                    <p class="text-xl text-neutral-500 font-light leading-relaxed mb-12 max-w-lg italic">"Fusionamos la tradición de nuestras raíces con un diseño contemporáneo."</p>
                     <div class="flex items-center gap-6">
-                        <button onclick="scrollToAtelier()" class="bg-black text-white px-12 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-neutral-800 transition-all shadow-2xl">Personaliza tu Modelo</button>
+                        <button onclick="showPage('collection')" class="bg-black text-white px-12 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-neutral-800 transition shadow-2xl">Ver Catálogo</button>
+                        <button onclick="showPage('atelier')" class="border border-neutral-200 px-12 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-white transition-all">Personalizar</button>
                     </div>
                 </div>
                 <div class="lg:col-span-6">
-                    <div class="aspect-[4/5] bg-neutral-100 rounded-[3rem] overflow-hidden shadow-2xl relative">
-                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" alt="Artesanía" class="w-full h-full object-cover">
+                    <div class="aspect-[4/5] bg-neutral-100 rounded-[3rem] overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-90">
                     </div>
                 </div>
             </div>
@@ -197,106 +224,139 @@
     <!-- PAGE: COLLECTION -->
     <section id="page-collection" class="view-section pt-32 pb-40 bg-neutral-50 text-black">
         <div class="max-w-7xl mx-auto px-8">
-            <h2 class="text-6xl serif mb-16">Colección 2026</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <h2 class="text-6xl serif mb-20 leading-tight">Piezas de Autor</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div onclick="openModel('margarita')" class="riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100">
                     <div class="aspect-square bg-neutral-900 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110">
-                        <span class="absolute text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2">Explorar 3D</span>
+                        <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
+                        <span class="absolute text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2">ARETES 3D</span>
                     </div>
                     <h3 class="text-2xl serif">ARETES</h3>
+                </div>
+                <div onclick="handleNecklaceSelect('gargantilla')" class="riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100 text-black">
+                    <div class="aspect-square bg-neutral-800 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl text-black">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
+                        <span class="absolute text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2">COLLARES</span>
+                    </div>
+                    <h3 class="text-2xl serif">COLLARES</h3>
+                </div>
+                <div onclick="handleHookSelect('margarita')" class="riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100 text-black">
+                    <div class="aspect-square bg-neutral-900 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl text-black">
+                        <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700 text-black">
+                        <span class="absolute text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2 uppercase">GANCHOS</span>
+                    </div>
+                    <h3 class="text-2xl serif uppercase">GANCHOS</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: ATELIER (PERSONALIZA TU MODELO) -->
-    <section id="atelier-section" class="py-32 bg-white border-t border-neutral-100 text-black">
+    <!-- PAGE: ATELIER (PÁGINA APARTE) -->
+    <section id="page-atelier" class="view-section pt-32 pb-40 text-black">
         <div class="max-w-7xl mx-auto px-8">
-            <div class="max-w-3xl mb-24">
-                <span class="text-[11px] uppercase tracking-[0.6em] text-gold mb-4 block font-semibold">Espacio Creativo</span>
-                <h2 class="text-7xl serif mb-8 leading-tight text-black">Personaliza tu Modelo</h2>
-                <p class="text-xl text-neutral-500 font-light leading-relaxed">
-                    Experimenta con nuestra paleta de 17 colores exclusivos. Selecciona cada capa de tu Margarita para crear una pieza que sea un reflejo fiel de tu alma.
-                </p>
+            <button onclick="showPage('home')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar al inicio</button>
+            
+            <div class="text-center mb-24">
+                <span class="text-[11px] uppercase tracking-[0.6em] text-gold mb-4 block font-semibold">EL ATELIER DE CO-CREACIÓN</span>
+                <h2 class="text-7xl serif">Personaliza tu Modelo</h2>
+                <p class="text-xl text-neutral-500 font-light mt-6 italic">Crea una pieza que cuente tu propia historia.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
                 <div class="lg:col-span-7 relative">
                     <div id="atelier-canvas-container"></div>
-                    <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-6 py-3 rounded-2xl border border-black/5 flex items-center gap-3">
-                        <div class="flex -space-x-2">
-                            <div id="status-exterior" class="w-4 h-4 rounded-full border border-white" style="background: #EAB308"></div>
-                            <div id="status-interior" class="w-4 h-4 rounded-full border border-white" style="background: #1A1A1A"></div>
-                            <div id="status-nucleo" class="w-4 h-4 rounded-full border border-white" style="background: #D4AF37"></div>
-                        </div>
-                        <span class="text-[9px] uppercase tracking-widest font-bold opacity-60">Tu Combinación Actual</span>
-                    </div>
                 </div>
 
                 <div class="lg:col-span-5 space-y-10 bg-neutral-50 p-10 rounded-[2.5rem]">
                     <div class="space-y-4">
-                        <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">1. Parte a Colorear</h4>
+                        <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">1. Selecciona la Capa</h4>
                         <div class="grid grid-cols-1 gap-3">
-                            <button id="btn-layer-0" onclick="setActiveLayer(0)" class="layer-btn active">
-                                <span>Pétalos Exteriores</span>
-                                <div id="dot-0" class="current-color-dot" style="background: #EAB308"></div>
-                            </button>
-                            <button id="btn-layer-1" onclick="setActiveLayer(1)" class="layer-btn">
-                                <span>Pétalos Interiores</span>
-                                <div id="dot-1" class="current-color-dot" style="background: #1A1A1A"></div>
-                            </button>
-                            <button id="btn-layer-2" onclick="setActiveLayer(2)" class="layer-btn">
-                                <span>Núcleo en Espiral</span>
-                                <div id="dot-2" class="current-color-dot" style="background: #D4AF37"></div>
-                            </button>
+                            <button id="btn-layer-0" onclick="setActiveLayer(0)" class="layer-btn active"><span>Pétalos Exteriores</span><div id="dot-0" class="current-color-dot" style="background: #EAB308"></div></button>
+                            <button id="btn-layer-1" onclick="setActiveLayer(1)" class="layer-btn"><span>Pétalos Interiores</span><div id="dot-1" class="current-color-dot" style="background: #1A1A1A"></div></button>
+                            <button id="btn-layer-2" onclick="setActiveLayer(2)" class="layer-btn"><span>Núcleo en Espiral</span><div id="dot-2" class="current-color-dot" style="background: #D4AF37"></div></button>
                         </div>
                     </div>
-
                     <div class="space-y-6">
-                        <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">2. Paleta de Cueros (17 Colores)</h4>
-                        <div id="atelier-colors" class="grid grid-cols-6 gap-4"></div>
+                        <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">2. Elige el Color (17 Tonos)</h4>
+                        <div id="atelier-colors" class="grid grid-cols-6 gap-3"></div>
                     </div>
-
-                    <div class="pt-8 border-t border-neutral-200">
-                        <button onclick="sendAtelierOrder()" class="w-full bg-black text-white py-6 rounded-2xl text-[11px] uppercase tracking-widest font-bold hover:bg-neutral-800 transition-all shadow-2xl flex items-center justify-center gap-3">
-                            <span>RESERVAR ESTE DISEÑO</span>
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.415-8.413z"/></svg>
-                        </button>
-                    </div>
+                    <button onclick="sendAtelierOrder()" class="w-full bg-black text-white py-6 rounded-2xl text-[11px] uppercase tracking-widest font-bold shadow-2xl">RESERVAR MI CONFIGURACIÓN</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE: DETAIL (Para modelos individuales) -->
+    <!-- PAGE: ARETE DETAIL (3D) -->
     <section id="page-detail" class="view-section pt-32 pb-32 text-black">
         <div class="max-w-7xl mx-auto px-8">
-            <button onclick="showPage('home')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
+            <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
                 <div id="canvas-container"></div>
                 <div class="py-10">
                     <span id="detail-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-300">REF: 001-A</span>
                     <h1 id="detail-title" class="text-7xl serif mb-8 italic text-black">Margarita</h1>
                     <p id="detail-desc" class="text-xl text-neutral-500 font-light leading-relaxed mb-12"></p>
-                    <div id="swatch-container" class="flex gap-4 mb-12"></div>
-                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 text-center inline-block rounded-2xl text-[11px] uppercase tracking-widest font-bold">CONSULTAR PIEZA</a>
+                    <div id="swatch-container" class="flex gap-4 mb-12 flex-wrap"></div>
+                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 text-center inline-block rounded-2xl text-[11px] uppercase tracking-widest font-bold">CONTACTAR</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: IMAGE DETAIL -->
+    <section id="page-image-detail" class="view-section pt-32 pb-32 text-black">
+        <div class="max-w-7xl mx-auto px-8">
+            <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="aspect-square bg-neutral-900 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                    <img id="display-image" src="" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span id="display-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-300">REF: NC-001</span>
+                    <h1 id="display-title" class="text-7xl serif mb-6 leading-tight italic text-black font-semibold text-black">Producto</h1>
+                    <p id="display-desc" class="text-xl text-neutral-500 font-light leading-relaxed mb-12"></p>
+                    <a id="display-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 text-center inline-block rounded-2xl text-[11px] uppercase tracking-widest font-bold uppercase">RESERVAR PIEZA ÚNICA</a>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-white border-t border-neutral-100 py-24 px-8 text-black text-center">
-        <div class="text-4xl serif font-bold mb-8 italic tracking-tighter">MunayChatika</div>
-        <p class="text-[10px] uppercase tracking-[0.5em] opacity-30 mb-12">Historias moldeadas a mano • Cusco, Perú</p>
+        <div class="text-4xl serif font-bold mb-8 italic tracking-tighter text-black">MunayChatika</div>
+        <p class="text-[10px] uppercase tracking-[0.5em] opacity-30 mb-12 text-black">Historias moldeadas a mano • Cusco, Perú</p>
         <div class="flex justify-center space-x-12 text-[10px] uppercase tracking-widest font-bold opacity-60 text-black">
-            <a href="https://www.instagram.com/munay_chatika/" class="hover:text-gold transition text-black">Instagram</a>
-            <a href="https://wa.me/51927412063" class="hover:text-gold transition text-black">WhatsApp</a>
+            <a href="https://www.instagram.com/munay_chatika/" target="_blank">Instagram</a>
+            <a href="https://wa.me/51927412063" target="_blank">WhatsApp</a>
         </div>
     </footer>
 
     <script>
         const WHATSAPP_NUM = "51927412063";
+        
+        const catalog = {
+            margarita: {
+                title: "Margarita",
+                ref: "REF: 001-A",
+                desc: "Captura la alegría instantánea a través de pétalos de cuero genuino cortados con precisión quirúrgica.",
+                colors: [
+                    { name: 'YellowSun', hex: '#EAB308' }, { name: 'Green Forest', hex: '#4D7C0F' }, { name: 'Blue Ocean', hex: '#1D4ED8' },
+                    { name: 'Autumn Orange', hex: '#C2410C' }, { name: 'Midnight Onyx', hex: '#1A1A1A' }, { name: 'Burgundy Rose', hex: '#9F1239' },
+                    { name: 'Lavender Mist', hex: '#A78BFA' }
+                ],
+                shape: 'margarita'
+            },
+            gota: { title: "Gota", ref: "REF: 002-B", desc: "Minimalismo orgánico en cuero genuino.", colors: [{name:'Cognac', hex:'#8B4513'},{name:'Midnight', hex:'#1A1A1A'}], shape: 'gota' },
+            hoja: { title: "Hoja Serrana", ref: "REF: 003-C", desc: "Inspiración andina en cada curva.", colors: [{name:'Foresta', hex:'#166534'}], shape: 'hoja' }
+        };
+
+        const necklaceCatalog = {
+            gargantilla: { title: "Gargantilla Solar", ref: "REF: COLL-001", desc: "Pieza central radiante.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" }
+        };
+
+        const hookCatalog = {
+            margarita: { title: "Gancho Margarita", ref: "REF: HOOK-001", desc: "Herraje de autor tallado.", img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000" }
+        };
+
         const atelierColors = [
             { name: 'YellowSun', hex: '#EAB308' }, { name: 'Forest Green', hex: '#4D7C0F' }, { name: 'Ocean Blue', hex: '#1D4ED8' },
             { name: 'Autumn Orange', hex: '#C2410C' }, { name: 'Midnight Onyx', hex: '#1A1A1A' }, { name: 'Burgundy', hex: '#9F1239' },
@@ -306,15 +366,56 @@
             { name: 'Sage Leaf', hex: '#87A96B' }, { name: 'Classic Rose', hex: '#E11D48' }
         ];
 
-        let activeLayer = 0;
         let atelierConfig = { 0: atelierColors[0], 1: atelierColors[4], 2: atelierColors[10] };
+        let activeLayer = 0;
         let atelierScene, atelierCamera, atelierRenderer, atelierGroup;
         let layerMaterials = {};
 
+        function handleModelSelect(k) { closeDropdowns(); openModel(k); }
+        function handleNecklaceSelect(k) { closeDropdowns(); updateImageView(necklaceCatalog[k], "Collar"); }
+        function handleHookSelect(k) { closeDropdowns(); updateImageView(hookCatalog[k], "Gancho"); }
+
+        function closeDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(d => {
+                d.classList.add('force-hide');
+                setTimeout(() => d.classList.remove('force-hide'), 500);
+            });
+        }
+
+        function showPage(id) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            const p = document.getElementById('page-' + id);
+            if(p) p.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // Si entramos al atelier, inicializamos si no está
+            if(id === 'atelier' && !atelierRenderer) {
+                setTimeout(initAtelier3D, 100);
+            }
+        }
+
+        function openModel(key) {
+            const data = catalog[key];
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-desc').innerText = data.desc;
+            document.getElementById('detail-ref').innerText = data.ref;
+            showPage('detail');
+            initDetail3D(data);
+        }
+
+        function updateImageView(data, cat) {
+            document.getElementById('display-title').innerText = data.title;
+            document.getElementById('display-ref').innerText = data.ref;
+            document.getElementById('display-desc').innerText = data.desc;
+            document.getElementById('display-image').src = data.img;
+            document.getElementById('display-whatsapp-link').href = `https://wa.me/${WHATSAPP_NUM}?text=Deseo reservar el ${cat}: ${data.title}`;
+            showPage('image-detail');
+        }
+
+        // --- 3D ENGINE ATELIER ---
         function initAtelier3D() {
             const container = document.getElementById('atelier-canvas-container');
-            if (!container) return;
-            
+            if(!container) return;
             atelierScene = new THREE.Scene();
             atelierCamera = new THREE.PerspectiveCamera(35, container.clientWidth/container.clientHeight, 0.1, 1000);
             atelierCamera.position.z = 8;
@@ -325,74 +426,53 @@
             container.appendChild(atelierRenderer.domElement);
 
             atelierScene.add(new THREE.AmbientLight(0xffffff, 0.7));
-            const spot = new THREE.SpotLight(0xffffff, 2.5);
-            spot.position.set(5, 10, 5);
-            atelierScene.add(spot);
+            const spot = new THREE.SpotLight(0xffffff, 2.5); spot.position.set(5,10,5); atelierScene.add(spot);
 
             atelierGroup = new THREE.Group();
-            
-            // MATERIALES INDEPENDIENTES
             layerMaterials[0] = new THREE.MeshStandardMaterial({ color: atelierConfig[0].hex, roughness: 0.6 });
             layerMaterials[1] = new THREE.MeshStandardMaterial({ color: atelierConfig[1].hex, roughness: 0.6 });
             layerMaterials[2] = new THREE.MeshStandardMaterial({ color: atelierConfig[2].hex, roughness: 0.8 });
 
-            // CONSTRUIR MODELO 3 CAPAS
             const shape = new THREE.Shape();
             shape.moveTo(0,0); shape.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); shape.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
-            const petalGeo = new THREE.ExtrudeGeometry(shape, { depth: 0.05, bevelEnabled: true, bevelThickness: 0.02 });
+            const petalGeo = new THREE.ExtrudeGeometry(shape, { depth: 0.05, bevelEnabled: true });
 
-            // 1. Exterior
             for(let i=0; i<20; i++) {
-                const p = new THREE.Mesh(petalGeo, layerMaterials[0]);
-                p.rotation.z = (i/20) * Math.PI*2;
-                p.scale.set(1, 1, 1);
-                atelierGroup.add(p);
+                const p = new THREE.Mesh(petalGeo, layerMaterials[0]); p.rotation.z = (i/20)*Math.PI*2; atelierGroup.add(p);
             }
-
-            // 2. Interior
             for(let i=0; i<16; i++) {
-                const p = new THREE.Mesh(petalGeo, layerMaterials[1]);
-                p.rotation.z = (i/16) * Math.PI*2;
-                p.scale.set(0.65, 0.65, 0.65);
-                p.position.z = 0.08;
-                atelierGroup.add(p);
+                const p = new THREE.Mesh(petalGeo, layerMaterials[1]); p.rotation.z = (i/16)*Math.PI*2; p.scale.set(0.65,0.65,0.65); p.position.z=0.08; atelierGroup.add(p);
             }
+            const core = new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.2, 32), layerMaterials[2]);
+            core.rotation.x = Math.PI/2; core.position.z = 0.15; atelierGroup.add(core);
 
-            // 3. Núcleo
-            const coreMesh = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.35, 0.35, 0.2, 32), 
-                layerMaterials[2]
-            );
-            coreMesh.rotation.x = Math.PI/2;
-            coreMesh.position.z = 0.15;
-            atelierGroup.add(coreMesh);
+            const hook = new THREE.Mesh(new THREE.TorusGeometry(0.2,0.02,16,100,Math.PI*1.5), new THREE.MeshStandardMaterial({color:0xd4af37, metalness:1}));
+            hook.position.y=1.9; hook.rotation.z=Math.PI*1.25; atelierGroup.add(hook);
 
-            // Gancho
-            const hook = new THREE.Mesh(
-                new THREE.TorusGeometry(0.2, 0.02, 16, 100, Math.PI*1.5), 
-                new THREE.MeshStandardMaterial({color: 0xd4af37, metalness: 1, roughness: 0.1})
-            );
-            hook.position.y = 1.9; hook.rotation.z = Math.PI*1.25;
-            atelierGroup.add(hook);
-
-            atelierGroup.scale.set(0.6, 0.6, 0.6);
+            atelierGroup.scale.set(0.6,0.6,0.6);
             atelierScene.add(atelierGroup);
-
-            let isDragging = false;
-            container.onmousedown = () => isDragging = true;
-            window.onmouseup = () => isDragging = false;
-            window.onmousemove = e => { if(isDragging) atelierGroup.rotation.y += e.movementX * 0.01; };
             
+            let drag = false;
+            container.onmousedown = () => drag = true;
+            window.onmouseup = () => drag = false;
+            window.onmousemove = e => { if(drag) atelierGroup.rotation.y += e.movementX * 0.01; };
+
+            renderAtelierColors();
             animateAtelier();
         }
 
-        function renderColorGrid() {
+        function renderAtelierColors() {
             const grid = document.getElementById('atelier-colors');
-            atelierColors.forEach((c, i) => {
+            grid.innerHTML = '';
+            atelierColors.forEach(c => {
                 const b = document.createElement('button');
-                b.className = 'color-swatch';
-                b.style.backgroundColor = c.hex;
-                b.onclick = () => applyColorToActiveLayer(c);
+                b.className = 'color-swatch'; b.style.backgroundColor = c.hex;
+                b.onclick = () => {
+                    atelierConfig[activeLayer] = c;
+                    layerMaterials[activeLayer].color.set(c.hex);
+                    document.getElementById(`dot-${activeLayer}`).style.background = c.hex;
+                    atelierGroup.rotation.y += 0.5;
+                };
                 grid.appendChild(b);
             });
         }
@@ -400,15 +480,6 @@
         function setActiveLayer(idx) {
             activeLayer = idx;
             document.querySelectorAll('.layer-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
-        }
-
-        function applyColorToActiveLayer(color) {
-            atelierConfig[activeLayer] = color;
-            layerMaterials[activeLayer].color.set(color.hex);
-            document.getElementById(`dot-${activeLayer}`).style.background = color.hex;
-            const statusMap = {0: 'exterior', 1: 'interior', 2: 'nucleo'};
-            document.getElementById(`status-${statusMap[activeLayer]}`).style.background = color.hex;
-            atelierGroup.rotation.y += 0.5;
         }
 
         function animateAtelier() {
@@ -420,40 +491,63 @@
         }
 
         function sendAtelierOrder() {
-            const msg = `Hola MunayChatika! Mi diseño personalizado:
-• Pétalos Exteriores: ${atelierConfig[0].name}
-• Pétalos Interiores: ${atelierConfig[1].name}
+            const msg = `Hola MunayChatika! Deseo reservar mi diseño personalizado del Atelier:
+• Pétalos Ext: ${atelierConfig[0].name}
+• Pétalos Int: ${atelierConfig[1].name}
 • Núcleo: ${atelierConfig[2].name}`;
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        function showPage(id) {
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            document.getElementById('page-' + id).classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+        // --- DETAIL VIEW ENGINE ---
+        let dScene, dCamera, dRenderer, dGroup, dMat;
+        function initDetail3D(data) {
+            const cont = document.getElementById('canvas-container');
+            cont.innerHTML = '';
+            dScene = new THREE.Scene();
+            dCamera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000); dCamera.position.z = 8;
+            dRenderer = new THREE.WebGLRenderer({antialias:true, alpha:true}); dRenderer.setSize(cont.clientWidth, cont.clientHeight);
+            cont.appendChild(dRenderer.domElement);
+            dScene.add(new THREE.AmbientLight(0xffffff, 0.6));
+            dGroup = new THREE.Group();
+            dMat = new THREE.MeshStandardMaterial({color: data.colors[0].hex, roughness:0.6});
+            
+            const shape = new THREE.Shape();
+            shape.moveTo(0,0); shape.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); shape.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
+            const geo = new THREE.ExtrudeGeometry(shape, {depth:0.05, bevelEnabled:true});
+            for(let i=0; i<16; i++) {
+                const p = new THREE.Mesh(geo, dMat); p.rotation.z = (i/16)*Math.PI*2; dGroup.add(p);
+            }
+            const core = new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,0.15,32), new THREE.MeshStandardMaterial({color:0x1a1a1a}));
+            core.rotation.x = Math.PI/2; dGroup.add(core);
+
+            dGroup.scale.set(0.5,0.5,0.5); dScene.add(dGroup);
+            
+            let drag = false;
+            cont.onmousedown = () => drag = true;
+            window.onmouseup = () => drag = false;
+            window.onmousemove = e => { if(drag) dGroup.rotation.y += e.movementX * 0.01; };
+
+            const swatchCont = document.getElementById('swatch-container'); swatchCont.innerHTML = '';
+            data.colors.forEach(c => {
+                const b = document.createElement('button'); b.className = 'color-swatch'; b.style.backgroundColor = c.hex;
+                b.onclick = () => { dMat.color.set(c.hex); dGroup.rotation.y += Math.PI; };
+                swatchCont.appendChild(b);
+            });
+
+            function animate() { requestAnimationFrame(animate); if(dRenderer) dRenderer.render(dScene, dCamera); }
+            animate();
         }
 
-        function scrollToAtelier() {
-            showPage('home');
-            document.getElementById('atelier-section').scrollIntoView({ behavior: 'smooth' });
-        }
+        window.onload = () => showPage('home');
 
-        function handleModelSelect(k) { openModel(k); }
-
-        function openModel(key) {
-            const catalog = {
-                margarita: { title: "Margarita", desc: "Esencia floral en cuero." },
-                gota: { title: "Gota", desc: "Minimalismo orgánico." }
-            };
-            document.getElementById('detail-title').innerText = catalog[key].title;
-            document.getElementById('detail-desc').innerText = catalog[key].desc;
-            showPage('detail');
-        }
-
-        window.onload = () => {
-            initAtelier3D();
-            renderColorGrid();
-        };
+        window.addEventListener('resize', () => {
+            if(atelierRenderer && atelierCamera) {
+                const container = document.getElementById('atelier-canvas-container');
+                atelierCamera.aspect = container.clientWidth / container.clientHeight;
+                atelierCamera.updateProjectionMatrix();
+                atelierRenderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
     </script>
 </body>
 </html>
