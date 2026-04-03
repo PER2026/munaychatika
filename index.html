@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MunayChatika | L'art de l'artisanat</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,19 +24,22 @@
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
         .glass-nav {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
         #canvas-container {
             width: 100%;
-            height: 500px;
+            height: 400px; /* Reducido para móvil */
             cursor: grab;
             border-radius: 2rem;
             background: radial-gradient(circle at center, #1a1a1a 0%, var(--dark) 100%);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             touch-action: none;
+        }
+        @media (min-width: 1024px) {
+            #canvas-container { height: 550px; }
         }
         #canvas-container:active { cursor: grabbing; }
 
@@ -44,23 +47,23 @@
         .view-section.active { display: block; animation: sectionFade 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
         @keyframes sectionFade {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .riel-card {
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
-            border-radius: 2.5rem;
+            border-radius: 2rem;
         }
-        .riel-card:hover { transform: translateY(-10px); }
+        .riel-card:hover { transform: translateY(-8px); }
         
         .color-swatch {
-            width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 2px solid white;
+            width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 3px solid white;
             cursor: pointer; transition: all 0.3s ease;
             flex-shrink: 0;
         }
-        .color-swatch.active { transform: scale(1.3); border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+        .color-swatch.active { transform: scale(1.2); border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
 
         .btn-luxury {
             position: relative;
@@ -82,26 +85,27 @@
 
         .dropdown-menu {
             background-color: #ffffff !important;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid #eeeeee;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            border: 1px solid #f0f0f0;
             z-index: 200;
             visibility: hidden;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.2s;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .dropdown-parent:hover .dropdown-menu {
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
-            transition-delay: 0s;
         }
 
-        .dropdown-menu.force-hide {
-            visibility: hidden !important;
-            opacity: 0 !important;
-            transition: none !important;
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu-open #mobile-menu {
+            transform: translateX(0);
         }
 
         .insta-title {
@@ -113,11 +117,11 @@
 
         .line-accent {
             height: 1px;
-            width: 50px;
+            width: 40px;
             background-color: var(--gold);
             display: inline-block;
             vertical-align: middle;
-            margin-right: 15px;
+            margin-right: 12px;
         }
 
         .brand-text {
@@ -127,234 +131,204 @@
             color: var(--dark);
         }
 
-        /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Mobile Menu */
-        #mobile-menu {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateX(100%);
-        }
-        #mobile-menu.open { transform: translateX(0); }
-
-        .floating-wa {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-            transition: transform 0.3s;
-        }
-        .floating-wa:hover { transform: scale(1.1); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/51927412063" target="_blank" class="floating-wa">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.228 3.481 8.408c0 6.556-5.332 11.888-11.888 11.888-2.003 0-3.976-.506-5.739-1.468l-6.245 1.687zm6.39-4.04c1.604.953 3.536 1.455 5.512 1.456 5.479 0 9.938-4.459 9.938-9.938s-4.459-9.938-9.938-9.938c-5.48 0-9.938 4.459-9.938 9.938 0 2.069.641 4.09 1.853 5.791l-1.168 4.267 4.372-1.182-.569.304zm11.458-7.79c-.319-.16-1.884-.929-2.176-1.035-.293-.106-.506-.16-.719.16-.213.319-.824 1.035-1.01 1.247-.186.213-.372.239-.69.079-.319-.159-1.349-.497-2.569-1.586-.95-.847-1.592-1.892-1.778-2.211-.186-.319-.02-.491.14-.649.144-.141.319-.372.478-.558.16-.186.213-.319.319-.532.106-.213.053-.399-.027-.558-.079-.16-.719-1.728-.985-2.366-.259-.622-.524-.538-.719-.548-.186-.01-.399-.012-.612-.012-.213 0-.558.079-.85.399-.293.319-1.117 1.09-1.117 2.659s1.143 3.084 1.303 3.297c.159.213 2.25 3.435 5.45 4.818.761.329 1.355.525 1.82.673.764.243 1.459.209 2.008.127.612-.091 1.884-.771 2.15-1.515.266-.744.266-1.382.186-1.515-.079-.133-.293-.213-.612-.373z"/></svg>
-    </a>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[100] glass-nav px-8 py-6">
+    <!-- Header / Navigation -->
+    <nav class="fixed top-0 w-full z-[100] glass-nav px-4 md:px-8 py-4 md:py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <button onclick="showPage('home')" class="brand-text text-2xl md:text-3xl hover:opacity-70 transition text-black font-bold">
                 MunayChatika
             </button>
             
-            <div class="hidden lg:flex space-x-12 text-[11px] uppercase tracking-[0.25em] font-semibold items-center text-black">
-                <!-- DROPDOWNS -->
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.2em] font-semibold items-center text-black">
+                <!-- DROPDOWN ARETES -->
                 <div class="relative dropdown-parent">
-                    <button class="btn-luxury flex items-center gap-2 py-2">Aretes 2026 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg></button>
+                    <button class="btn-luxury flex items-center gap-2 py-2">
+                        Aretes 2026
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
                     <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3">
-                        <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition group/item flex justify-between items-center">
+                        <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
                             <div><span class="block serif text-xl text-black">Margarita</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Esencia Floral</span></div>
-                            <span class="text-neutral-200 group-hover/item:text-gold transition">→</span>
+                            <span class="text-neutral-300">→</span>
                         </button>
-                        <button onclick="handleModelSelect('gota')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition group/item flex justify-between items-center">
+                        <button onclick="handleModelSelect('gota')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
                             <div><span class="block serif text-xl text-black">Gota Clásica</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Minimalismo</span></div>
-                            <span class="text-neutral-200 group-hover/item:text-gold transition">→</span>
+                            <span class="text-neutral-300">→</span>
                         </button>
-                        <button onclick="handleModelSelect('hoja')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition group/item flex justify-between items-center">
+                        <button onclick="handleModelSelect('hoja')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
                             <div><span class="block serif text-xl text-black">Hoja Serrana</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Naturaleza</span></div>
-                            <span class="text-neutral-200 group-hover/item:text-gold transition">→</span>
+                            <span class="text-neutral-300">→</span>
                         </button>
                     </div>
                 </div>
 
+                <!-- DROPDOWN COLLARES -->
                 <div class="relative dropdown-parent">
-                    <button class="btn-luxury flex items-center gap-2 py-2">Collares <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg></button>
-                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3">
-                        <button onclick="handleNecklaceSelect('gargantilla')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition group/item flex justify-between items-center">
+                    <button class="btn-luxury flex items-center gap-2 py-2 text-black">
+                        COLLARES
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3 text-black">
+                        <button onclick="handleNecklaceSelect('gargantilla')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
                             <span class="block serif text-xl text-black">Gargantilla Solar</span>
-                            <span class="text-neutral-200 group-hover/item:text-gold transition">→</span>
+                            <span class="text-neutral-300">→</span>
                         </button>
-                        <button onclick="handleNecklaceSelect('pechera')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition group/item flex justify-between items-center">
+                        <button onclick="handleNecklaceSelect('pechera')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
                             <span class="block serif text-xl text-black">Pechera Ritual</span>
-                            <span class="text-neutral-200 group-hover/item:text-gold transition">→</span>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleNecklaceSelect('minimal')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
+                            <span class="block serif text-xl text-black">Minimal Cord</span>
+                            <span class="text-neutral-300">→</span>
                         </button>
                     </div>
                 </div>
+
+                <button onclick="handlePageSelect('collection')" class="btn-luxury py-2">COLECCIÓN</button>
             </div>
 
-            <div class="flex items-center gap-6">
-                <a href="https://wa.me/51927412063" target="_blank" class="hidden sm:block bg-black text-white px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl font-bold">CONTACTOS</a>
-                <button onclick="toggleMobileMenu()" class="lg:hidden text-black">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-black">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <!-- CONTACT BUTTON (Desktop) -->
+            <a href="https://wa.me/51927412063?text=Hola MunayChatika, deseo realizar una consulta." target="_blank" class="hidden md:block bg-black text-white px-8 py-3 text-[11px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-lg font-bold">CONTACTOS</a>
         </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[200] lg:hidden flex flex-col p-12">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-black">
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col p-8 pt-24">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <div class="flex flex-col space-y-8 mt-20">
-            <h2 class="text-xs uppercase tracking-widest text-neutral-400">Colecciones</h2>
-            <button onclick="toggleMobileMenu(); handleModelSelect('margarita')" class="serif text-4xl text-left">Aretes</button>
-            <button onclick="toggleMobileMenu(); handleNecklaceSelect('gargantilla')" class="serif text-4xl text-left">Collares</button>
-            <button onclick="toggleMobileMenu(); handleHookSelect('margarita')" class="serif text-4xl text-left">Ganchos</button>
-            <hr>
-            <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="text-xs uppercase tracking-[0.3em]">Instagram</a>
-            <a href="https://wa.me/51927412063" target="_blank" class="text-xs uppercase tracking-[0.3em]">WhatsApp</a>
+        
+        <div class="flex flex-col space-y-8 text-2xl serif">
+            <button onclick="toggleMobileMenu(); showPage('home')" class="text-left border-b border-neutral-100 pb-4">Inicio</button>
+            <button onclick="toggleMobileMenu(); showPage('collection')" class="text-left border-b border-neutral-100 pb-4">Ver Catálogo</button>
+            
+            <div class="py-4">
+                <span class="text-[10px] uppercase tracking-widest text-neutral-400 block mb-4">Nuestras Joyas</span>
+                <div class="grid grid-cols-1 gap-4">
+                    <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left text-lg">Aretes Margarita</button>
+                    <button onclick="handleNecklaceSelect('gargantilla'); toggleMobileMenu()" class="text-left text-lg">Gargantilla Solar</button>
+                    <button onclick="handleHookSelect('gota'); toggleMobileMenu()" class="text-left text-lg">Ganchos Gota</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-auto">
+            <a href="https://wa.me/51927412063" target="_blank" class="block w-full bg-black text-white py-5 text-center text-xs uppercase tracking-widest font-bold">WhatsApp Directo</a>
         </div>
     </div>
 
     <!-- PAGE: HOME -->
-    <main id="page-home" class="view-section active">
-        <!-- Hero -->
-        <section class="pt-48 pb-20 text-black px-8">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <span class="text-xs uppercase tracking-[0.5em] text-neutral-400 mb-6 block font-light">Artesanía de Autor • Cusco</span>
-                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="insta-title">
-                        <h1 class="text-6xl md:text-8xl serif mb-8 leading-[1.1]">Esencia <br><span class="italic font-light">Esculpida</span></h1>
-                    </a>
-                    <p class="text-lg text-neutral-500 font-light leading-relaxed mb-10 max-w-lg">
-                        Fusionamos la tradición de nuestras raíces con un diseño contemporáneo. Joyas que son historias moldeadas a mano con paciencia y cuero premium.
-                    </p>
-                    <div class="flex flex-wrap gap-6">
-                        <button onclick="showPage('collection')" class="bg-black text-white px-10 py-5 text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-2xl">
-                            Ver Catálogo
-                        </button>
-                        <button onclick="document.getElementById('artisan-section').scrollIntoView()" class="border border-neutral-200 px-10 py-5 text-xs uppercase tracking-widest hover:bg-white transition-all">
-                            Nuestra Historia
-                        </button>
-                    </div>
-                </div>
-                <div class="reveal aspect-[4/5] bg-neutral-100 rounded-[3rem] overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" alt="Joyas de Cuero" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-1000">
+    <section id="page-home" class="view-section active pt-32 md:pt-48 pb-20 text-black">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="fade-in order-2 lg:order-1">
+                <span class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-neutral-400 mb-6 block font-light">MunayChatika</span>
+                <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="insta-title">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl serif mb-6 md:mb-8 leading-[1.1]">Esencia <br><span class="italic font-light">Esculpida</span></h1>
+                </a>
+                <p class="text-base md:text-lg text-neutral-500 font-light leading-relaxed mb-8 md:10 max-w-lg">
+                    Fusionamos la tradición de nuestras raíces con un diseño contemporáneo. Joyas que son historias moldeadas a mano con paciencia y amor en el corazón de Cusco.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button onclick="showPage('collection')" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl">
+                        Ver Catálogo 2026
+                    </button>
+                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="border border-neutral-200 px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-50 transition-all text-center">Instagram</a>
                 </div>
             </div>
-        </section>
-
-        <!-- Artisan Process -->
-        <section id="artisan-section" class="py-32 bg-white px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-                    <div class="reveal">
-                        <h2 class="text-4xl serif mb-6 italic">El Ritual del Cuero</h2>
-                        <p class="text-neutral-500 leading-relaxed font-light">
-                            Seleccionamos las mejores pieles y las tratamos con técnicas ancestrales para lograr una flexibilidad que se adapta al movimiento de quien las luce.
-                        </p>
-                    </div>
-                    <div class="reveal lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="p-10 bg-neutral-50 rounded-[2rem] border border-neutral-100">
-                            <span class="text-gold text-xs uppercase tracking-widest mb-4 block">Fase 01</span>
-                            <h4 class="serif text-2xl mb-4">Corte de Precisión</h4>
-                            <p class="text-sm text-neutral-400 font-light leading-relaxed">Cada pétalo es cortado individualmente buscando la veta perfecta del cuero.</p>
-                        </div>
-                        <div class="p-10 bg-neutral-50 rounded-[2rem] border border-neutral-100">
-                            <span class="text-gold text-xs uppercase tracking-widest mb-4 block">Fase 02</span>
-                            <h4 class="serif text-2xl mb-4">Moldeado al Calor</h4>
-                            <p class="text-sm text-neutral-400 font-light leading-relaxed">Damos volumen a las piezas usando herramientas térmicas manuales para una forma orgánica.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="order-1 lg:order-2 aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" alt="Joyas de Cuero" class="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Preview Collection -->
-        <section class="py-20 bg-neutral-50 px-8">
-            <div class="max-w-7xl mx-auto text-center mb-16 reveal">
-                <h2 class="text-5xl serif">Colección 2026</h2>
-                <div class="w-24 h-[1px] bg-gold mx-auto mt-6"></div>
-            </div>
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-                 <!-- Cards (preserved from original) -->
-                 <div onclick="openModel('margarita')" class="reveal riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100">
-                    <div class="aspect-square bg-neutral-900 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500">Explorar 3D</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl serif px-2">ARETES</h3>
-                    <p class="text-sm text-neutral-400 font-light px-2 mt-2">Modelos Margarita, Gota y Hoja.</p>
-                </div>
-
-                <div onclick="handleNecklaceSelect('gargantilla')" class="reveal riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100" style="transition-delay: 0.1s">
-                    <div class="aspect-square bg-neutral-800 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500">Ver Detalles</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl serif px-2">COLLARES</h3>
-                    <p class="text-sm text-neutral-400 font-light px-2 mt-2">Gargantillas ceremoniales.</p>
-                </div>
-
-                <div onclick="handleHookSelect('margarita')" class="reveal riel-card group cursor-pointer bg-white p-6 shadow-sm border border-neutral-100" style="transition-delay: 0.2s">
-                    <div class="aspect-square bg-neutral-900 mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-xl text-black">
-                        <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-[10px] uppercase tracking-[0.5em] border border-white/30 px-6 py-2 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500">Ver Ganchos</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl serif px-2 uppercase font-bold text-black">GANCHOS</h3>
-                    <p class="text-sm text-neutral-400 font-light px-2 mt-2">Herrajes de diseño propio.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- PAGE: COLLECTION (Full View) -->
-    <section id="page-collection" class="view-section pt-32 pb-40 bg-neutral-50">
-        <div class="max-w-7xl mx-auto px-8 text-black">
-            <div class="max-w-3xl mb-24 reveal">
+    <!-- PAGE: COLLECTION -->
+    <section id="page-collection" class="view-section pt-24 md:pt-32 pb-24 md:pb-40 bg-neutral-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
+            <div class="max-w-3xl mb-16 md:24">
                 <div class="flex items-center mb-6">
                     <div class="line-accent"></div>
-                    <span class="text-xs uppercase tracking-[0.4em] text-neutral-400 font-semibold">Catálogo Maestro</span>
+                    <span class="text-[10px] uppercase tracking-[0.4em] text-neutral-400 font-semibold">Cusco • Edición 2026</span>
                 </div>
-                <h2 class="text-6xl serif mb-8 leading-tight">Piezas de Autor</h2>
-                <p class="text-xl text-neutral-500 font-light">Explora la relación entre el cuero genuino y las formas orgánicas de los Andes.</p>
+                <h2 class="text-4xl md:text-6xl serif mb-6 md:mb-8 leading-tight text-black">Piezas de Autor</h2>
+                <p class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed">
+                    Nuestra colección explora la relación entre el cuero genuino y las formas orgánicas de los Andes. Cada pieza es el resultado de horas de corte preciso y moldeado a mano.
+                </p>
             </div>
-            <!-- (Contenido igual al original pero con clases reveal) -->
-            <div class="bg-neutral-900 text-white rounded-[3rem] p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden reveal">
-                <div class="max-w-lg z-10">
-                    <h4 class="text-xs uppercase tracking-[0.5em] text-gold mb-4">Numeración Individual</h4>
-                    <h3 class="text-4xl serif mb-6">Singularidad Garantizada</h3>
-                    <p class="text-neutral-400 font-light leading-loose italic">"Cada par es numerado individualmente, garantizando que su pieza sea la única en el mundo."</p>
-                </div>
-                <div class="grid grid-cols-2 gap-8 z-10">
-                    <div class="text-center p-8 border border-white/10 rounded-3xl backdrop-blur-sm">
-                        <span class="block text-4xl serif text-gold mb-2">100%</span>
-                        <span class="text-[9px] uppercase tracking-widest opacity-50">Cuero Genuino</span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-24 md:32">
+                <!-- ARETES -->
+                <div onclick="openModel('margarita')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
+                    <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">Explorar 3D</span>
+                        </div>
                     </div>
-                    <div class="text-center p-8 border border-white/10 rounded-3xl backdrop-blur-sm">
-                        <span class="block text-4xl serif text-gold mb-2">Artisan</span>
-                        <span class="text-[9px] uppercase tracking-widest opacity-50">Hecho en Cusco</span>
+                    <div class="space-y-3 px-2">
+                        <h3 class="text-xl md:text-2xl serif">ARETES</h3>
+                        <p class="text-xs md:text-sm text-neutral-400 font-light leading-relaxed">Modelos Margarita, Gota y Hoja.</p>
+                    </div>
+                </div>
+
+                <!-- COLLARES -->
+                <div onclick="handleNecklaceSelect('gargantilla')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
+                    <div class="aspect-square bg-neutral-800 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">Ver Detalles</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 px-2">
+                        <h3 class="text-xl md:text-2xl serif">COLLARES</h3>
+                        <p class="text-xs md:text-sm text-neutral-400 font-light leading-relaxed">Gargantillas y cordones minimalistas.</p>
+                    </div>
+                </div>
+
+                <!-- GANCHOS -->
+                <div onclick="handleHookSelect('margarita')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
+                    <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">Ver Ganchos</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 px-2">
+                        <h3 class="text-xl md:text-2xl serif uppercase font-bold text-black">GANCHOS</h3>
+                        <p class="text-xs md:text-sm text-neutral-400 font-light leading-relaxed">Herrajes de diseño propio.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Numeración Box -->
+            <div class="bg-neutral-900 text-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden">
+                <div class="max-w-lg z-10 text-center md:text-left">
+                    <h4 class="text-[10px] uppercase tracking-[0.5em] text-gold mb-4">Numeración Individual</h4>
+                    <h3 class="text-3xl md:text-4xl serif mb-6 text-white">Singularidad Garantizada</h3>
+                    <p class="text-neutral-400 font-light leading-relaxed italic">
+                        "Cada par es numerado individualmente, garantizando que su pieza sea la única en el mundo. El lujo de lo irrepetible."
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 md:gap-8 z-10">
+                    <div class="text-center p-6 md:p-8 border border-white/10 rounded-2xl backdrop-blur-sm">
+                        <span class="block text-3xl md:text-4xl serif text-gold mb-2">100%</span>
+                        <span class="text-[8px] md:text-[9px] uppercase tracking-widest opacity-50">Cuero Genuino</span>
+                    </div>
+                    <div class="text-center p-6 md:p-8 border border-white/10 rounded-2xl backdrop-blur-sm">
+                        <span class="block text-3xl md:text-4xl serif text-gold mb-2">Artisan</span>
+                        <span class="text-[8px] md:text-[9px] uppercase tracking-widest opacity-50">Hecho en Cusco</span>
                     </div>
                 </div>
             </div>
@@ -362,68 +336,66 @@
     </section>
 
     <!-- PAGE: ARETE DETAIL (3D) -->
-    <section id="page-detail" class="view-section pt-32 pb-32">
-        <div class="max-w-7xl mx-auto px-8 text-black">
-            <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section id="page-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
+            <button onclick="showPage('collection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
                 <div class="relative group">
                     <div id="canvas-container"></div>
-                    <div id="swatch-container" class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-2xl p-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 max-w-[90%] overflow-x-auto scrollbar-hide"></div>
-                    <div class="absolute top-8 left-8 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/5 text-[9px] text-white uppercase tracking-widest">Gira el modelo para ver detalles</div>
+                    <div class="absolute top-4 right-4 bg-black/20 text-white text-[8px] uppercase p-2 rounded backdrop-blur">Rotar con el dedo/mouse</div>
+                    <div id="swatch-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-2xl p-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 max-w-[90%] overflow-x-auto scrollbar-hide"></div>
                 </div>
-                <div>
-                    <span id="detail-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-300">REF: 001-A</span>
-                    <h1 id="detail-title" class="text-7xl serif mb-6 leading-tight italic text-black">Cargando...</h1>
-                    <p id="detail-desc" class="text-xl text-neutral-500 font-light leading-relaxed mb-12"></p>
-                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">SOLICITAR POR WHATSAPP</a>
+                <div class="text-center lg:text-left">
+                    <span id="detail-ref" class="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">REF: 001-A</span>
+                    <h1 id="detail-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic text-black">Cargando...</h1>
+                    <p id="detail-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12"></p>
+                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">CONTACTAR POR WHATSAPP</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PAGE: IMAGE DETAIL -->
-    <section id="page-image-detail" class="view-section pt-32 pb-32">
-        <div class="max-w-7xl mx-auto px-8 text-black">
-            <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div class="aspect-square bg-neutral-900 rounded-[2.5rem] overflow-hidden shadow-2xl">
+    <section id="page-image-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
+            <button onclick="showPage('collection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold">← Regresar</button>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
+                <div class="aspect-square bg-neutral-900 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl">
                     <img id="display-image" src="" alt="Pieza MunayChatika" class="w-full h-full object-cover">
                 </div>
-                <div>
-                    <span id="display-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-300">REF: NC-001</span>
-                    <h1 id="display-title" class="text-7xl serif mb-6 leading-tight italic font-semibold text-black">Producto</h1>
-                    <p id="display-desc" class="text-xl text-neutral-500 font-light leading-relaxed mb-12"></p>
-                    <div class="grid grid-cols-2 gap-10 border-y border-neutral-100 py-10 mb-12">
+                <div class="text-center lg:text-left">
+                    <span id="display-ref" class="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">REF: NC-001</span>
+                    <h1 id="display-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic font-semibold text-black">Producto</h1>
+                    <p id="display-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 border-y border-neutral-100 py-8 md:py-10 mb-8 md:12">
                         <div>
-                            <h4 class="text-[10px] uppercase tracking-widest text-neutral-300 mb-2 font-bold text-black">Inversión</h4>
-                            <span id="display-price" class="text-4xl font-light text-black">$45.00 <span class="text-sm opacity-40 uppercase">usd</span></span>
+                            <h4 class="text-[9px] uppercase tracking-widest text-neutral-400 mb-2 font-bold">Inversión</h4>
+                            <span id="display-price" class="text-3xl md:text-4xl font-light text-black">$45.00 <span class="text-sm opacity-40 uppercase">usd</span></span>
                         </div>
                     </div>
-                    <a id="display-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold uppercase">CONSULTAR DISPONIBILIDAD</a>
+                    <a id="display-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold uppercase">CONTACTAR POR WHATSAPP</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white border-t border-neutral-100 py-20 px-8 text-black">
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-neutral-100 py-16 md:py-20 px-8 text-black">
         <div class="max-w-7xl mx-auto text-center">
-            <div class="text-4xl serif font-bold mb-8 italic">MunayChatika</div>
-            <div class="flex flex-wrap justify-center gap-10 text-[10px] uppercase tracking-widest opacity-50 mb-12">
+            <div class="text-3xl md:text-4xl serif font-bold mb-8 italic">MunayChatika</div>
+            <div class="flex flex-wrap justify-center gap-8 text-[9px] md:text-[10px] uppercase tracking-widest opacity-50">
                 <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="hover:text-gold transition">Instagram</a>
                 <a href="https://wa.me/51927412063" target="_blank" class="hover:text-gold transition">WhatsApp</a>
                 <a href="mailto:info@munaychatika.com" class="hover:text-gold transition">Email</a>
             </div>
-            <div class="max-w-md mx-auto mb-16 p-8 border border-neutral-50 rounded-3xl">
-                <p class="text-xs italic text-neutral-400 font-light">"Joyas con alma, nacidas del cuero y la herencia de Cusco para el mundo contemporáneo."</p>
-            </div>
-            <p class="text-[9px] uppercase tracking-[0.4em] opacity-30">© 2026 MunayChatika • Handmade in Cusco, Perú</p>
+            <p class="mt-12 text-[8px] md:text-[9px] uppercase tracking-[0.4em] opacity-30">Historias moldeadas a mano • Cusco, Perú • 2026</p>
         </div>
     </footer>
 
     <script>
+        // --- DATA CATALOGS ---
         const WHATSAPP_NUM = "51927412063";
 
-        // --- Data Preservada ---
         const catalog = {
             margarita: {
                 title: "Margarita",
@@ -468,16 +440,23 @@
             gargantilla: {
                 title: "Gargantilla Solar",
                 ref: "REF: COLL-001",
-                desc: "Una pieza central que irradia calidez. Elaborada con cuero curtido al vegetal.",
+                desc: "Una pieza central que irradia calidez. Elaborada con cuero curtido al vegetal y detalles en bronce.",
                 price: "$45.00",
                 img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000"
             },
             pechera: {
                 title: "Pechera Ritual",
                 ref: "REF: COLL-002",
-                desc: "Arquitectura textil en cuero. Una pieza audaz diseñada para distinción.",
+                desc: "Arquitectura textil en cuero. Una pieza audaz diseñada para distinción en eventos especiales.",
                 price: "$65.00",
                 img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000"
+            },
+            minimal: {
+                title: "Minimal Cord",
+                ref: "REF: COLL-003",
+                desc: "La simplicidad de la línea. Un cordón de cuero premium con cierre artesanal.",
+                price: "$30.00",
+                img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000"
             }
         };
 
@@ -485,44 +464,41 @@
             margarita: {
                 title: "Gancho Margarita",
                 ref: "REF: HOOK-001",
-                desc: "Diseño floral tallado a mano.",
+                desc: "Diseño floral tallado a mano para complementar tus aretes Munay.",
                 price: "$15.00",
                 img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000"
+            },
+            gota: {
+                title: "Gancho Gota",
+                ref: "REF: HOOK-002",
+                desc: "La curva perfecta en herrajes de autor, terminados en baño de oro.",
+                price: "$15.00",
+                img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000"
+            },
+            hoja: {
+                title: "Gancho Hoja",
+                ref: "REF: HOOK-003",
+                desc: "Detalle orgánico en metal bruñido, ideal para un estilo rústico elegante.",
+                price: "$15.00",
+                img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000"
             }
         };
 
-        // --- Logic Improvements ---
-
+        // --- UI LOGIC ---
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('open');
+            document.body.classList.toggle('mobile-menu-open');
+            const menu = document.getElementById('mobile-menu');
+            const isOpen = document.body.classList.contains('mobile-menu-open');
+            menu.classList.toggle('translate-x-full', !isOpen);
+            menu.classList.toggle('translate-x-0', isOpen);
         }
-
-        // Reveal on scroll
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         function closeDropdowns() {
             document.querySelectorAll('.dropdown-menu').forEach(d => {
-                d.classList.add('force-hide');
-                setTimeout(() => d.classList.remove('force-hide'), 500);
+                d.style.visibility = 'hidden';
+                d.style.opacity = '0';
+                setTimeout(() => { d.style.visibility = ''; d.style.opacity = ''; }, 300);
             });
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            const p = document.getElementById('page-' + pageId);
-            if(p) p.classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            // Re-trigger reveals for new sections
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
         function handleModelSelect(key) {
@@ -542,6 +518,11 @@
             updateImageView(data, "Gancho");
         }
 
+        function handlePageSelect(id) {
+            closeDropdowns();
+            showPage(id);
+        }
+
         function updateImageView(data, category) {
             if (!data) return;
             document.getElementById('display-title').innerText = data.title;
@@ -554,17 +535,23 @@
             showPage('image-detail');
         }
 
-        // --- Three.js Improvements ---
+        function showPage(pageId) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            const p = document.getElementById('page-' + pageId);
+            if(p) p.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // --- 3D ENGINE ---
         let scene, camera, renderer, currentGroup, leatherMat, centerMat;
         let isDragging = false, prevX = 0, prevY = 0, targetRY = 0, targetRX = 0;
         let activeModelKey = 'margarita';
-        let autoRotate = true;
 
         function openModel(key) {
             activeModelKey = key;
             showPage('detail');
             updateDetailUI();
-            init3D();
+            setTimeout(init3D, 100); // Pequeño delay para asegurar renderizado del contenedor
         }
 
         function updateDetailUI() {
@@ -589,41 +576,52 @@
 
         function init3D() {
             const cont = document.getElementById('canvas-container');
+            if (!cont) return;
             cont.innerHTML = '';
+            
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000);
             camera.position.z = 8;
+            
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(cont.clientWidth, cont.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             cont.appendChild(renderer.domElement);
             
-            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-            const light1 = new THREE.DirectionalLight(0xffffff, 1);
-            light1.position.set(5, 5, 5);
-            scene.add(light1);
-
+            scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+            const s = new THREE.SpotLight(0xffffff, 2); s.position.set(0, 10, 5); scene.add(s);
+            
             currentGroup = new THREE.Group();
             buildModel();
-            currentGroup.scale.set(0.4, 0.4, 0.4);
+            currentGroup.scale.set(0.45, 0.45, 0.45);
             scene.add(currentGroup);
             
-            targetRY = 0; targetRX = 0; autoRotate = true;
+            targetRY = 0; targetRX = 0;
 
-            cont.onmousedown = e => { isDragging = true; autoRotate = false; prevX = e.clientX; prevY = e.clientY; };
-            cont.ontouchstart = e => { isDragging = true; autoRotate = false; prevX = e.touches[0].clientX; prevY = e.touches[0].clientY; };
-            
+            // Events - Mouse
+            cont.onmousedown = e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; };
+            // Events - Touch
+            cont.addEventListener('touchstart', e => { 
+                isDragging = true; 
+                prevX = e.touches[0].clientX; 
+                prevY = e.touches[0].clientY; 
+            }, {passive: false});
+
             window.onmouseup = () => isDragging = false;
-            window.ontouchend = () => isDragging = false;
+            window.addEventListener('touchend', () => isDragging = false);
 
-            window.onmousemove = e => handleMove(e.clientX, e.clientY);
-            window.ontouchmove = e => handleMove(e.touches[0].clientX, e.touches[0].clientY);
+            window.onmousemove = e => { if(!isDragging) return; handleMove(e.clientX, e.clientY); };
+            window.addEventListener('touchmove', e => { 
+                if(!isDragging) return; 
+                handleMove(e.touches[0].clientX, e.touches[0].clientY);
+                e.preventDefault();
+            }, {passive: false});
 
             function handleMove(x, y) {
-                if(!isDragging) return;
-                targetRY += (x - prevX)*0.01;
-                targetRX += (y - prevY)*0.01;
-                prevX = x; prevY = y;
+                targetRY += (x - prevX) * 0.015;
+                targetRX += (y - prevY) * 0.015;
+                prevX = x;
+                prevY = y;
             }
 
             animate();
@@ -631,30 +629,41 @@
 
         function buildModel() {
             const data = catalog[activeModelKey];
-            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.7, metalness: 0.1 });
-            centerMat = new THREE.MeshStandardMaterial({ color: data.colors[0].center, roughness: 0.9 });
-            const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.2 });
+            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.6, metalness: 0.1 });
+            centerMat = new THREE.MeshStandardMaterial({ color: data.colors[0].center, roughness: 0.8 });
+            const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.15 });
             
             if (data.shape === 'margarita') {
-                const pS = new THREE.Shape(); pS.moveTo(0,0); pS.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); pS.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
-                const pG = new THREE.ExtrudeGeometry(pS, { depth: 0.05, bevelEnabled: true, bevelThickness: 0.02 });
+                const pS = new THREE.Shape(); 
+                pS.moveTo(0,0); 
+                pS.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); 
+                pS.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
+                const pG = new THREE.ExtrudeGeometry(pS, { depth: 0.08, bevelEnabled: true, bevelSize: 0.02 });
                 for(let i=0; i<16; i++) { 
                     const p = new THREE.Mesh(pG, leatherMat); 
                     p.rotation.z = (i/16)*Math.PI*2; 
                     currentGroup.add(p); 
                 }
-                const c = new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,0.15,32), centerMat); 
+                const c = new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.18,32), centerMat); 
                 c.rotation.x = Math.PI/2; 
                 currentGroup.add(c);
             } else if (data.shape === 'gota') {
-                const s = new THREE.Shape(); s.moveTo(0,1.8); s.bezierCurveTo(1,0.5,1,-1,0,-1.5); s.bezierCurveTo(-1,-1,-1,0.5,0,1.8);
-                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.1, bevelEnabled: true }), leatherMat));
+                const s = new THREE.Shape(); 
+                s.moveTo(0,1.8); 
+                s.bezierCurveTo(1,0.5,1,-1,0,-1.5); 
+                s.bezierCurveTo(-1,-1,-1,0.5,0,1.8);
+                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.15, bevelEnabled: true }), leatherMat));
             } else if (data.shape === 'hoja') {
-                const s = new THREE.Shape(); s.moveTo(0,-1.5); s.quadraticCurveTo(1.5,0,0,2.5); s.quadraticCurveTo(-1.5,0,0,-1.5);
-                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.05, bevelEnabled: true }), leatherMat));
+                const s = new THREE.Shape(); 
+                s.moveTo(0,-1.5); 
+                s.quadraticCurveTo(1.5,0,0,2.5); 
+                s.quadraticCurveTo(-1.5,0,0,-1.5);
+                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.1, bevelEnabled: true }), leatherMat));
             }
-            const h = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.02, 16, 100, Math.PI*1.5), gold);
-            h.position.y = 2.2; h.rotation.z = Math.PI*1.25; currentGroup.add(h);
+            
+            const h = new THREE.Mesh(new THREE.TorusGeometry(0.25, 0.03, 16, 100, Math.PI*1.5), gold);
+            h.position.y = 2.3; h.rotation.z = Math.PI*1.25; 
+            currentGroup.add(h);
         }
 
         function updateSelection(i) {
@@ -668,23 +677,21 @@
             const link = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${d.title} (${d.ref}) color ${variantName}`;
             document.getElementById('earring-whatsapp-link').href = link;
             
-            targetRY += Math.PI*2;
+            targetRY += Math.PI*2; // Efecto giro al cambiar color
         }
 
         function animate() {
             if (!renderer) return;
             requestAnimationFrame(animate);
-            if(autoRotate) targetRY += 0.005;
-            currentGroup.rotation.y += (targetRY - currentGroup.rotation.y)*0.1;
-            currentGroup.rotation.x += (targetRX - currentGroup.rotation.x)*0.1;
+            currentGroup.rotation.y += (targetRY - currentGroup.rotation.y)*0.08;
+            currentGroup.rotation.x += (targetRX - currentGroup.rotation.x)*0.08;
             renderer.render(scene, camera);
         }
 
         window.onload = () => {
             showPage('home');
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         };
-        
+
         window.addEventListener('resize', () => {
             const container = document.getElementById('canvas-container');
             if (camera && renderer && container) {
