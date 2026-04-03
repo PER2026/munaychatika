@@ -159,6 +159,18 @@
         .feature-icon {
             width: 40px; height: 40px; border-bottom: 1px solid var(--gold); margin-bottom: 1.5rem;
         }
+
+        /* New Image Gallery Style */
+        .model-img-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background-color: #f0f0f0;
+            transition: transform 0.5s ease;
+        }
+        .model-img-card:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -318,7 +330,7 @@
             </div>
         </div>
 
-        <!-- NEW FILLER SECTION: OUR PILLARS -->
+        <!-- FILLER SECTION: OUR PILLARS -->
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40 pt-20 border-t border-neutral-100">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
                 <div class="space-y-6">
@@ -339,7 +351,7 @@
             </div>
         </div>
 
-        <!-- NEW FILLER SECTION: HIGHLIGHT QUOTE -->
+        <!-- FILLER SECTION: HIGHLIGHT QUOTE -->
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40">
             <div class="bg-neutral-50 rounded-[3rem] p-12 md:p-24 text-center">
                 <span class="text-[10px] uppercase tracking-[0.5em] text-gold mb-8 block">El Sentimiento Munay</span>
@@ -407,7 +419,7 @@
                 </div>
             </div>
 
-            <!-- NEW FILLER SECTION: PROCESS DETAILS -->
+            <!-- PROCESS DETAILS -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mt-32 pt-20 border-t border-neutral-200">
                 <div class="space-y-12">
                     <div>
@@ -455,7 +467,7 @@
         </div>
     </section>
 
-    <!-- NEW PAGE: EARRING SELECTION (Los 5 Modelos) -->
+    <!-- EARRING SELECTION -->
     <section id="page-earring-selection" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold">← Volver a Colección</button>
@@ -510,7 +522,7 @@
         </div>
     </section>
 
-    <!-- PAGE: ARETE DETAIL (3D) -->
+    <!-- PAGE: ARETE DETAIL (3D + REAL IMAGES) -->
     <section id="page-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('earring-selection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-semibold font-bold">← Regresar</button>
@@ -525,6 +537,17 @@
                     <h1 id="detail-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic text-black font-bold">Cargando...</h1>
                     <p id="detail-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12"></p>
                     <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">CONTACTAR POR WHATSAPP</a>
+                </div>
+            </div>
+
+            <!-- NEW ADDITION: REAL IMAGES GALLERY -->
+            <div id="style-gallery-section" class="mt-40">
+                <div class="flex items-center gap-6 mb-12">
+                    <h3 class="text-3xl serif italic">Galería de Estilo</h3>
+                    <div class="h-px bg-neutral-200 flex-grow"></div>
+                </div>
+                <div id="detail-images-gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Images will be injected here by handleModelSelect -->
                 </div>
             </div>
         </div>
@@ -554,7 +577,7 @@
         </div>
     </section>
 
-    <!-- NEW PAGE: CUSTOMIZER (Personalizar Joya) -->
+    <!-- CUSTOMIZER PAGE -->
     <section id="page-customizer" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 bg-[#faf9f6]">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('home')" class="mb-8 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold">← Inicio</button>
@@ -638,7 +661,12 @@
                     { name: 'Green Forest', hex: 0x4d7c0f, center: 0x1a1a1a },
                     { name: 'Midnight Onyx', hex: 0x1a1a1a, center: 0xd4af37 }
                 ],
-                shape: 'margarita'
+                shape: 'margarita',
+                images: [
+                    "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1596944229583-492708b17974?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=600"
+                ]
             },
             tulipan: {
                 title: "Tulipán",
@@ -648,7 +676,11 @@
                     { name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a },
                     { name: 'Rose Petal', hex: 0x9f1239, center: 0x1a1a1a }
                 ],
-                shape: 'tulipan'
+                shape: 'tulipan',
+                images: [
+                    "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1611591437281-460bfbe157a8?auto=format&fit=crop&q=80&w=600"
+                ]
             },
             capnas: {
                 title: "Campanas",
@@ -658,7 +690,11 @@
                     { name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a },
                     { name: 'Forest Spirit', hex: 0x228b22, center: 0x1a1a1a }
                 ],
-                shape: 'capnas'
+                shape: 'capnas',
+                images: [
+                    "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1509941943102-10c232535736?auto=format&fit=crop&q=80&w=600"
+                ]
             },
             rosa: {
                 title: "Rosa Concéntrica",
@@ -668,7 +704,11 @@
                     { name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37 },
                     { name: 'Snow Marble', hex: 0xf8f9fa, center: 0xd4af37 }
                 ],
-                shape: 'rosa'
+                shape: 'rosa',
+                images: [
+                    "https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=600"
+                ]
             },
             redondos: {
                 title: "Redondos Minimal",
@@ -678,7 +718,11 @@
                     { name: 'Midnight Onyx', hex: 0x1a1a1a, center: 0xd4af37 },
                     { name: 'Autumn Spice', hex: 0xc2410c, center: 0x1a1a1a }
                 ],
-                shape: 'redondos'
+                shape: 'redondos',
+                images: [
+                    "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=600"
+                ]
             }
         };
 
@@ -749,6 +793,19 @@
         function handleModelSelect(key) {
             closeDropdowns();
             openModel(key);
+            
+            // Inject images for the specific model
+            const gallery = document.getElementById('detail-images-gallery');
+            gallery.innerHTML = '';
+            const data = catalog[key];
+            if(data.images) {
+                data.images.forEach(imgUrl => {
+                    const card = document.createElement('div');
+                    card.className = 'model-img-card shadow-lg';
+                    card.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover" alt="Modelo modelando arete">`;
+                    gallery.appendChild(card);
+                });
+            }
         }
 
         function handleNecklaceSelect(key) {
