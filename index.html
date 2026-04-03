@@ -86,7 +86,42 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <button onclick="showPage('home')" class="text-2xl font-bold serif tracking-tighter hover:opacity-70 transition">MunayChatika</button>
             <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-medium opacity-60">
-                <button onclick="showPage('collection')" class="btn-luxury">Colección 2026</button>
+               <div class="relative group">
+
+    <span class="btn-luxury cursor-pointer">
+        Colección 2026
+    </span>
+
+    <!-- RIEL DESPLEGABLE -->
+    <div class="absolute left-0 mt-6 w-72 bg-white shadow-2xl rounded-2xl opacity-0 translate-y-4 
+                group-hover:opacity-100 group-hover:translate-y-0 
+                transition-all duration-500 pointer-events-none group-hover:pointer-events-auto">
+
+        <div class="p-4 space-y-3">
+
+            <div onclick="openModel('margarita')" 
+                 class="p-4 rounded-xl hover:bg-neutral-100 transition cursor-pointer">
+                <h4 class="serif text-lg">Margarita</h4>
+                <p class="text-xs text-neutral-400">YellowSun, Forest...</p>
+            </div>
+
+            <div onclick="openModel('gota')" 
+                 class="p-4 rounded-xl hover:bg-neutral-100 transition cursor-pointer">
+                <h4 class="serif text-lg">Gota</h4>
+                <p class="text-xs text-neutral-400">Minimalismo puro</p>
+            </div>
+
+            <div onclick="openModel('hoja')" 
+                 class="p-4 rounded-xl hover:bg-neutral-100 transition cursor-pointer">
+                <h4 class="serif text-lg">Hoja</h4>
+                <p class="text-xs text-neutral-400">Inspiración natural</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
                 <button onclick="showPage('philosophy')" class="btn-luxury">Filosofía</button>
                 <button onclick="showPage('atelier')" class="btn-luxury">El Atelier</button>
             </div>
