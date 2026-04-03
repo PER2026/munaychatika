@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MunayChatika | L'art de l'artisanat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0a0a;
+            --cream: #fbfaf8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+
+        /* Luxury Classes */
+        .glass-nav {
+            background: rgba(251, 250, 248, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        #canvas-container {
+            width: 100%;
+            height: 500px;
+            cursor: grab;
+            border-radius: 2rem;
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--dark) 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: sectionFade 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        @keyframes sectionFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .riel-card {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .riel-card:hover { transform: scale(1.02); }
+        
+        .color-swatch {
+            width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid white;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .color-swatch.active { transform: scale(1.3); border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        .btn-luxury:hover::after { transform: scaleX(1); transform-origin: left; }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav px-8 py-5 transition-all duration-500">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <button onclick="showPage('home')" class="text-2xl font-bold serif tracking-tighter hover:opacity-70 transition">MunayChatika</button>
+            <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-medium opacity-60">
+                <button onclick="showPage('collection')" class="btn-luxury">Colección 2026</button>
+                <button onclick="showPage('philosophy')" class="btn-luxury">Filosofía</button>
+                <button onclick="showPage('atelier')" class="btn-luxury">El Atelier</button>
+            </div>
+            <button class="bg-black text-white px-7 py-2.5 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl">Tienda</button>
+        </div>
+    </nav>
+
+    <!-- PAGE: HOME (Landing) -->
+    <section id="page-home" class="view-section active pt-40 pb-20">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <span class="text-xs uppercase tracking-[0.5em] text-neutral-400 mb-6 block font-light">L'art de l'artisanat</span>
+                <h1 class="text-7xl lg:text-8xl serif mb-8 leading-[1.1]">Elegancia <br><span class="italic font-light">Ancestral</span></h1>
+                <p class="text-lg text-neutral-500 font-light leading-relaxed mb-10 max-w-lg">
+                    Fusionamos la tradición de nuestras raíces con un diseño contemporáneo. Joyas que son historias moldeadas a mano con paciencia y amor.
+                </p>
+                <div class="flex space-x-6">
+                    <button onclick="showPage('collection')" class="bg-black text-white px-10 py-5 text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-2xl">
+                        Ver Colección
+                    </button>
+                    <button onclick="showPage('philosophy')" class="border border-neutral-200 px-10 py-5 text-xs uppercase tracking-widest hover:bg-white transition">
+                        Nuestra Historia
+                    </button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=1000" alt="Artesanía en cuero" class="w-full h-full object-cover opacity-90">
+                </div>
+                <div class="absolute -bottom-10 -left-10 bg-white p-8 shadow-2xl rounded-2xl max-w-xs hidden md:block">
+                    <p class="serif italic text-lg mb-2">"True elegance is born from dedication."</p>
+                    <span class="text-[10px] uppercase tracking-widest opacity-40">— MunayChatika</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: COLLECTION (The Riel) -->
+    <section id="page-collection" class="view-section pt-32 pb-32 bg-neutral-50">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                <div class="max-w-xl">
+                    <span class="text-xs uppercase tracking-widest text-neutral-400 mb-4 block">Catálogo 2026</span>
+                    <h2 class="text-6xl serif leading-tight">Explora nuestros <br>Nuevos Moldes</h2>
+                </div>
+                <div class="text-right hidden md:block">
+                    <p class="text-xs uppercase tracking-widest opacity-40 mb-2">Numeración Individual</p>
+                    <p class="text-sm font-light text-neutral-500 italic">Cada par es la única pieza en el mundo.</p>
+                </div>
+            </div>
+
+            <!-- El Riel Vertical/Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Molde 1: Margarita -->
+                <div class="riel-card group cursor-pointer" onclick="openModel('margarita')">
+                    <div class="aspect-square bg-neutral-900 rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden">
+                        <div class="text-neutral-700 serif text-9xl absolute opacity-10 select-none">01</div>
+                        <div class="text-white text-center z-10">
+                            <span class="block text-[10px] uppercase tracking-[0.4em] mb-2 opacity-50">Pieza Icónica</span>
+                            <h3 class="text-3xl serif italic">Margarita</h3>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white text-[10px] uppercase tracking-widest border border-white/30 px-6 py-2">Personalizar</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h4 class="text-xl serif">Edición Margarita</h4>
+                            <p class="text-sm text-neutral-400 mt-1">YellowSun, Forest, Ocean...</p>
+                        </div>
+                        <span class="text-lg font-light">$10 USD</span>
+                    </div>
+                </div>
+
+                <!-- Molde 2: Gota -->
+                <div class="riel-card group cursor-pointer" onclick="openModel('gota')">
+                    <div class="aspect-square bg-neutral-800 rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden">
+                        <div class="text-neutral-700 serif text-9xl absolute opacity-10 select-none">02</div>
+                        <div class="text-white text-center z-10">
+                            <span class="block text-[10px] uppercase tracking-[0.4em] mb-2 opacity-50">Minimalismo</span>
+                            <h3 class="text-3xl serif italic">Gota</h3>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white text-[10px] uppercase tracking-widest border border-white/30 px-6 py-2">Personalizar</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h4 class="text-xl serif">Edición Gota</h4>
+                            <p class="text-sm text-neutral-400 mt-1">Elegancia Fluida</p>
+                        </div>
+                        <span class="text-lg font-light">$10 USD</span>
+                    </div>
+                </div>
+
+                <!-- Molde 3: Hoja -->
+                <div class="riel-card group cursor-pointer" onclick="openModel('hoja')">
+                    <div class="aspect-square bg-neutral-900 rounded-[2.5rem] mb-8 flex items-center justify-center relative overflow-hidden">
+                        <div class="text-neutral-700 serif text-9xl absolute opacity-10 select-none">03</div>
+                        <div class="text-white text-center z-10">
+                            <span class="block text-[10px] uppercase tracking-[0.4em] mb-2 opacity-50">Naturaleza</span>
+                            <h3 class="text-3xl serif italic">Hoja</h3>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white text-[10px] uppercase tracking-widest border border-white/30 px-6 py-2">Personalizar</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h4 class="text-xl serif">Edición Hoja</h4>
+                            <p class="text-sm text-neutral-400 mt-1">Inspiración Serrana</p>
+                        </div>
+                        <span class="text-lg font-light">$10 USD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: MODEL DETAIL (The 3D Space) -->
+    <section id="page-detail" class="view-section pt-32 pb-32">
+        <div class="max-w-7xl mx-auto px-8">
+            <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2">
+                <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Regresar a la Galería
+            </button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <!-- 3D Viewer Side -->
+                <div class="relative group">
+                    <div id="canvas-container"></div>
+                    
+                    <div class="absolute -top-4 -left-4 bg-white px-5 py-2 shadow-xl rounded-sm border border-neutral-100 italic serif text-xs">
+                        Vista 360° en tiempo real
+                    </div>
+
+                    <!-- Swatches Panel -->
+                    <div id="swatch-container" class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/30 backdrop-blur-2xl p-4 rounded-3xl shadow-2xl flex items-center space-x-4 border border-white/10">
+                        <!-- Swatches injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Info Side -->
+                <div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <span id="detail-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-300">REF: 001-A</span>
+                        <div class="h-px w-8 bg-neutral-200"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-neutral-400">Edición 2026</span>
+                    </div>
+                    
+                    <h1 id="detail-title" class="text-7xl serif mb-6 leading-tight">Margarita <br><span class="italic font-light">YellowSun</span></h1>
+                    
+                    <p id="detail-desc" class="text-xl text-neutral-500 font-light leading-relaxed mb-12">
+                        Cargando historia...
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-10 border-y border-neutral-100 py-10 mb-12">
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-widest text-neutral-300 mb-2">Precio de Venta</h4>
+                            <span class="text-4xl font-light">$10.00 <span class="text-sm opacity-40">USD</span></span>
+                        </div>
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-widest text-neutral-300 mb-2">Materiales</h4>
+                            <span class="text-sm italic font-light">Cuero Genuino & Oro 18k</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <button class="flex-grow bg-black text-white py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-2xl">
+                            Añadir al Carrito
+                        </button>
+                        <button class="border border-neutral-200 px-10 py-6 text-[10px] uppercase tracking-widest hover:bg-white transition flex items-center justify-center gap-3">
+                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.67-1.611-.918-2.21-.242-.584-.487-.506-.67-.516l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.415-8.413z"></path></svg>
+                            Personalizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: PHILOSOPHY -->
+    <section id="page-philosophy" class="view-section pt-40 pb-40 border-t border-neutral-100">
+        <div class="max-w-4xl mx-auto px-8 text-center">
+            <h2 class="text-5xl serif mb-12 italic">Nuestra Historia</h2>
+            <div class="space-y-10 text-xl text-neutral-500 font-light leading-relaxed">
+                <p>"En cada pieza, fusionamos la tradición de nuestras raíces con un diseño contemporáneo. No son solo accesorios; son historias moldeadas a mano con paciencia y amor."</p>
+                <p>En MunayChatika, creemos que la verdadera elegancia nace de la dedicación. Nuestras joyas son el resultado de un proceso creativo donde cada material es seleccionado cuidadosamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-neutral-100 py-20 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:row justify-between items-center gap-12">
+            <div class="text-3xl serif font-bold">MunayChatika</div>
+            <div class="flex flex-wrap justify-center gap-10 text-[10px] uppercase tracking-[0.3em] font-medium opacity-50">
+                <a href="#" class="hover:opacity-100 transition">Instagram</a>
+                <a href="#" class="hover:opacity-100 transition">Facebook</a>
+                <a href="#" class="hover:opacity-100 transition">WhatsApp</a>
+                <a href="#" class="hover:opacity-100 transition">hola@munaychatika.com</a>
+            </div>
+            <div class="text-[9px] uppercase tracking-widest opacity-30 text-center">
+                © 2026 MunayChatika. Hecho a mano con orgullo en Cusco, Perú.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Structure
+        const catalog = {
+            margarita: {
+                title: "Margarita",
+                ref: "REF: 001-A",
+                desc: "Esta pieza captura la alegría instantánea a través de pétalos de cuero genuino cortados con precisión quirúrgica. El centro hipnótico en espiral simboliza el ciclo eterno de la artesanía.",
+                colors: [
+                    { name: 'YellowSun', hex: 0xEAB308, center: 0x1a1a1a },
+                    { name: 'Green Forest', hex: 0x4d7c0f, center: 0x1a1a1a },
+                    { name: 'Blue Ocean', hex: 0x1d4ed8, center: 0x334155 },
+                    { name: 'AutumnOrange', hex: 0xc2410c, center: 0x3e2723 }
+                ],
+                shape: 'margarita'
+            },
+            gota: {
+                title: "Gota",
+                ref: "REF: 002-B",
+                desc: "Un diseño que evoca la fluidez y la pureza. La gota de MunayChatika es una oda a lo minimalista, resaltando la veta única de cada trozo de cuero seleccionado.",
+                colors: [
+                    { name: 'Onyx', hex: 0x1a1a1a, center: 0x silver },
+                    { name: 'Cognac', hex: 0x8b4513, center: 0xd4af37 },
+                    { name: 'Esmeralda', hex: 0x064e3b, center: 0x1a1a1a }
+                ],
+                shape: 'gota'
+            },
+            hoja: {
+                title: "Hoja",
+                ref: "REF: 003-C",
+                desc: "Inspirada en la vegetación serrana. Esta pieza celebra la transición y la energía de la tierra, diseñada para resaltar la belleza de lo auténtico.",
+                colors: [
+                    { name: 'Foresta', hex: 0x166534, center: 0x1a1a1a },
+                    { name: 'Terracota', hex: 0x9a3412, center: 0x1a1a1a },
+                    { name: 'Noche', hex: 0x171717, center: 0x silver }
+                ],
+                shape: 'hoja'
+            }
+        };
+
+        // SPA Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // 3D Engine Variables
+        let scene, camera, renderer, currentGroup, leatherMat, centerMat;
+        let activeModelKey = 'margarita';
+
+        function openModel(modelKey) {
+            activeModelKey = modelKey;
+            showPage('detail');
+            updateDetailUI();
+            init3D();
+        }
+
+        function updateDetailUI() {
+            const data = catalog[activeModelKey];
+            document.getElementById('detail-title').innerHTML = `${data.title} <br><span class="italic font-light">${data.colors[0].name}</span>`;
+            document.getElementById('detail-ref').innerText = data.ref;
+            document.getElementById('detail-desc').innerText = data.desc;
+
+            const swatchContainer = document.getElementById('swatch-container');
+            swatchContainer.innerHTML = '';
+            data.colors.forEach((c, i) => {
+                const btn = document.createElement('button');
+                btn.className = `color-swatch ${i === 0 ? 'active' : ''}`;
+                btn.style.backgroundColor = '#' + c.hex.toString(16).padStart(6, '0');
+                btn.onclick = () => updateSelection(i);
+                swatchContainer.appendChild(btn);
+            });
+        }
+
+        function init3D() {
+            const container = document.getElementById('canvas-container');
+            container.innerHTML = ''; // Reset
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 7;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Studio Lighting
+            scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+            
+            const spotLight = new THREE.SpotLight(0xffffff, 2.5);
+            spotLight.position.set(0, 10, 3);
+            spotLight.angle = Math.PI / 10;
+            spotLight.penumbra = 0.5;
+            scene.add(spotLight);
+
+            const fillLight = new THREE.PointLight(0xffffff, 0.6);
+            fillLight.position.set(2, 2, 5);
+            scene.add(fillLight);
+
+            currentGroup = new THREE.Group();
+            buildModel();
+            currentGroup.scale.set(0.45, 0.45, 0.45); // Small & Elegant
+            scene.add(currentGroup);
+
+            animate();
+        }
+
+        function buildModel() {
+            const data = catalog[activeModelKey];
+            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.6, metalness: 0.05 });
+            centerMat = new THREE.MeshStandardMaterial({ color: data.colors[0].center, roughness: 0.9 });
+            const goldMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.1 });
+
+            if (data.shape === 'margarita') {
+                const petalShape = new THREE.Shape();
+                petalShape.moveTo(0,0); petalShape.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); petalShape.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
+                const petalGeo = new THREE.ExtrudeGeometry(petalShape, { depth: 0.05, bevelEnabled: true, bevelThickness: 0.02 });
+                for(let i=0; i<16; i++) {
+                    const petal = new THREE.Mesh(petalGeo, leatherMat);
+                    petal.rotation.z = (i/16) * Math.PI*2;
+                    currentGroup.add(petal);
+                }
+                const center = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.15, 32), centerMat);
+                center.rotation.x = Math.PI/2;
+                currentGroup.add(center);
+            } else if (data.shape === 'gota') {
+                const shape = new THREE.Shape();
+                shape.moveTo(0,1.8); shape.bezierCurveTo(1,0.5,1,-1,0,-1.5); shape.bezierCurveTo(-1,-1,-1,0.5,0,1.8);
+                const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.1, bevelEnabled: true });
+                currentGroup.add(new THREE.Mesh(geo, leatherMat));
+            } else if (data.shape === 'hoja') {
+                const shape = new THREE.Shape();
+                shape.moveTo(0,-1.5); shape.quadraticCurveTo(1.5,0,0,2.5); shape.quadraticCurveTo(-1.5,0,0,-1.5);
+                const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.05, bevelEnabled: true });
+                currentGroup.add(new THREE.Mesh(geo, leatherMat));
+            }
+
+            const hook = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.02, 16, 100, Math.PI*1.5), goldMat);
+            hook.position.y = 2.2;
+            hook.rotation.z = Math.PI * 1.25;
+            currentGroup.add(hook);
+        }
+
+        function updateSelection(index) {
+            const data = catalog[activeModelKey];
+            const colorData = data.colors[index];
+            
+            leatherMat.color.set(colorData.hex);
+            centerMat.color.set(colorData.center);
+            
+            document.getElementById('detail-title').innerHTML = `${data.title} <br><span class="italic font-light" style="color: #${colorData.hex.toString(16)}">${colorData.name}</span>`;
+
+            document.querySelectorAll('.color-swatch').forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+            });
+
+            currentGroup.rotation.y += Math.PI * 2;
+        }
+
+        function animate() {
+            if (!renderer) return;
+            requestAnimationFrame(animate);
+            currentGroup.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+
+        // Global Events
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('canvas-container');
+            if (camera && renderer && container) {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
+
+        // Init
+        window.onload = () => showPage('home');
+    </script>
+</body>
+</html>
