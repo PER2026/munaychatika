@@ -29,7 +29,7 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
-        #canvas-container {
+        #canvas-container, #custom-canvas-container {
             width: 100%;
             height: 400px;
             cursor: grab;
@@ -39,9 +39,9 @@
             touch-action: none;
         }
         @media (min-width: 1024px) {
-            #canvas-container { height: 550px; }
+            #canvas-container, #custom-canvas-container { height: 550px; }
         }
-        #canvas-container:active { cursor: grabbing; }
+        #canvas-container:active, #custom-canvas-container:active { cursor: grabbing; }
 
         .view-section { display: none; }
         .view-section.active { display: block; animation: sectionFade 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -83,7 +83,6 @@
         }
         .btn-luxury:hover::after { transform: scaleX(1); transform-origin: left; }
 
-        /* Mejora de Dropdowns con delay al cerrar */
         .dropdown-menu {
             background-color: #ffffff !important;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
@@ -92,7 +91,6 @@
             visibility: hidden;
             opacity: 0;
             transform: translateY(10px);
-            /* Transición con delay de 0.2s para la visibilidad al cerrar */
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.2s;
         }
 
@@ -100,7 +98,6 @@
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
-            /* Al abrir no queremos delay, que sea instantáneo */
             transition-delay: 0s;
         }
 
@@ -138,6 +135,13 @@
 
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Customizer Specific */
+        .layer-btn {
+            background: white; border: 1px solid #eee; padding: 1rem; border-radius: 1rem;
+            text-align: left; transition: all 0.3s ease; font-weight: 600;
+        }
+        .layer-btn.active { border-color: var(--gold); background: #faf9f6; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1); }
     </style>
 </head>
 <body class="antialiased">
@@ -218,6 +222,7 @@
                 </div>
 
                 <button onclick="handlePageSelect('collection')" class="btn-luxury py-2">COLECCIÓN</button>
+                <button onclick="openCustomizer()" class="bg-gold text-white px-6 py-2 rounded-full text-[10px] hover:bg-opacity-80 transition font-bold shadow-md">DISEÑA TU JOYA</button>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -240,8 +245,8 @@
         
         <div class="flex flex-col space-y-6 text-xl serif mt-4">
             <button onclick="toggleMobileMenu(); showPage('home')" class="text-left border-b border-neutral-100 pb-4">Inicio</button>
+            <button onclick="toggleMobileMenu(); openCustomizer()" class="text-left border-b border-neutral-100 pb-4 text-gold font-bold">Diseñar mi propia joya</button>
             
-            <!-- ARETES MOBILE LIST -->
             <div class="py-2">
                 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Aretes 2026</span>
                 <div class="flex flex-col space-y-3 pl-4">
@@ -251,7 +256,6 @@
                 </div>
             </div>
 
-            <!-- COLLARES MOBILE LIST -->
             <div class="py-2">
                 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Collares</span>
                 <div class="flex flex-col space-y-3 pl-4">
@@ -261,7 +265,6 @@
                 </div>
             </div>
 
-            <!-- GANCHOS MOBILE LIST -->
             <div class="py-2">
                 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Ganchos</span>
                 <div class="flex flex-col space-y-3 pl-4">
@@ -292,7 +295,7 @@
                     <button onclick="showPage('collection')" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl font-bold">
                         Ver Catálogo 2026
                     </button>
-                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="border border-neutral-200 px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-50 transition-all text-center font-bold">Instagram</a>
+                    <button onclick="openCustomizer()" class="border border-gold text-gold px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-gold hover:text-white transition-all text-center font-bold">Personalizar Mi Joya</button>
                 </div>
             </div>
             <div class="order-1 lg:order-2 aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl">
@@ -426,6 +429,63 @@
         </div>
     </section>
 
+    <!-- NEW PAGE: CUSTOMIZER (Personalizar Joya) -->
+    <section id="page-customizer" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
+            <button onclick="showPage('home')" class="mb-8 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold">← Inicio</button>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                <!-- 3D Viewer -->
+                <div class="relative">
+                    <div id="custom-canvas-container"></div>
+                    <div class="mt-6 flex flex-col gap-4">
+                        <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400">Selecciona la capa a editar:</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button id="layer-btn-outer" onclick="selectLayer('outer')" class="layer-btn active">
+                                <span class="block text-[8px] uppercase tracking-tighter opacity-50">Capa</span>
+                                <span class="text-xs uppercase">Exterior</span>
+                            </button>
+                            <button id="layer-btn-middle" onclick="selectLayer('middle')" class="layer-btn">
+                                <span class="block text-[8px] uppercase tracking-tighter opacity-50">Capa</span>
+                                <span class="text-xs uppercase">Media</span>
+                            </button>
+                            <button id="layer-btn-inner" onclick="selectLayer('inner')" class="layer-btn">
+                                <span class="block text-[8px] uppercase tracking-tighter opacity-50">Capa</span>
+                                <span class="text-xs uppercase">Interior</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="space-y-10">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.5em] text-gold mb-3 block font-bold italic">Bespoke Experience</span>
+                        <h2 class="text-5xl serif mb-6">Tu Diseño <br><span class="italic font-light">Munay Exclusive</span></h2>
+                        <p class="text-neutral-500 font-light leading-relaxed">
+                            Crea una pieza única seleccionando el color de cada una de las tres capas de cuero artesanal. Al terminar, contacta con nosotros para hacer realidad tu visión.
+                        </p>
+                    </div>
+
+                    <!-- 17 Color Pallete -->
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-[10px] uppercase tracking-widest font-bold">Colores Disponibles (17)</h4>
+                            <span id="selected-color-name" class="text-[10px] font-light text-gold italic">Cargando...</span>
+                        </div>
+                        <div id="custom-swatch-grid" class="grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-6 gap-4 p-6 bg-white rounded-[2rem] shadow-sm border border-neutral-100">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <a id="customizer-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">SOLICITAR MI DISEÑO PERSONALIZADO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="bg-white border-t border-neutral-100 py-16 md:py-20 px-8 text-black">
         <div class="max-w-7xl mx-auto text-center">
@@ -529,6 +589,26 @@
                 price: "$15.00",
                 img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000"
             }
+        };
+
+        // --- NEW CUSTOMIZER DATA ---
+        const customizerColors = [
+            { name: 'Onyx Black', hex: 0x1a1a1a }, { name: 'Snow Marble', hex: 0xf8f9fa },
+            { name: 'Classic Cognac', hex: 0x8b4513 }, { name: 'Autumn Spice', hex: 0xc2410c },
+            { name: 'Deep Burgundy', hex: 0x800020 }, { name: 'Forest Spirit', hex: 0x228b22 },
+            { name: 'Zafiro Royal', hex: 0x002366 }, { name: 'Dusty Rose', hex: 0xdcae96 },
+            { name: 'Terracota Earth', hex: 0xe2725b }, { name: 'Saffron Sun', hex: 0xeab308 },
+            { name: 'Sage Leaf', hex: 0xb2ac88 }, { name: 'Lavender Mist', hex: 0xa78bfa },
+            { name: 'Midnight Charcoal', hex: 0x36454f }, { name: 'Mediterranean Olive', hex: 0x808000 },
+            { name: 'Imperial Plum', hex: 0x8e4585 }, { name: 'Slate Gray', hex: 0x708090 },
+            { name: 'Golden Champagne', hex: 0xf7e7ce }
+        ];
+
+        let customizerState = {
+            activeLayer: 'outer',
+            outerColor: customizerColors[2],
+            middleColor: customizerColors[16],
+            innerColor: customizerColors[0]
         };
 
         // --- UI LOGIC ---
@@ -640,7 +720,8 @@
             
             currentGroup = new THREE.Group();
             buildModel();
-            currentGroup.scale.set(0.45, 0.45, 0.45);
+            // AJUSTE: Modelos más pequeños para la colección 2026
+            currentGroup.scale.set(0.32, 0.32, 0.32); 
             scene.add(currentGroup);
             
             targetRY = 0; targetRX = 0;
@@ -724,14 +805,143 @@
             renderer.render(scene, camera);
         }
 
+        // --- CUSTOMIZER 3D ENGINE ---
+        let cScene, cCamera, cRenderer, cGroup, outerMat, middleMat, innerMat;
+
+        function openCustomizer() {
+            showPage('customizer');
+            initCustomizer3D();
+            renderCustomizerSwatches();
+            updateCustomizerUI();
+        }
+
+        function selectLayer(layer) {
+            customizerState.activeLayer = layer;
+            document.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`layer-btn-${layer}`).classList.add('active');
+            updateCustomizerUI();
+        }
+
+        function updateCustomizerUI() {
+            const currentColor = customizerState[`${customizerState.activeLayer}Color`];
+            document.getElementById('selected-color-name').innerText = `${customizerState.activeLayer.toUpperCase()}: ${currentColor.name}`;
+            
+            document.querySelectorAll('.custom-swatch').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.hex) === currentColor.hex);
+            });
+
+            const link = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, he diseñado mi joya personalizada en la web.%0AExterior: ${customizerState.outerColor.name}%0AMedia: ${customizerState.middleColor.name}%0AInterior: ${customizerState.innerColor.name}`;
+            document.getElementById('customizer-whatsapp-link').href = link;
+        }
+
+        function renderCustomizerSwatches() {
+            const grid = document.getElementById('custom-swatch-grid');
+            grid.innerHTML = '';
+            customizerColors.forEach(c => {
+                const b = document.createElement('button');
+                b.className = 'color-swatch custom-swatch';
+                b.dataset.hex = c.hex;
+                b.style.backgroundColor = '#' + c.hex.toString(16).padStart(6, '0');
+                b.onclick = () => applyColorToLayer(c);
+                grid.appendChild(b);
+            });
+        }
+
+        function applyColorToLayer(color) {
+            customizerState[`${customizerState.activeLayer}Color`] = color;
+            if (customizerState.activeLayer === 'outer') outerMat.color.set(color.hex);
+            if (customizerState.activeLayer === 'middle') middleMat.color.set(color.hex);
+            if (customizerState.activeLayer === 'inner') innerMat.color.set(color.hex);
+            updateCustomizerUI();
+        }
+
+        function initCustomizer3D() {
+            const cont = document.getElementById('custom-canvas-container');
+            cont.innerHTML = '';
+            
+            cScene = new THREE.Scene();
+            cCamera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000);
+            cCamera.position.z = 8;
+            
+            cRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            cRenderer.setSize(cont.clientWidth, cont.clientHeight);
+            cRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            cont.appendChild(cRenderer.domElement);
+            
+            cScene.add(new THREE.AmbientLight(0xffffff, 0.9));
+            const s1 = new THREE.PointLight(0xffffff, 1.5); s1.position.set(5, 5, 5); cScene.add(s1);
+            const s2 = new THREE.PointLight(0xffffff, 0.5); s2.position.set(-5, -5, 5); cScene.add(s2);
+            
+            cGroup = new THREE.Group();
+            
+            outerMat = new THREE.MeshStandardMaterial({ color: customizerState.outerColor.hex, roughness: 0.6 });
+            middleMat = new THREE.MeshStandardMaterial({ color: customizerState.middleColor.hex, roughness: 0.6 });
+            innerMat = new THREE.MeshStandardMaterial({ color: customizerState.innerColor.hex, roughness: 0.6 });
+            const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.2 });
+
+            // CAPA EXTERIOR (Grande)
+            const sO = new THREE.Shape(); 
+            sO.moveTo(0,0); sO.bezierCurveTo(0.6,0.5,0.8,2,0,3); sO.bezierCurveTo(-0.8,2,-0.6,0.5,0,0);
+            const gO = new THREE.ExtrudeGeometry(sO, { depth: 0.1, bevelEnabled: true });
+            for(let i=0; i<8; i++) {
+                const m = new THREE.Mesh(gO, outerMat); m.rotation.z = (i/8)*Math.PI*2; cGroup.add(m);
+            }
+
+            // CAPA MEDIA
+            const sM = new THREE.Shape(); 
+            sM.moveTo(0,0); sM.bezierCurveTo(0.4,0.3,0.5,1.2,0,1.8); sM.bezierCurveTo(-0.5,1.2,-0.4,0.3,0,0);
+            const gM = new THREE.ExtrudeGeometry(sM, { depth: 0.15, bevelEnabled: true });
+            for(let i=0; i<8; i++) {
+                const m = new THREE.Mesh(gM, middleMat); m.rotation.z = (i/8)*Math.PI*2; m.position.z = 0.1; cGroup.add(m);
+            }
+
+            // CAPA INTERIOR (Centro)
+            const gI = new THREE.SphereGeometry(0.5, 32, 32);
+            const mI = new THREE.Mesh(gI, innerMat); mI.position.z = 0.3; mI.scale.set(1, 1, 0.3);
+            cGroup.add(mI);
+
+            const h = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.04, 16, 100, Math.PI*1.5), gold);
+            h.position.y = 3.5; h.rotation.z = Math.PI*1.25; cGroup.add(h);
+
+            // AJUSTE: Personalizador también ligeramente más pequeño
+            cGroup.scale.set(0.24, 0.24, 0.24); 
+            cScene.add(cGroup);
+
+            // Controls
+            let cIsDragging = false, cPrevX = 0, cPrevY = 0, cTargetRY = 0, cTargetRX = 0;
+            cont.onmousedown = e => { cIsDragging = true; cPrevX = e.clientX; cPrevY = e.clientY; };
+            cont.addEventListener('touchstart', e => { cIsDragging = true; cPrevX = e.touches[0].clientX; cPrevY = e.touches[0].clientY; }, {passive: false});
+            window.addEventListener('mouseup', () => cIsDragging = false);
+            window.addEventListener('touchend', () => cIsDragging = false);
+            window.addEventListener('mousemove', e => { if(!cIsDragging) return; cTargetRY += (e.clientX - cPrevX)*0.015; cTargetRX += (e.clientY - cPrevY)*0.015; cPrevX = e.clientX; cPrevY = e.clientY; });
+            window.addEventListener('touchmove', e => { if(!cIsDragging) return; cTargetRY += (e.touches[0].clientX - cPrevX)*0.015; cTargetRX += (e.touches[0].clientY - cPrevY)*0.015; cPrevX = e.touches[0].clientX; cPrevY = e.touches[0].clientY; e.preventDefault(); }, {passive: false});
+
+            function cAnimate() {
+                if (!cRenderer) return;
+                requestAnimationFrame(cAnimate);
+                cGroup.rotation.y += (cTargetRY - cGroup.rotation.y)*0.1;
+                cGroup.rotation.x += (cTargetRX - cGroup.rotation.x)*0.1;
+                cRenderer.render(cScene, cCamera);
+            }
+            cAnimate();
+        }
+
         window.onload = () => showPage('home');
         window.addEventListener('resize', () => {
-            const container = document.getElementById('canvas-container');
-            if (camera && renderer && container) {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            }
+            const containers = ['canvas-container', 'custom-canvas-container'];
+            containers.forEach(id => {
+                const container = document.getElementById(id);
+                if (id === 'canvas-container' && camera && renderer && container) {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }
+                if (id === 'custom-canvas-container' && cCamera && cRenderer && container) {
+                    cCamera.aspect = container.clientWidth / container.clientHeight;
+                    cCamera.updateProjectionMatrix();
+                    cRenderer.setSize(container.clientWidth, container.clientHeight);
+                }
+            });
         });
     </script>
 </body>
