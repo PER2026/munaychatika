@@ -11,6 +11,7 @@
     <style>
         :root {
             --gold: #d4af37;
+            --gold-dark: #b8952e;
             --dark: #0a0a0a;
             --cream: #fbfaf8;
         }
@@ -142,6 +143,17 @@
             text-align: left; transition: all 0.3s ease; font-weight: 600;
         }
         .layer-btn.active { border-color: var(--gold); background: #faf9f6; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1); }
+        
+        /* New prominent button style */
+        .btn-gold-solid {
+            background-color: var(--gold);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-gold-solid:hover {
+            background-color: var(--gold-dark);
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -222,7 +234,7 @@
                 </div>
 
                 <button onclick="handlePageSelect('collection')" class="btn-luxury py-2">COLECCIÓN</button>
-                <button onclick="openCustomizer()" class="bg-gold text-white px-6 py-2 rounded-full text-[10px] hover:bg-opacity-80 transition font-bold shadow-md">DISEÑA TU JOYA</button>
+                <button onclick="openCustomizer()" class="btn-gold-solid px-6 py-2 rounded-full text-[10px] font-bold shadow-md">DISEÑA TU JOYA</button>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -245,7 +257,12 @@
         
         <div class="flex flex-col space-y-6 text-xl serif mt-4">
             <button onclick="toggleMobileMenu(); showPage('home')" class="text-left border-b border-neutral-100 pb-4">Inicio</button>
-            <button onclick="toggleMobileMenu(); openCustomizer()" class="text-left border-b border-neutral-100 pb-4 text-gold font-bold">Diseñar mi propia joya</button>
+            
+            <!-- Botón de diseño en móvil mejorado -->
+            <button onclick="toggleMobileMenu(); openCustomizer()" class="text-left border border-gold bg-gold/5 p-4 rounded-xl text-gold font-bold flex justify-between items-center shadow-sm">
+                Diseñar mi propia joya
+                <span class="text-lg">✨</span>
+            </button>
             
             <div class="py-2">
                 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Aretes 2026</span>
@@ -295,7 +312,8 @@
                     <button onclick="showPage('collection')" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl font-bold">
                         Ver Catálogo 2026
                     </button>
-                    <button onclick="openCustomizer()" class="border border-gold text-gold px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-gold hover:text-white transition-all text-center font-bold">Personalizar Mi Joya</button>
+                    <!-- Botón personalizado ahora sólido para máxima visibilidad -->
+                    <button onclick="openCustomizer()" class="btn-gold-solid px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest transition-all text-center font-bold shadow-xl">Personalizar Mi Joya</button>
                 </div>
             </div>
             <div class="order-1 lg:order-2 aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl">
