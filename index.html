@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Artisan - Aretes de Cuero de Lujo</title>
+    <title>MunayChatika - Edición Limitada 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
             color: #1a1a1a;
             overflow-x: hidden;
         }
-        h1, h2, .serif {
+        h1, h2, h3, .serif {
             font-family: 'Playfair Display', serif;
         }
         .luxury-gradient {
@@ -22,34 +22,33 @@
         }
         #canvas-container {
             width: 100%;
-            height: 500px;
+            height: 550px;
             cursor: grab;
-            border-radius: 1rem;
-            background: radial-gradient(circle, #ffffff 0%, #e5e5e5 100%);
+            border-radius: 1.5rem;
+            background: radial-gradient(circle at center, #222 0%, #0a0a0a 100%);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
         }
         #canvas-container:active {
             cursor: grabbing;
         }
         .color-swatch {
-            width: 3rem;
-            height: 3rem;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-        .color-swatch:hover {
-            transform: scale(1.1);
-        }
         .color-swatch.active {
-            border-color: #1a1a1a;
-            transform: scale(1.1);
+            transform: scale(1.25);
+            border-color: #d4af37; /* Dorado */
         }
         .fade-in {
-            animation: fadeIn 1.5s ease-out forwards;
+            animation: fadeIn 1.2s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -57,173 +56,227 @@
 <body class="luxury-gradient">
 
     <!-- Navigation -->
-    <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter serif">L'ARTISAN</div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <a href="#" class="hover:opacity-50 transition">Colección</a>
-            <a href="#" class="hover:opacity-50 transition">Materiales</a>
-            <a href="#" class="hover:opacity-50 transition">Nuestra Historia</a>
+    <nav class="flex justify-between items-center px-8 py-8 max-w-7xl mx-auto">
+        <div class="text-3xl font-bold tracking-tight serif">MunayChatika</div>
+        <div class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.2em] font-medium opacity-70">
+            <a href="#" class="hover:opacity-100 transition">Colección 2026</a>
+            <a href="#" class="hover:opacity-100 transition">El Atelier</a>
+            <a href="#" class="hover:opacity-100 transition">Filosofía</a>
         </div>
-        <button class="bg-black text-white px-6 py-2 text-sm uppercase tracking-widest hover:bg-gray-800 transition">Tienda</button>
+        <div class="flex items-center space-x-4">
+            <span class="text-xs uppercase tracking-widest opacity-50 hidden sm:inline">Exclusividad</span>
+            <button class="bg-black text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-neutral-800 transition shadow-lg">Tienda</button>
+        </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-8 py-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <main class="max-w-7xl mx-auto px-8 py-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         
         <!-- Left Side: 3D Viewer -->
-        <div class="fade-in relative">
-            <div id="canvas-container" class="shadow-2xl"></div>
-            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg flex space-x-4">
-                <button onclick="changeColor('#8B4513', 0)" class="color-swatch active" style="background-color: #8B4513;" title="Cuero Cognac"></button>
-                <button onclick="changeColor('#1a1a1a', 1)" class="color-swatch" style="background-color: #1a1a1a;" title="Cuero Onyx"></button>
-                <button onclick="changeColor('#4A5D4E', 2)" class="color-swatch" style="background-color: #4A5D4E;" title="Cuero Foresta"></button>
-                <button onclick="changeColor('#D4AF37', 3)" class="color-swatch" style="background-color: #D4AF37;" title="Cuero Dorado"></button>
+        <div class="fade-in relative group">
+            <div id="canvas-container" class="shadow-2xl border border-neutral-800"></div>
+            
+            <div class="absolute -top-4 -left-4 bg-black text-white px-6 py-3 shadow-md rounded-sm italic serif text-sm">
+                "Historias moldeadas a mano"
             </div>
-            <p class="text-center mt-4 text-xs text-gray-400 uppercase tracking-widest">Gira para explorar la textura</p>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-xl p-5 rounded-2xl shadow-2xl flex items-center space-x-5 border border-white/10">
+                <button onclick="updateSelection(0)" class="color-swatch active" style="background-color: #eab308;" title="YellowSun"></button>
+                <button onclick="updateSelection(1)" class="color-swatch" style="background-color: #4d7c0f;" title="Green Forest"></button>
+                <button onclick="updateSelection(2)" class="color-swatch" style="background-color: #1d4ed8;" title="Blue Ocean"></button>
+                <button onclick="updateSelection(3)" class="color-swatch" style="background-color: #c2410c;" title="AutumnOrange"></button>
+            </div>
         </div>
 
         <!-- Right Side: Details -->
-        <div class="fade-in" style="animation-delay: 0.3s;">
-            <span class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-4 block">Edición Limitada</span>
-            <h1 class="text-6xl mb-6 leading-tight">La Esencia del Cuero Orgánico</h1>
-            <p class="text-lg text-gray-600 mb-8 leading-relaxed font-light">
-                Descubre la elegancia táctil de nuestra nueva colección "Gota". Cada pieza es cortada a mano de cueros premium de origen sostenible, fusionando la calidez orgánica con herrajes de oro de 18 quilates.
+        <div class="fade-in" style="animation-delay: 0.2s;">
+            <div class="flex items-center space-x-4 mb-6">
+                <span id="product-ref" class="text-xs font-semibold uppercase tracking-widest text-neutral-400">Ref: 001-A</span>
+                <div class="h-px w-12 bg-neutral-200"></div>
+            </div>
+            
+            <h1 id="product-title" class="text-7xl mb-4 leading-tight">Margarita <br><span class="italic font-light text-yellow-600">YellowSun</span></h1>
+            
+            <p id="product-desc" class="text-xl text-neutral-600 mb-10 leading-relaxed font-light">
+                Esta pieza captura la alegría instantánea a través de pétalos de cuero genuino cortados con precisión quirúrgica. El centro hipnótico en espiral simboliza el ciclo eterno de la artesanía.
             </p>
             
-            <div class="space-y-4 mb-10">
-                <div class="flex items-center space-x-3 text-sm">
-                    <span class="w-2 h-2 bg-black rounded-full"></span>
-                    <span>Cuero de grano superior curtido al vegetal</span>
+            <div class="grid grid-cols-2 gap-8 mb-12 border-y border-neutral-100 py-8">
+                <div>
+                    <h4 class="text-xs uppercase tracking-widest text-neutral-400 mb-2">Inversión</h4>
+                    <span class="text-4xl font-light">$10.00 <span class="text-sm opacity-50 uppercase">USD</span></span>
                 </div>
-                <div class="flex items-center space-x-3 text-sm">
-                    <span class="w-2 h-2 bg-black rounded-full"></span>
-                    <span>Hipoalergénico y ultraligero</span>
-                </div>
-                <div class="flex items-center space-x-3 text-sm">
-                    <span class="w-2 h-2 bg-black rounded-full"></span>
-                    <span>Hecho artesanalmente bajo pedido</span>
+                <div>
+                    <h4 class="text-xs uppercase tracking-widest text-neutral-400 mb-2">Numeración</h4>
+                    <span class="text-sm italic">Certificado de pieza única incluido.</span>
                 </div>
             </div>
 
-            <div class="flex items-end space-x-6">
-                <div>
-                    <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Precio</span>
-                    <span class="text-3xl font-light">$125.00 USD</span>
-                </div>
-                <button class="flex-grow bg-black text-white py-4 px-8 text-sm uppercase tracking-widest hover:bg-gray-800 transition-all transform hover:-translate-y-1">
-                    Añadir a la Colección
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button class="flex-grow bg-black text-white py-5 px-10 text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl">
+                    Co-crear mi Pieza
                 </button>
             </div>
         </div>
     </main>
 
-    <!-- Footer-like section -->
-    <section class="max-w-7xl mx-auto px-8 py-20 border-t border-gray-200 mt-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-        <div>
-            <h3 class="serif text-xl mb-4">Artesanía Pura</h3>
-            <p class="text-sm text-gray-500 font-light leading-loose">Cada arete pasa por un proceso de curación y sellado que garantiza durabilidad y una pátina única con el tiempo.</p>
-        </div>
-        <div>
-            <h3 class="serif text-xl mb-4">Sostenibilidad</h3>
-            <p class="text-sm text-gray-500 font-light leading-loose">Utilizamos descartes de la industria del lujo para minimizar el desperdicio ambiental en cada colección.</p>
-        </div>
-        <div>
-            <h3 class="serif text-xl mb-4">Envío Global</h3>
-            <p class="text-sm text-gray-500 font-light leading-loose">Presentación en caja de madera de cedro con certificado de autenticidad. Envío premium asegurado.</p>
+    <!-- Philosophy Section -->
+    <section class="max-w-7xl mx-auto px-8 py-24 border-t border-neutral-100 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl serif mb-6">La Filosofía</h2>
+                <p class="text-lg text-neutral-500 font-light leading-relaxed">
+                    "En cada pieza, fusionamos la tradición de nuestras raíces con un diseño contemporáneo. No son solo accesorios; son historias moldeadas a mano con paciencia y amor."
+                </p>
+            </div>
+            <div class="bg-neutral-900 text-white p-12 rounded-3xl shadow-2xl">
+                <h3 class="text-2xl serif mb-4 text-neutral-100">El Atelier Personalizado</h3>
+                <p class="text-sm text-neutral-400 mb-6 leading-loose">
+                    ¿Tienes un tono específico en mente? Selecciona entre nuestra gama de cueros premium y define el centro para crear una pieza que sea un reflejo fiel de tu alma.
+                </p>
+                <div class="text-xs font-semibold tracking-widest uppercase text-[#d4af37]">
+                    WhatsApp: +51 927 412 063
+                </div>
+            </div>
         </div>
     </section>
 
+    <footer class="bg-white py-12 px-8 border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xl serif">MunayChatika</div>
+            <div class="flex space-x-8 text-[10px] uppercase tracking-widest opacity-60">
+                <a href="#">Instagram: @MunayChatika</a>
+                <a href="#">hola@munaychatika.com</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        let scene, camera, renderer, earring, leatherMaterial;
-        let mouseX = 0, mouseY = 0;
-        let targetRotationX = 0, targetRotationY = 0;
+        const products = [
+            {
+                ref: "Ref: 001-A",
+                title: "Margarita <br><span class='italic font-light text-yellow-600'>YellowSun</span>",
+                desc: "Esta pieza captura la alegría instantánea a través de pétalos de cuero genuino cortados con precisión quirúrgica. El centro hipnótico en espiral simboliza el ciclo eterno de la artesanía.",
+                hex: 0xEAB308,
+                centerHex: 0x1a1a1a
+            },
+            {
+                ref: "Ref: 001-B",
+                title: "Margarita <br><span class='italic font-light text-green-700'>Green Forest</span>",
+                desc: "Un tributo a la frescura de la naturaleza. La edición Green Forest equilibra la fuerza del cuero con la delicadeza de su forma floral, creando una pieza de contraste único.",
+                hex: 0x4d7c0f,
+                centerHex: 0x1a1a1a
+            },
+            {
+                ref: "Ref: 001-C",
+                title: "Margarita <br><span class='italic font-light text-blue-700'>Blue Ocean</span>",
+                desc: "Inspirada en la inmensidad del horizonte marino. La edición Blue Ocean evoca serenidad y sofisticación, transformando el cuero en un eco de las profundidades del mar.",
+                hex: 0x1d4ed8,
+                centerHex: 0x334155
+            },
+            {
+                ref: "Ref: 001-D",
+                title: "Margarita <br><span class='italic font-light text-orange-700'>AutummOrange</span>",
+                desc: "Capturando la calidez de un atardecer dorado. Esta pieza celebra la transición y la energía de la tierra, diseñada para resaltar la belleza de lo auténtico.",
+                hex: 0xc2410c,
+                centerHex: 0x3e2723
+            }
+        ];
+
+        let scene, camera, renderer, margarita, leatherMaterial, centerMaterial;
+        let targetRotationY = 0;
 
         function init3D() {
             const container = document.getElementById('canvas-container');
-            const width = container.clientWidth;
-            const height = container.clientHeight;
-
             scene = new THREE.Scene();
             
-            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-            camera.position.z = 5;
+            camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 7;
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(width, height);
+            renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
             container.appendChild(renderer.domElement);
 
-            // Lights
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
+            // --- LIGHTING ---
+            scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+            
+            const topLight = new THREE.SpotLight(0xffffff, 2.5);
+            topLight.position.set(0, 10, 2);
+            topLight.angle = Math.PI / 10;
+            topLight.penumbra = 0.6;
+            topLight.decay = 2;
+            topLight.distance = 50;
+            scene.add(topLight);
 
-            const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            mainLight.position.set(5, 5, 5);
-            scene.add(mainLight);
+            const frontLight = new THREE.PointLight(0xffffff, 0.6);
+            frontLight.position.set(0, 0, 5);
+            scene.add(frontLight);
 
-            const rimLight = new THREE.PointLight(0xffffff, 0.4);
-            rimLight.position.set(-5, -2, 2);
-            scene.add(rimLight);
-
-            // Materials
+            // --- MATERIALS ---
             leatherMaterial = new THREE.MeshStandardMaterial({ 
-                color: 0x8B4513, 
-                roughness: 0.8,
-                metalness: 0.1
+                color: products[0].hex, 
+                roughness: 0.6,
+                metalness: 0.05
             });
-
-            const metalMaterial = new THREE.MeshStandardMaterial({ 
+            centerMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x1a1a1a, 
+                roughness: 1
+            });
+            const goldMaterial = new THREE.MeshStandardMaterial({ 
                 color: 0xD4AF37, 
-                roughness: 0.2,
-                metalness: 0.9
+                metalness: 1, 
+                roughness: 0.1 
             });
 
-            // Earring Model Group
-            earring = new THREE.Group();
+            margarita = new THREE.Group();
 
-            // The Leather Piece (Teardrop shape using a Lathe or Extrude)
-            const leatherShape = new THREE.Shape();
-            leatherShape.moveTo(0, 0);
-            leatherShape.bezierCurveTo(1, -1, 1, -2, 0, -2.5);
-            leatherShape.bezierCurveTo(-1, -2, -1, -1, 0, 0);
+            // Petals
+            const petalShape = new THREE.Shape();
+            petalShape.moveTo(0, 0);
+            petalShape.bezierCurveTo(0.3, 0.5, 0.4, 1.2, 0, 1.8);
+            petalShape.bezierCurveTo(-0.4, 1.2, -0.3, 0.5, 0, 0);
+            const petalGeo = new THREE.ExtrudeGeometry(petalShape, { depth: 0.05, bevelEnabled: true, bevelThickness: 0.02 });
+            
+            const numPetals = 16;
+            for(let i=0; i<numPetals; i++) {
+                const petal = new THREE.Mesh(petalGeo, leatherMaterial);
+                petal.rotation.z = (i / numPetals) * Math.PI * 2;
+                margarita.add(petal);
+            }
 
-            const extrudeSettings = { depth: 0.1, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05 };
-            const leatherGeo = new THREE.ExtrudeGeometry(leatherShape, extrudeSettings);
-            const leatherMesh = new THREE.Mesh(leatherGeo, leatherMaterial);
-            leatherMesh.scale.set(0.8, 0.8, 0.8);
-            leatherMesh.position.y = 0.8;
-            earring.add(leatherMesh);
+            // Center
+            const centerGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.15, 32);
+            const centerMesh = new THREE.Mesh(centerGeo, centerMaterial);
+            centerMesh.rotation.x = Math.PI / 2;
+            margarita.add(centerMesh);
 
-            // The Hook (Torus)
-            const hookGeo = new THREE.TorusGeometry(0.2, 0.02, 16, 100, Math.PI * 1.5);
-            const hookMesh = new THREE.Mesh(hookGeo, metalMaterial);
-            hookMesh.rotation.z = Math.PI / 4;
-            hookMesh.position.y = 1.0;
-            earring.add(hookMesh);
+            // Hook
+            const hookGeo = new THREE.TorusGeometry(0.15, 0.015, 16, 100, Math.PI * 1.6);
+            const hook = new THREE.Mesh(hookGeo, goldMaterial);
+            hook.position.y = 1.9;
+            hook.rotation.z = Math.PI * 1.2;
+            margarita.add(hook);
 
-            scene.add(earring);
+            // --- ULTRA-ELEGANT SMALL SCALE ---
+            margarita.scale.set(0.45, 0.45, 0.45); // Reducido para mayor sofisticación visual
+            
+            scene.add(margarita);
 
-            // Event Listeners
             container.addEventListener('mousedown', onMouseDown);
             window.addEventListener('resize', onWindowResize);
-            
             animate();
         }
 
         function onMouseDown(e) {
             const startX = e.clientX;
-            const startY = e.clientY;
-            
-            function onMouseMove(moveEvent) {
-                targetRotationY += (moveEvent.clientX - startX) * 0.01;
-                targetRotationX += (moveEvent.clientY - startY) * 0.01;
+            function onMouseMove(m) {
+                targetRotationY += (m.clientX - startX) * 0.005;
             }
-
             function onMouseUp() {
                 window.removeEventListener('mousemove', onMouseMove);
                 window.removeEventListener('mouseup', onMouseUp);
             }
-
             window.addEventListener('mousemove', onMouseMove);
             window.addEventListener('mouseup', onMouseUp);
         }
@@ -237,32 +290,30 @@
 
         function animate() {
             requestAnimationFrame(animate);
-
-            // Smooth rotation
-            earring.rotation.y += (targetRotationY - earring.rotation.y) * 0.1;
-            earring.rotation.x += (targetRotationX - earring.rotation.x) * 0.1;
-            
-            // Auto idle rotation
-            if (Math.abs(targetRotationY - earring.rotation.y) < 0.01) {
-                earring.rotation.y += 0.005;
-            }
-
+            margarita.rotation.y += (targetRotationY - margarita.rotation.y) * 0.1;
+            margarita.rotation.y += 0.004; 
             renderer.render(scene, camera);
         }
 
-        function changeColor(hex, index) {
-            // Update material
-            leatherMaterial.color.set(hex);
-            
-            // Update UI swatches
+        function updateSelection(index) {
+            const p = products[index];
+            leatherMaterial.color.set(p.hex);
+            centerMaterial.color.set(p.centerHex);
+            targetRotationY += Math.PI * 2; 
+
+            document.getElementById('product-ref').innerText = p.ref;
+            document.getElementById('product-title').innerHTML = p.title;
+            document.getElementById('product-desc').innerText = p.desc;
+
             const swatches = document.querySelectorAll('.color-swatch');
             swatches.forEach(s => s.classList.remove('active'));
             swatches[index].classList.add('active');
-
-            // Add a little feedback animation to the earring
-            targetRotationY += Math.PI * 2;
         }
 
+        window.onload = init3D;
+    </script>
+</body>
+</html>
         window.onload = init3D;
     </script>
 </body>
