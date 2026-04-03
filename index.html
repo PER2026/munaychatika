@@ -24,14 +24,14 @@
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
         .glass-nav {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         
         #canvas-container {
             width: 100%;
-            height: 400px; /* Reducido para móvil */
+            height: 400px;
             cursor: grab;
             border-radius: 2rem;
             background: radial-gradient(circle at center, #1a1a1a 0%, var(--dark) 100%);
@@ -83,6 +83,7 @@
         }
         .btn-luxury:hover::after { transform: scaleX(1); transform-origin: left; }
 
+        /* Mejora de Dropdowns con delay al cerrar */
         .dropdown-menu {
             background-color: #ffffff !important;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
@@ -91,18 +92,22 @@
             visibility: hidden;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            /* Transición con delay de 0.2s para la visibilidad al cerrar */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.2s;
         }
 
         .dropdown-parent:hover .dropdown-menu {
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
+            /* Al abrir no queremos delay, que sea instantáneo */
+            transition-delay: 0s;
         }
 
         /* Mobile Menu */
         #mobile-menu {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
         }
         .mobile-menu-open #mobile-menu {
             transform: translateX(0);
@@ -145,7 +150,7 @@
             </button>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.2em] font-semibold items-center text-black">
+            <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold items-center text-black">
                 <!-- DROPDOWN ARETES -->
                 <div class="relative dropdown-parent">
                     <button class="btn-luxury flex items-center gap-2 py-2">
@@ -190,6 +195,28 @@
                     </div>
                 </div>
 
+                <!-- DROPDOWN GANCHOS -->
+                <div class="relative dropdown-parent">
+                    <button class="btn-luxury flex items-center gap-2 py-2 text-black">
+                        GANCHOS
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3 text-black">
+                        <button onclick="handleHookSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
+                            <span class="block serif text-xl text-black">Gancho Margarita</span>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleHookSelect('gota')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
+                            <span class="block serif text-xl text-black">Gancho Gota</span>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleHookSelect('hoja')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center">
+                            <span class="block serif text-xl text-black">Gancho Hoja</span>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                    </div>
+                </div>
+
                 <button onclick="handlePageSelect('collection')" class="btn-luxury py-2">COLECCIÓN</button>
             </div>
 
@@ -206,27 +233,47 @@
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col p-8 pt-24">
+    <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col p-8 pt-20">
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         
-        <div class="flex flex-col space-y-8 text-2xl serif">
+        <div class="flex flex-col space-y-6 text-xl serif mt-4">
             <button onclick="toggleMobileMenu(); showPage('home')" class="text-left border-b border-neutral-100 pb-4">Inicio</button>
-            <button onclick="toggleMobileMenu(); showPage('collection')" class="text-left border-b border-neutral-100 pb-4">Ver Catálogo</button>
             
-            <div class="py-4">
-                <span class="text-[10px] uppercase tracking-widest text-neutral-400 block mb-4">Nuestras Joyas</span>
-                <div class="grid grid-cols-1 gap-4">
-                    <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left text-lg">Aretes Margarita</button>
-                    <button onclick="handleNecklaceSelect('gargantilla'); toggleMobileMenu()" class="text-left text-lg">Gargantilla Solar</button>
-                    <button onclick="handleHookSelect('gota'); toggleMobileMenu()" class="text-left text-lg">Ganchos Gota</button>
+            <!-- ARETES MOBILE LIST -->
+            <div class="py-2">
+                <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Aretes 2026</span>
+                <div class="flex flex-col space-y-3 pl-4">
+                    <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left">Margarita</button>
+                    <button onclick="handleModelSelect('gota'); toggleMobileMenu()" class="text-left">Gota Clásica</button>
+                    <button onclick="handleModelSelect('hoja'); toggleMobileMenu()" class="text-left">Hoja Serrana</button>
+                </div>
+            </div>
+
+            <!-- COLLARES MOBILE LIST -->
+            <div class="py-2">
+                <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Collares</span>
+                <div class="flex flex-col space-y-3 pl-4">
+                    <button onclick="handleNecklaceSelect('gargantilla'); toggleMobileMenu()" class="text-left">Gargantilla Solar</button>
+                    <button onclick="handleNecklaceSelect('pechera'); toggleMobileMenu()" class="text-left">Pechera Ritual</button>
+                    <button onclick="handleNecklaceSelect('minimal'); toggleMobileMenu()" class="text-left">Minimal Cord</button>
+                </div>
+            </div>
+
+            <!-- GANCHOS MOBILE LIST -->
+            <div class="py-2">
+                <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Ganchos</span>
+                <div class="flex flex-col space-y-3 pl-4">
+                    <button onclick="handleHookSelect('margarita'); toggleMobileMenu()" class="text-left">Gancho Margarita</button>
+                    <button onclick="handleHookSelect('gota'); toggleMobileMenu()" class="text-left">Gancho Gota</button>
+                    <button onclick="handleHookSelect('hoja'); toggleMobileMenu()" class="text-left">Gancho Hoja</button>
                 </div>
             </div>
         </div>
 
-        <div class="mt-auto">
-            <a href="https://wa.me/51927412063" target="_blank" class="block w-full bg-black text-white py-5 text-center text-xs uppercase tracking-widest font-bold">WhatsApp Directo</a>
+        <div class="mt-8">
+            <a href="https://wa.me/51927412063" target="_blank" class="block w-full bg-black text-white py-5 text-center text-[10px] uppercase tracking-widest font-bold">WhatsApp Directo</a>
         </div>
     </div>
 
@@ -242,10 +289,10 @@
                     Fusionamos la tradición de nuestras raíces con un diseño contemporáneo. Joyas que son historias moldeadas a mano con paciencia y amor en el corazón de Cusco.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                    <button onclick="showPage('collection')" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl">
+                    <button onclick="showPage('collection')" class="bg-black text-white px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-xl font-bold">
                         Ver Catálogo 2026
                     </button>
-                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="border border-neutral-200 px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-50 transition-all text-center">Instagram</a>
+                    <a href="https://www.instagram.com/munay_chatika/" target="_blank" class="border border-neutral-200 px-8 md:px-10 py-4 md:py-5 text-[10px] md:text-xs uppercase tracking-widest hover:bg-neutral-50 transition-all text-center font-bold">Instagram</a>
                 </div>
             </div>
             <div class="order-1 lg:order-2 aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl">
@@ -440,21 +487,21 @@
             gargantilla: {
                 title: "Gargantilla Solar",
                 ref: "REF: COLL-001",
-                desc: "Una pieza central que irradia calidez. Elaborada con cuero curtido al vegetal y detalles en bronce.",
+                desc: "Una pieza central que irradia calidez. Elaborada con cuero curtido al vegetal.",
                 price: "$45.00",
                 img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000"
             },
             pechera: {
                 title: "Pechera Ritual",
                 ref: "REF: COLL-002",
-                desc: "Arquitectura textil en cuero. Una pieza audaz diseñada para distinción en eventos especiales.",
+                desc: "Arquitectura textil en cuero. Una pieza audaz diseñada para distinción.",
                 price: "$65.00",
                 img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000"
             },
             minimal: {
                 title: "Minimal Cord",
                 ref: "REF: COLL-003",
-                desc: "La simplicidad de la línea. Un cordón de cuero premium con cierre artesanal.",
+                desc: "La simplicidad de la línea. Un cordón de cuero premium.",
                 price: "$30.00",
                 img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000"
             }
@@ -464,21 +511,21 @@
             margarita: {
                 title: "Gancho Margarita",
                 ref: "REF: HOOK-001",
-                desc: "Diseño floral tallado a mano para complementar tus aretes Munay.",
+                desc: "Diseño floral tallado a mano para complementar tus aretes.",
                 price: "$15.00",
                 img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000"
             },
             gota: {
                 title: "Gancho Gota",
                 ref: "REF: HOOK-002",
-                desc: "La curva perfecta en herrajes de autor, terminados en baño de oro.",
+                desc: "La curva perfecta en herrajes de autor.",
                 price: "$15.00",
                 img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000"
             },
             hoja: {
                 title: "Gancho Hoja",
                 ref: "REF: HOOK-003",
-                desc: "Detalle orgánico en metal bruñido, ideal para un estilo rústico elegante.",
+                desc: "Detalle orgánico en metal bruñido.",
                 price: "$15.00",
                 img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000"
             }
@@ -551,7 +598,7 @@
             activeModelKey = key;
             showPage('detail');
             updateDetailUI();
-            setTimeout(init3D, 100); // Pequeño delay para asegurar renderizado del contenedor
+            setTimeout(init3D, 100);
         }
 
         function updateDetailUI() {
@@ -598,9 +645,7 @@
             
             targetRY = 0; targetRX = 0;
 
-            // Events - Mouse
             cont.onmousedown = e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; };
-            // Events - Touch
             cont.addEventListener('touchstart', e => { 
                 isDragging = true; 
                 prevX = e.touches[0].clientX; 
@@ -629,16 +674,14 @@
 
         function buildModel() {
             const data = catalog[activeModelKey];
-            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.6, metalness: 0.1 });
+            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.6 });
             centerMat = new THREE.MeshStandardMaterial({ color: data.colors[0].center, roughness: 0.8 });
             const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.15 });
             
             if (data.shape === 'margarita') {
                 const pS = new THREE.Shape(); 
-                pS.moveTo(0,0); 
-                pS.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); 
-                pS.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
-                const pG = new THREE.ExtrudeGeometry(pS, { depth: 0.08, bevelEnabled: true, bevelSize: 0.02 });
+                pS.moveTo(0,0); pS.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8); pS.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
+                const pG = new THREE.ExtrudeGeometry(pS, { depth: 0.08, bevelEnabled: true });
                 for(let i=0; i<16; i++) { 
                     const p = new THREE.Mesh(pG, leatherMat); 
                     p.rotation.z = (i/16)*Math.PI*2; 
@@ -648,16 +691,10 @@
                 c.rotation.x = Math.PI/2; 
                 currentGroup.add(c);
             } else if (data.shape === 'gota') {
-                const s = new THREE.Shape(); 
-                s.moveTo(0,1.8); 
-                s.bezierCurveTo(1,0.5,1,-1,0,-1.5); 
-                s.bezierCurveTo(-1,-1,-1,0.5,0,1.8);
+                const s = new THREE.Shape(); s.moveTo(0,1.8); s.bezierCurveTo(1,0.5,1,-1,0,-1.5); s.bezierCurveTo(-1,-1,-1,0.5,0,1.8);
                 currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.15, bevelEnabled: true }), leatherMat));
             } else if (data.shape === 'hoja') {
-                const s = new THREE.Shape(); 
-                s.moveTo(0,-1.5); 
-                s.quadraticCurveTo(1.5,0,0,2.5); 
-                s.quadraticCurveTo(-1.5,0,0,-1.5);
+                const s = new THREE.Shape(); s.moveTo(0,-1.5); s.quadraticCurveTo(1.5,0,0,2.5); s.quadraticCurveTo(-1.5,0,0,-1.5);
                 currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.1, bevelEnabled: true }), leatherMat));
             }
             
@@ -676,8 +713,7 @@
             
             const link = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${d.title} (${d.ref}) color ${variantName}`;
             document.getElementById('earring-whatsapp-link').href = link;
-            
-            targetRY += Math.PI*2; // Efecto giro al cambiar color
+            targetRY += Math.PI*2;
         }
 
         function animate() {
@@ -688,10 +724,7 @@
             renderer.render(scene, camera);
         }
 
-        window.onload = () => {
-            showPage('home');
-        };
-
+        window.onload = () => showPage('home');
         window.addEventListener('resize', () => {
             const container = document.getElementById('canvas-container');
             if (camera && renderer && container) {
