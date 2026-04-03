@@ -204,9 +204,54 @@
             max-height: 200px;
             margin-top: 1rem;
         }
+
+        /* --- NUEVOS ESTILOS AÑADIDOS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 200;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+        .unboxing-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f3f3f3 100%);
+            border: 1px solid #e5e5e5;
+        }
+        .care-step {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+        .care-step:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/51927412063" target="_blank" class="floating-wa" title="Chatea con nosotros">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 4.754c-1.943 0-3.843-.522-5.503-1.508l-.395-.234-4.089 1.072 1.09-3.987-.256-.408C2.518 12.65 1.996 10.662 1.996 8.604c0-4.636 3.774-8.411 8.411-8.411 2.247 0 4.359.875 5.947 2.464 1.588 1.589 2.463 3.701 2.463 5.947 0 4.637-3.774 8.412-8.411 8.412m9.404-14.401C20.125 2.784 17.447.533 14.582.533h-.011C11.192.533 8.358 3.367 8.358 6.757c0 1.08.281 2.134.814 3.057L7.5 15.158l5.441-1.428c.883.481 1.879.735 2.89.735h.011c3.389 0 6.223-2.834 6.223-6.224 0-1.642-.64-3.185-1.801-4.346"></path>
+        </svg>
+    </a>
 
     <!-- Header / Navegación -->
     <nav class="fixed top-0 w-full z-[100] glass-nav px-4 md:px-8 py-4 md:py-6">
@@ -373,10 +418,10 @@
 
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="rounded-[2.5rem] overflow-hidden aspect-video shadow-2xl">
+                <div class="rounded-[2.5rem] overflow-hidden aspect-video shadow-2xl reveal">
                     <img src="https://images.unsplash.com/photo-1517423568366-8b83523034fd?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover" alt="Cuero sostenible">
                 </div>
-                <div class="space-y-8">
+                <div class="space-y-8 reveal">
                     <span class="text-gold text-[10px] uppercase tracking-[0.5em] font-bold">Compromiso Ético</span>
                     <h3 class="text-4xl serif italic font-bold">Lujo que respeta la tierra</h3>
                     <p class="text-neutral-500 font-light leading-relaxed">Nuestro cuero proviene de curtiembres que utilizan extractos vegetales de maderas y cortezas, eliminando metales pesados como el cromo. Es una joya que puedes llevar con la conciencia tranquila.</p>
@@ -394,19 +439,40 @@
             </div>
         </div>
 
+        <!-- SECCIÓN NUEVA: EL ARTE DEL UNBOXING -->
+        <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40 reveal">
+            <div class="unboxing-card rounded-[3.5rem] p-12 md:p-24 overflow-hidden relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Unboxing de Lujo</span>
+                        <h2 class="text-5xl serif italic font-bold mb-8 leading-tight">La espera termina con una sonrisa</h2>
+                        <p class="text-neutral-500 font-light text-lg mb-8 leading-relaxed">Cada joya MunayChatika viaja en un estuche de madera tallada o lino orgánico, acompañada de su certificado de autenticidad y una carta de cuidado personalizada.</p>
+                        <ul class="space-y-4 text-sm uppercase tracking-widest font-semibold opacity-70">
+                            <li>• Empaque 100% libre de plástico</li>
+                            <li>• Certificado de Origen Cusco</li>
+                            <li>• Aroma a cedro natural</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl" alt="Packaging">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40 pt-20 border-t border-neutral-100 text-black">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-                <div class="space-y-6">
+                <div class="space-y-6 reveal">
                     <div class="feature-icon"></div>
                     <h3 class="text-2xl serif italic font-bold">Técnica Ancestral</h3>
                     <p class="text-neutral-500 font-light text-sm leading-loose">Heredamos el arte del repujado y modelado de cuero, perfeccionado por generaciones en el Valle Sagrado, para crear piezas que desafían el tiempo.</p>
                 </div>
-                <div class="space-y-6">
+                <div class="space-y-6 reveal" style="transition-delay: 0.2s;">
                     <div class="feature-icon"></div>
                     <h3 class="text-2xl serif italic font-bold">Materiales Nobles</h3>
                     <p class="text-neutral-500 font-light text-sm leading-loose">Solo utilizamos cuero curtido al vegetal, procesado sin químicos agresivos, respetando la textura orgánica y la respiración natural de la materia.</p>
                 </div>
-                <div class="space-y-6">
+                <div class="space-y-6 reveal" style="transition-delay: 0.4s;">
                     <div class="feature-icon"></div>
                     <h3 class="text-2xl serif italic font-bold">Unicidad Absoluta</h3>
                     <p class="text-neutral-500 font-light text-sm leading-loose">Al ser moldeado a mano, ningún par es idéntico a otro. Cada grieta y cada curva cuenta una historia diferente entre el artesano y el cuero.</p>
@@ -414,8 +480,40 @@
             </div>
         </div>
 
+        <!-- SECCIÓN NUEVA: GUÍA DE CUIDADO -->
+        <div class="bg-stone-100 mt-40 py-32 reveal">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="text-center mb-20">
+                    <span class="text-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block">Preservación</span>
+                    <h2 class="text-5xl serif italic font-bold">Cómo cuidar tu tesoro</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="care-step text-center">
+                        <span class="text-3xl mb-6 block">💧</span>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-4">Evita el agua</h4>
+                        <p class="text-neutral-500 text-xs font-light leading-relaxed">El cuero es orgánico. Mantenlo seco para preservar su forma moldeada.</p>
+                    </div>
+                    <div class="care-step text-center">
+                        <span class="text-3xl mb-6 block">🧴</span>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-4">Perfume Primero</h4>
+                        <p class="text-neutral-500 text-xs font-light leading-relaxed">Aplica tus fragancias antes de colocarte la joya para evitar manchas.</p>
+                    </div>
+                    <div class="care-step text-center">
+                        <span class="text-3xl mb-6 block">🌙</span>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-4">Descanso Nocturno</h4>
+                        <p class="text-neutral-500 text-xs font-light leading-relaxed">Guárdalos en su estuche original para evitar dobleces accidentales.</p>
+                    </div>
+                    <div class="care-step text-center">
+                        <span class="text-3xl mb-6 block">☁️</span>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-4">Limpieza Suave</h4>
+                        <p class="text-neutral-500 text-xs font-light leading-relaxed">Un paño de microfibra seco es suficiente para mantener su brillo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40">
-            <div class="bg-neutral-50 rounded-[3rem] p-12 md:p-24 text-center">
+            <div class="bg-neutral-50 rounded-[3rem] p-12 md:p-24 text-center reveal">
                 <span class="text-[10px] uppercase tracking-[0.5em] text-gold mb-8 block font-bold">El Sentimiento Munay</span>
                 <h2 class="text-4xl md:text-6xl serif italic leading-tight text-neutral-800 font-bold">"No esculpimos cuero, <br>esculpimos emociones que se <br>llevan cerca del alma."</h2>
                 <div class="w-16 h-px bg-neutral-200 mx-auto mt-12"></div>
@@ -423,13 +521,13 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40 pb-20">
-            <div class="flex items-center gap-6 mb-16 font-bold text-black">
+            <div class="flex items-center gap-6 mb-16 font-bold text-black reveal">
                 <div class="h-px bg-neutral-200 flex-grow"></div>
                 <h3 class="text-3xl serif italic text-center">Voces Munay</h3>
                 <div class="h-px bg-neutral-200 flex-grow"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 font-bold text-black">
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative">
+                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"La delicadeza de los aretes Margarita es impresionante. Se nota el amor en cada corte de cuero. Son ligeros y únicos."</p>
                     <div class="mt-8 not-italic">
@@ -437,7 +535,7 @@
                         <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Lima, Perú</span>
                     </div>
                 </div>
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative">
+                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.2s;">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"Diseñar mi propia joya con la herramienta 3D fue una experiencia mágica. El resultado final superó mis expectativas."</p>
                     <div class="mt-8 not-italic">
@@ -445,7 +543,7 @@
                         <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Cusco, Perú</span>
                     </div>
                 </div>
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative">
+                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.4s;">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"Un pedazo de los Andes en cada pieza. La elegancia y la tradición se sienten en cada detalle. Totalmente recomendado."</p>
                     <div class="mt-8 not-italic">
@@ -496,6 +594,28 @@
                     </div>
                 </div>
             </div>
+
+            <!-- SECCIÓN NUEVA: DESDE EL OMBLIGO DEL MUNDO (UBICACIÓN) -->
+            <div class="mt-40 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-neutral-100">
+                        <h3 class="text-3xl serif italic font-bold mb-6">Desde el Ombligo del Mundo</h3>
+                        <p class="text-neutral-500 mb-6 font-light leading-relaxed text-lg">Nuestro taller se encuentra en las calles empedradas de San Blas, Cusco. Aquí, el aire de los Andes inspira cada trazo y cada corte.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-4 text-sm font-semibold opacity-60">
+                                <span>📍</span> Barrio de San Blas, Cusco - Perú
+                            </div>
+                            <div class="flex items-center gap-4 text-sm font-semibold opacity-60">
+                                <span>📞</span> +51 927 412 063
+                            </div>
+                        </div>
+                        <a href="https://maps.app.goo.gl/YourMapLink" target="_blank" class="text-gold uppercase tracking-[0.2em] font-bold text-[10px] border-b border-gold pb-1 hover:opacity-70 transition">Ver en Google Maps</a>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1000" class="rounded-[3rem] shadow-2xl" alt="Cusco">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -518,7 +638,7 @@
                     <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
                         <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">Ver Modelos</span>
+                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Modelos</span>
                         </div>
                     </div>
                     <div class="space-y-3 px-2">
@@ -544,7 +664,7 @@
                     <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
                         <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">Ver Ganchos</span>
+                            <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Ganchos</span>
                         </div>
                     </div>
                     <div class="space-y-3 px-2">
@@ -553,8 +673,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mt-32 pt-20 border-t border-neutral-200">
+            
+            <!-- (Contenido restante igual...) -->
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mt-32 pt-20 border-t border-neutral-200">
                 <div class="space-y-12">
                     <div>
                         <h3 class="text-3xl serif italic mb-6 font-bold">Técnica y Materia</h3>
@@ -669,7 +790,7 @@
         </div>
     </section>
 
-    <!-- DETALLE IMAGEN (COLLARES / GANCHOS) -->
+    <!-- DETALLE IMAGEN -->
     <section id="page-image-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('collection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
@@ -789,12 +910,31 @@
     <script>
         const WHATSAPP_NUM = "51927412063";
 
+        // Paleta base de 15 colores para los aretes en detalle 3D
+        const baseEarringColors = [
+            { name: 'Onyx Black', hex: 0x1a1a1a, center: 0xd4af37 },
+            { name: 'Snow Marble', hex: 0xf8f9fa, center: 0x1a1a1a },
+            { name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a },
+            { name: 'Autumn Spice', hex: 0xc2410c, center: 0x1a1a1a },
+            { name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37 },
+            { name: 'Forest Spirit', hex: 0x228b22, center: 0x1a1a1a },
+            { name: 'Zafiro Royal', hex: 0x002366, center: 0xd4af37 },
+            { name: 'Dusty Rose', hex: 0xdcae96, center: 0x1a1a1a },
+            { name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a },
+            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a },
+            { name: 'Sage Leaf', hex: 0xb2ac88, center: 0x1a1a1a },
+            { name: 'Lavender Mist', hex: 0xa78bfa, center: 0x1a1a1a },
+            { name: 'Midnight Charcoal', hex: 0x36454f, center: 0xd4af37 },
+            { name: 'Med Olive', hex: 0x808000, center: 0x1a1a1a },
+            { name: 'Imperial Plum', hex: 0x8e4585, center: 0xd4af37 }
+        ];
+
         const catalog = {
-            margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: [{ name: 'YellowSun', hex: 0xEAB308, center: 0x1a1a1a }, { name: 'Midnight Onyx', hex: 0x1a1a1a, center: 0xd4af37 }], shape: 'margarita', images: ["https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600", "https://images.unsplash.com/photo-1596944229583-492708b17974?auto=format&fit=crop&q=80&w=600"] },
-            tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: [{ name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a }], shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            capnas: { title: "Campanas", ref: "REF: 005-C", desc: "Tradición andina.", colors: [{ name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a }], shape: 'capnas', images: ["https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600"] },
-            rosa: { title: "Rosa", ref: "REF: 006-R", desc: "Relieve táctil.", colors: [{ name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37 }], shape: 'rosa', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
-            redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: [{ name: 'Midnight Onyx', hex: 0x1a1a1a, center: 0xd4af37 }], shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
+            margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: [...baseEarringColors], shape: 'margarita', images: ["https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600", "https://images.unsplash.com/photo-1596944229583-492708b17974?auto=format&fit=crop&q=80&w=600"] },
+            tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: [...baseEarringColors], shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            capnas: { title: "Campanas", ref: "REF: 005-C", desc: "Tradición andina.", colors: [...baseEarringColors], shape: 'capnas', images: ["https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600"] },
+            rosa: { title: "Rosa", ref: "REF: 006-R", desc: "Relieve táctil.", colors: [...baseEarringColors], shape: 'rosa', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
+            redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: [...baseEarringColors], shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
         };
 
         const necklaceCatalog = {
@@ -803,7 +943,6 @@
             minimal: { title: "Minimal Cord", ref: "REF: COLL-003", desc: "Línea pura.", price: "$30.00", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" }
         };
 
-        // GANCHOS CATALOG RESTAURADO
         const hookCatalog = {
             margarita: { title: "Gancho Margarita", ref: "REF: HOOK-001", desc: "Diseño floral.", price: "$15.00", img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000" },
             gota: { title: "Gancho Gota", ref: "REF: HOOK-002", desc: "Curva perfecta.", price: "$15.00", img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000" },
@@ -901,6 +1040,7 @@
             const p = document.getElementById('page-' + pageId);
             if(p) p.classList.add('active');
             window.scrollTo({top: 0, behavior: 'smooth'});
+            revealElements();
         }
 
         // 3D ENGINE
@@ -1060,7 +1200,24 @@
             cAnimate();
         }
 
-        window.onload = () => showPage('home');
+        // SCROLL REVEAL LOGIC
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.onload = () => {
+            showPage('home');
+            revealElements();
+        };
+        window.onscroll = revealElements;
         window.addEventListener('resize', () => {
             const containers = ['canvas-container', 'custom-canvas-container'];
             containers.forEach(id => {
