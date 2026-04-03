@@ -113,7 +113,7 @@ MUNAYCHATIKA
         </model-viewer>
     </div>
 
-    <a class="btn" href="https://wa.me/51999999999">Comprar por WhatsApp</a>
+    <a class="btn" href="https://wa.me/51654599999">Comprar por WhatsApp</a>
 </section>
 
 <section class="products">
