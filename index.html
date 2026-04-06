@@ -1259,9 +1259,7 @@
 
         function updateViewerTransform() {
             if (!currentGroup) return;
-            const rotateY = targetRY * 28;
-            const rotateX = targetRX * -28;
-            currentGroup.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            currentGroup.style.transform = 'none';
         }
 
         function updateDetailUI() {
@@ -1300,17 +1298,18 @@
 
             destroy3DViewer();
             cont.innerHTML = '';
-            cont.style.perspective = '1200px';
+            cont.style.perspective = 'none';
             cont.style.overflow = 'hidden';
 
             currentGroup = document.createElement('img');
-            currentGroup.className = 'w-full h-full object-contain select-none pointer-events-none transition-transform duration-200';
+            currentGroup.className = 'w-full h-full object-contain select-none pointer-events-none';
             currentGroup.loading = 'eager';
             currentGroup.decoding = 'async';
             currentGroup.draggable = false;
-            currentGroup.style.filter = 'drop-shadow(0 30px 45px rgba(0,0,0,0.26))';
-            currentGroup.style.transformStyle = 'preserve-3d';
-            currentGroup.style.willChange = 'transform';
+            currentGroup.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.18))';
+            currentGroup.style.transform = 'none';
+            currentGroup.style.transformStyle = 'flat';
+            currentGroup.style.willChange = 'auto';
             cont.appendChild(currentGroup);
 
             leatherMat = {
@@ -1335,43 +1334,14 @@
             renderCurrentModelImage();
             updateViewerTransform();
 
-            const startDrag = (x, y, pointerId = null) => {
-                isDragging = true;
-                activePointerId = pointerId;
-                prevX = x;
-                prevY = y;
-                cont.style.cursor = 'grabbing';
-            };
-            const stopDrag = () => {
-                isDragging = false;
-                activePointerId = null;
-                cont.style.cursor = 'grab';
-            };
-            const handleMove = (x, y) => {
-                targetRY += (x - prevX) * 0.0028;
-                targetRX += (y - prevY) * 0.0022;
-                targetRX = Math.max(-0.45, Math.min(0.45, targetRX));
-                prevX = x;
-                prevY = y;
-                updateViewerTransform();
-            };
-
-            cont.onpointerdown = e => {
-                cont.setPointerCapture?.(e.pointerId);
-                startDrag(e.clientX, e.clientY, e.pointerId);
-            };
-            cont.onpointermove = e => {
-                if (!isDragging || (activePointerId !== null && e.pointerId !== activePointerId)) return;
-                handleMove(e.clientX, e.clientY);
-            };
-            cont.onpointerup = stopDrag;
-            cont.onpointercancel = stopDrag;
-            cont.onpointerleave = () => {
-                if (!isDragging) return;
-                stopDrag();
-            };
-
-            animate();
+            isDragging = false;
+            activePointerId = null;
+            cont.style.cursor = 'default';
+            cont.onpointerdown = null;
+            cont.onpointermove = null;
+            cont.onpointerup = null;
+            cont.onpointercancel = null;
+            cont.onpointerleave = null;
         }
 
         function buildModel() {
@@ -1393,20 +1363,11 @@
             document.querySelectorAll('.color-swatch').forEach((s, idx) => s.classList.toggle('active', idx === i));
             const l = document.getElementById('earring-whatsapp-link');
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${d.title} (${d.ref}) color ${variantName}`;
-            if (!prefersReducedMotion) {
-                targetRY += 0.18;
-                updateViewerTransform();
-            }
+            updateViewerTransform();
         }
 
         function animate() {
-            if (!currentGroup) return;
-            viewerAnimationId = requestAnimationFrame(animate);
-            if (!isDragging && !prefersReducedMotion) {
-                targetRY *= 0.985;
-                targetRX += ((-0.08) - targetRX) * 0.04;
-                updateViewerTransform();
-            }
+            return;
         }
 
 /* =========================================================
