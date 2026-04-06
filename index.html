@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- =========================================================
+         HEAD
+    ========================================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MunayChatika | L'art de l'artisanat</title>
@@ -8,6 +11,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <!-- =========================================================
+         ESTILOS
+    ========================================================= -->
     <style>
         :root {
             --gold: #d4af37;
@@ -245,6 +251,13 @@
 </head>
 <body class="antialiased">
 
+    <!-- =========================================================
+         INICIO DEL BODY
+    ========================================================= -->
+
+    <!-- =========================================================
+         BOTÓN WHATSAPP FLOTANTE
+    ========================================================= -->
     <!-- Botón WhatsApp Flotante -->
     <a href="https://wa.me/51927412063" target="_blank" class="floating-wa" title="Chatea con nosotros">
         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -252,6 +265,10 @@
         </svg>
     </a>
 
+
+    <!-- =========================================================
+         HEADER / NAVEGACIÓN
+    ========================================================= -->
     <!-- Header / Navegación -->
     <nav class="fixed top-0 w-full z-[100] glass-nav px-4 md:px-8 py-4 md:py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-black">
@@ -339,6 +356,10 @@
         </div>
     </nav>
 
+
+    <!-- =========================================================
+         MENÚ MÓVIL
+    ========================================================= -->
     <!-- Menú Móvil -->
     <div id="mobile-menu" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col p-8 pt-20 text-black">
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-2">
@@ -386,6 +407,10 @@
         </div>
     </div>
 
+
+    <!-- =========================================================
+         HOME
+    ========================================================= -->
     <!-- HOME -->
     <section id="page-home" class="view-section active pt-32 md:pt-48 pb-20 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -551,6 +576,10 @@
     </section>
 
     <!-- NOSOTROS -->
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================= -->
     <section id="page-about" class="view-section pt-32 pb-40 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-40 text-black">
@@ -614,6 +643,10 @@
     </section>
 
     <!-- COLECCIÓN -->
+
+    <!-- =========================================================
+         COLLECTION
+    ========================================================= -->
     <section id="page-collection" class="view-section pt-24 md:pt-32 pb-24 md:pb-40 bg-neutral-50 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <div class="max-w-3xl mb-16 md:24 font-bold text-black">
@@ -709,6 +742,10 @@
     </section>
 
     <!-- SELECCIÓN DE ARETES -->
+
+    <!-- =========================================================
+         EARRING SELECTION
+    ========================================================= -->
     <section id="page-earring-selection" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 bg-white text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Volver a Colección</button>
@@ -757,6 +794,10 @@
     </section>
 
     <!-- DETALLE PRODUCTO 3D -->
+
+    <!-- =========================================================
+         DETAIL
+    ========================================================= -->
     <section id="page-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('earring-selection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
@@ -784,6 +825,10 @@
     </section>
 
     <!-- DETALLE IMAGEN -->
+
+    <!-- =========================================================
+         IMAGE DETAIL
+    ========================================================= -->
     <section id="page-image-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('collection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
@@ -808,12 +853,43 @@
     </section>
 
     <!-- PERSONALIZADOR -->
+
+    <!-- =========================================================
+         CUSTOMIZER
+    ========================================================= -->
     <section id="page-customizer" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 bg-[#faf9f6] text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
             <button onclick="showPage('home')" class="mb-8 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Inicio</button>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start text-black">
                 <div class="relative text-black">
-                    <div id="custom-canvas-container"></div>
+                    <div id="custom-canvas-container" class="flex items-center justify-center bg-white">
+                        <div class="relative bg-white aspect-square rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] border border-stone-100 flex items-center justify-center group w-full">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#ffffff_0%,_#f9f8f6_100%)] opacity-60"></div>
+                            <div class="absolute bottom-[15%] left-1/2 -translate-x-1/2 flex gap-24 opacity-10 blur-2xl">
+                                <div class="w-32 h-8 bg-black rounded-full"></div>
+                                <div class="w-32 h-8 bg-black rounded-full"></div>
+                            </div>
+                            <div class="relative flex gap-12 md:gap-20 transition-transform duration-1000 ease-out group-hover:scale-105">
+                                <svg viewBox="0 0 200 320" class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform -rotate-2" id="earring1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M100 20 C 120 20, 130 40, 120 60 L 105 85" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"></path>
+                                    <circle cx="100" cy="25" r="2.5" fill="#94A3B8"></circle>
+                                    <circle id="bead1" cx="105" cy="95" r="6.5" fill="#000000"></circle>
+                                    <line x1="105" y1="102" x2="105" y2="120" stroke="#94A3B8" stroke-width="1.5"></line>
+                                    <g transform="translate(105, 195)" id="flower1"></g>
+                                </svg>
+                                <svg viewBox="0 0 200 320" class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform rotate-2 translate-y-10" id="earring2" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M100 20 C 120 20, 130 40, 120 60 L 105 85" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"></path>
+                                    <circle cx="100" cy="25" r="2.5" fill="#94A3B8"></circle>
+                                    <circle id="bead2" cx="105" cy="95" r="6.5" fill="#000000"></circle>
+                                    <line x1="105" y1="102" x2="105" y2="120" stroke="#94A3B8" stroke-width="1.5"></line>
+                                    <g transform="translate(105, 195)" id="flower2"></g>
+                                </svg>
+                            </div>
+                            <div class="absolute bottom-8 text-[9px] uppercase tracking-[0.4em] text-stone-300 font-sans">
+                                Vista de Estudio Profesional
+                            </div>
+                        </div>
+                    </div>
                     <div class="mt-6 flex flex-col gap-4 font-bold text-black">
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400 text-black">Selecciona la capa a editar:</h4>
                         <div class="grid grid-cols-3 gap-3 text-black">
@@ -886,6 +962,10 @@
         </div>
     </section>
 
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
     <!-- Footer -->
     <footer class="bg-white border-t border-neutral-100 py-16 md:py-20 px-8 text-black">
         <div class="max-w-7xl mx-auto text-center font-bold text-black">
@@ -900,7 +980,14 @@
         </div>
     </footer>
 
+
+    <!-- =========================================================
+         SCRIPT PRINCIPAL
+    ========================================================= -->
     <script>
+        /* =========================================================
+           CONSTANTES GLOBALES
+        ========================================================= */
         const WHATSAPP_NUM = "51927412063";
 
         // Paleta ajustada a exactamente 10 colores para los aretes
@@ -917,6 +1004,10 @@
             { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a }
         ];
 
+
+        /* =========================================================
+           CATÁLOGO DE ARETES
+        ========================================================= */
         const catalog = {
             margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: [...baseEarringColors], shape: 'margarita', images: ["https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600", "https://images.unsplash.com/photo-1596944229583-492708b17974?auto=format&fit=crop&q=80&w=600"] },
             tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: [...baseEarringColors], shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
@@ -925,18 +1016,30 @@
             redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: [...baseEarringColors], shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
         };
 
+
+        /* =========================================================
+           CATÁLOGO DE COLLARES
+        ========================================================= */
         const necklaceCatalog = {
             gargantilla: { title: "Gargantilla Solar", ref: "REF: COLL-001", desc: "Pieza central radiante.", price: "$45.00", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" },
             pechera: { title: "Pechera Ritual", ref: "REF: COLL-002", desc: "Arquitectura textil.", price: "$65.00", img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" },
             minimal: { title: "Minimal Cord", ref: "REF: COLL-003", desc: "Línea pura.", price: "$30.00", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" }
         };
 
+
+        /* =========================================================
+           CATÁLOGO DE GANCHOS
+        ========================================================= */
         const hookCatalog = {
             margarita: { title: "Gancho Margarita", ref: "REF: HOOK-001", desc: "Diseño floral.", price: "$15.00", img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000" },
             gota: { title: "Gancho Gota", ref: "REF: HOOK-002", desc: "Curva perfecta.", price: "$15.00", img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000" },
             hoja: { title: "Gancho Hoja", ref: "REF: HOOK-003", desc: "Textura orgánica.", price: "$15.00", img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000" }
         };
 
+
+        /* =========================================================
+           COLORES DEL PERSONALIZADOR
+        ========================================================= */
         const customizerColors = [
             { name: 'Onyx Black', hex: 0x1a1a1a }, { name: 'Snow Marble', hex: 0xf8f9fa },
             { name: 'Classic Cognac', hex: 0x8b4513 }, { name: 'Autumn Spice', hex: 0xc2410c },
@@ -961,6 +1064,10 @@
             }
         }
 
+
+        /* =========================================================
+           UTILIDADES DE INTERFAZ
+        ========================================================= */
         function closeDropdowns() {
             document.querySelectorAll('.dropdown-menu').forEach(d => {
                 d.style.visibility = 'hidden';
@@ -969,6 +1076,10 @@
             });
         }
 
+
+        /* =========================================================
+           NAVEGACIÓN Y CATÁLOGO
+        ========================================================= */
         function handleModelSelect(key) {
             closeDropdowns();
             openModel(key);
@@ -1031,6 +1142,10 @@
             revealElements();
         }
 
+
+        /* =========================================================
+           VISOR 3D DEL MODELO PRINCIPAL
+        ========================================================= */
         let scene, camera, renderer, currentGroup, leatherMat, centerMat;
         let isDragging = false, prevX = 0, prevY = 0, targetRY = 0, targetRX = 0;
         let activeModelKey = 'margarita';
@@ -1137,7 +1252,14 @@
 
         function animate() { if (!renderer) return; requestAnimationFrame(animate); currentGroup.rotation.y += (targetRY - currentGroup.rotation.y)*0.08; currentGroup.rotation.x += (targetRX - currentGroup.rotation.x)*0.08; renderer.render(scene, camera); }
 
+
+        /* =========================================================
+           PERSONALIZADOR SVG
+        ========================================================= */
         let cScene, cCamera, cRenderer, cGroup, outerMat, middleMat, innerMat;
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        const CUSTOM_PETAL_COUNT = 16;
+
         function openCustomizer() { showPage('customizer'); initCustomizer3D(); renderCustomizerSwatches(); updateCustomizerUI(); }
         function selectLayer(layer) { customizerState.activeLayer = layer; document.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active')); const el = document.getElementById(`layer-btn-${layer}`); if(el) el.classList.add('active'); updateCustomizerUI(); }
         function updateCustomizerUI() { 
@@ -1153,39 +1275,107 @@
             if (!grid) return;
             grid.innerHTML = ''; 
             customizerColors.forEach(c => { 
-                const b = document.createElement('button'); b.className = 'color-swatch custom-swatch'; b.dataset.hex = c.hex; b.style.backgroundColor = '#' + c.hex.toString(16).padStart(6, '0'); b.onclick = () => applyColorToLayer(c); grid.appendChild(b); 
+                const b = document.createElement('button');
+                b.className = 'color-swatch custom-swatch';
+                b.dataset.hex = c.hex;
+                b.style.backgroundColor = '#' + c.hex.toString(16).padStart(6, '0');
+                b.onclick = () => applyColorToLayer(c);
+                grid.appendChild(b); 
             }); 
         }
         function applyColorToLayer(color) { 
             customizerState[`${customizerState.activeLayer}Color`] = color; 
-            if (customizerState.activeLayer === 'outer' && outerMat) outerMat.color.set(color.hex); 
-            if (customizerState.activeLayer === 'middle' && middleMat) middleMat.color.set(color.hex); 
-            if (customizerState.activeLayer === 'inner' && innerMat) innerMat.color.set(color.hex); 
+            updateCustomizerSVG();
             updateCustomizerUI(); 
         }
+        function isDarkColorHex(hexValue) {
+            const r = (hexValue >> 16) & 0xff;
+            const g = (hexValue >> 8) & 0xff;
+            const b = hexValue & 0xff;
+            const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            return luma < 140;
+        }
+        function createSvgNode(tag, attrs = {}) {
+            const node = document.createElementNS(SVG_NS, tag);
+            Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+            return node;
+        }
+        function hexNumberToCss(hexValue) {
+            return '#' + hexValue.toString(16).padStart(6, '0');
+        }
+        function createFlower(containerId, colors) {
+            const group = document.getElementById(containerId);
+            if (!group) return;
+            group.innerHTML = '';
+            const angleStep = 360 / CUSTOM_PETAL_COUNT;
+            const strokeColor = '#1c1917';
+            for (let i = 0; i < CUSTOM_PETAL_COUNT; i++) {
+                const outer = createSvgNode('path', {
+                    d: 'M0 0 C -12 -20, -12 -85, 0 -92 C 12 -85, 12 -20, 0 0',
+                    fill: colors.outerPetals,
+                    stroke: strokeColor,
+                    'stroke-width': '1.2',
+                    'stroke-linejoin': 'round',
+                    transform: `rotate(${i * angleStep})`
+                });
+                group.appendChild(outer);
+            }
+
+            for (let i = 0; i < CUSTOM_PETAL_COUNT; i++) {
+                const inner = createSvgNode('path', {
+                    d: 'M0 0 C -8 -18, -10 -70, 0 -78 C 10 -70, 8 -18, 0 0',
+                    fill: colors.innerPetals,
+                    stroke: strokeColor,
+                    'stroke-width': '1',
+                    'stroke-linejoin': 'round',
+                    transform: `rotate(${i * angleStep + (angleStep / 2)})`
+                });
+                group.appendChild(inner);
+            }
+
+            const centerIsDark = isDarkColorHex(customizerState.innerColor.hex);
+            const detailColor = centerIsDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)';
+            const centerBorder = centerIsDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)';
+
+            const center = createSvgNode('circle', {
+                r: '24',
+                fill: colors.center,
+                stroke: centerBorder,
+                'stroke-width': '1.5'
+            });
+            group.appendChild(center);
+
+            const detail = createSvgNode('path', {
+                d: 'M 0 0 A 4 4 0 0 1 8 0 A 8 8 0 0 0 -8 0 A 12 12 0 0 1 16 0 A 16 16 0 0 0 -16 0',
+                fill: 'none',
+                stroke: detailColor,
+                'stroke-width': '1.5',
+                'stroke-linecap': 'round'
+            });
+            group.appendChild(detail);
+        }
+        function updateCustomizerSVG() {
+            const colors = {
+                outerPetals: hexNumberToCss(customizerState.outerColor.hex),
+                innerPetals: hexNumberToCss(customizerState.middleColor.hex),
+                center: hexNumberToCss(customizerState.innerColor.hex)
+            };
+            createFlower('flower1', colors);
+            createFlower('flower2', colors);
+            const bead1 = document.getElementById('bead1');
+            const bead2 = document.getElementById('bead2');
+            if (bead1) bead1.setAttribute('fill', colors.center);
+            if (bead2) bead2.setAttribute('fill', colors.center);
+        }
         function initCustomizer3D() {
-            const cont = document.getElementById('custom-canvas-container'); if (!cont) return;
-            cont.innerHTML = '';
-            cScene = new THREE.Scene(); cCamera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000); cCamera.position.z = 8;
-            cRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); cRenderer.setSize(cont.clientWidth, cont.clientHeight); cRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); cont.appendChild(cRenderer.domElement);
-            cScene.add(new THREE.AmbientLight(0xffffff, 0.9)); const s1 = new THREE.PointLight(0xffffff, 1.5); s1.position.set(5, 5, 5); cScene.add(s1);
-            cGroup = new THREE.Group();
-            outerMat = new THREE.MeshStandardMaterial({ color: customizerState.outerColor.hex, roughness: 0.6 }); middleMat = new THREE.MeshStandardMaterial({ color: customizerState.middleColor.hex, roughness: 0.6 }); innerMat = new THREE.MeshStandardMaterial({ color: customizerState.innerColor.hex, roughness: 0.6 });
-            const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.2 });
-            const sO = new THREE.Shape(); sO.moveTo(0,0); sO.bezierCurveTo(0.6,0.5,0.8,2,0,3); sO.bezierCurveTo(-0.8,2,-0.6,0.5,0,0); const gO = new THREE.ExtrudeGeometry(sO, { depth: 0.1, bevelEnabled: true }); for(let i=0; i<8; i++) { const m = new THREE.Mesh(gO, outerMat); m.rotation.z = (i/8)*Math.PI*2; cGroup.add(m); }
-            const sM = new THREE.Shape(); sM.moveTo(0,0); sM.bezierCurveTo(0.4,0.3,0.5,1.2,0,1.8); sM.bezierCurveTo(-0.5,1.2,-0.4,0.3,0,0); const gM = new THREE.ExtrudeGeometry(sM, { depth: 0.15, bevelEnabled: true }); for(let i=0; i<8; i++) { const m = new THREE.Mesh(gM, middleMat); m.rotation.z = (i/8)*Math.PI*2; m.position.z = 0.1; cGroup.add(m); }
-            const mI = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), innerMat); mI.position.z = 0.3; mI.scale.set(1, 1, 0.3); cGroup.add(mI);
-            const h = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.04, 16, 100, Math.PI*1.5), gold); h.position.y = 3.5; h.rotation.z = Math.PI*1.25; cGroup.add(h);
-            cGroup.scale.set(0.24, 0.24, 0.24); cScene.add(cGroup);
-            let cIsDragging = false, cPrevX = 0, cPrevY = 0, cTargetRY = 0, cTargetRX = 0;
-            cont.onmousedown = e => { cIsDragging = true; cPrevX = e.clientX; cPrevY = e.clientY; };
-            cont.addEventListener('touchstart', e => { if(e.touches.length > 0) { cIsDragging = true; cPrevX = e.touches[0].clientX; cPrevY = e.touches[0].clientY; } }, {passive: false});
-            window.addEventListener('mouseup', () => cIsDragging = false);
-            window.onmousemove = e => { if(!cIsDragging) return; cTargetRY += (e.clientX - cPrevX)*0.015; cTargetRX += (e.clientY - cPrevY)*0.015; cPrevX = e.clientX; cPrevY = e.clientY; };
-            function cAnimate() { if (!cRenderer) return; requestAnimationFrame(cAnimate); cGroup.rotation.y += (cTargetRY - cGroup.rotation.y)*0.1; cGroup.rotation.x += (cTargetRX - cGroup.rotation.x)*0.1; cRenderer.render(cScene, cCamera); }
-            cAnimate();
+            const cont = document.getElementById('custom-canvas-container');
+            if (!cont) return;
+            updateCustomizerSVG();
         }
 
+        /* =========================================================
+           EFECTOS DE REVELADO Y EVENTOS GLOBALES
+        ========================================================= */
         function revealElements() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(el => {
