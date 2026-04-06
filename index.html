@@ -13,8 +13,7 @@
     <title>MunayChatika | L'art de l'artisanat</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <!-- =========================================================
          ESTILOS
     ========================================================= -->
@@ -33,6 +32,10 @@
             overflow-x: hidden;
         }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+
+        img { content-visibility: auto; }
+        .lazy-render { content-visibility: auto; contain-intrinsic-size: 800px; }
 
         .glass-nav {
             background-color: rgba(255, 255, 255, 0.95);
@@ -1568,7 +1571,36 @@
             cont.ontouchstart = null;
         }
 
-        function init3D() {
+
+        let threeJsPromise = null;
+        function loadThreeJs() {
+            if (window.THREE) return Promise.resolve(window.THREE);
+            if (threeJsPromise) return threeJsPromise;
+            threeJsPromise = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+                script.async = true;
+                script.onload = () => resolve(window.THREE);
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+            return threeJsPromise;
+        }
+
+        function optimizeImages() {
+            const images = Array.from(document.querySelectorAll('img'));
+            images.forEach((img, index) => {
+                if (!img.hasAttribute('decoding')) img.decoding = 'async';
+                if (index === 0) {
+                    img.loading = 'eager';
+                    img.fetchPriority = 'high';
+                } else {
+                    img.loading = 'lazy';
+                }
+            });
+        }
+
+        async function init3D() {
             const cont = document.getElementById('canvas-container');
             if (!cont) return;
 
@@ -1585,6 +1617,7 @@
                 return;
             }
 
+            await loadThreeJs();
             cont.innerHTML = '';
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000);
@@ -1814,22 +1847,16 @@
             document.querySelectorAll('.unboxing-card, .care-step, .model-img-card, .riel-card').forEach(el => {
                 if (!el.classList.contains('premium-border')) el.classList.add('premium-border');
             });
+            document.querySelectorAll('section, .reveal, .insta-grid-item').forEach(el => el.classList.add('lazy-render'));
 
             const loader = document.getElementById('luxury-loader');
             if (loader) {
                 requestAnimationFrame(() => {
-                    setTimeout(() => loader.classList.add('hidden'), 350);
+                    setTimeout(() => loader.classList.add('hidden'), 220);
                 });
             }
 
-            const heroImage = document.querySelector('#page-home .order-1.lg\:order-2 img');
-            if (heroImage) {
-                window.addEventListener('scroll', () => {
-                    const offset = Math.min(window.scrollY * 0.08, 24);
-                    heroImage.style.transform = `scale(1.03) translateY(${offset}px)`;
-                }, { passive: true });
-            }
-
+            optimizeImages();
             updateLuxuryUI();
         }
 
@@ -1854,9 +1881,15 @@
             initLuxuryEnhancements();
             updateLuxuryUI();
         };
+        let scrollTicking = false;
         window.addEventListener('scroll', () => {
-            revealElements();
-            updateLuxuryUI();
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(() => {
+                revealElements();
+                updateLuxuryUI();
+                scrollTicking = false;
+            });
         }, { passive: true });
         window.addEventListener('resize', () => {
             const containers = ['canvas-container', 'custom-canvas-container'];
