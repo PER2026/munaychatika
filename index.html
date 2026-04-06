@@ -1024,17 +1024,19 @@
 
         // Paleta ajustada a exactamente 10 colores para los aretes
         const baseEarringColors = [
-            { name: 'Onyx Black', hex: 0x1a1a1a, center: 0xd4af37 },
-            { name: 'Snow Marble', hex: 0xf8f9fa, center: 0x1a1a1a },
-            { name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a },
-            { name: 'Autumn Spice', hex: 0xc2410c, center: 0x1a1a1a },
-            { name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37 },
-            { name: 'Forest Spirit', hex: 0x228b22, center: 0x1a1a1a },
-            { name: 'Zafiro Royal', hex: 0x002366, center: 0xd4af37 },
-            { name: 'Dusty Rose', hex: 0xdcae96, center: 0x1a1a1a },
-            { name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a },
-            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a }
+            { name: 'Onyx Black', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/negro.png' },
+            { name: 'Snow Marble', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/blanco.png' },
+            { name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rojo.png' },
+            { name: 'Autumn Spice', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rojo.png' },
+            { name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rojo.png' },
+            { name: 'Forest Spirit', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/negro.png' },
+            { name: 'Zafiro Royal', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/negro.png' },
+            { name: 'Dusty Rose', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rosa.png' },
+            { name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rojo.png' },
+            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/blanco.png' }
         ];
+
+        const defaultEarringImage = 'https://raw.githubusercontent.com/PER2026/munaychatika/main/imagenes/rojo.png';
 
 
         /* =========================================================
@@ -1240,106 +1242,19 @@
             return '#' + Number(hexValue).toString(16).padStart(6, '0');
         }
 
-        function encodeSvg(svg) {
-            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg)
-                .replace(/%0A/g, '')
-                .replace(/%20/g, ' ')
-                .replace(/%3D/g, '=')
-                .replace(/%3A/g, ':')
-                .replace(/%2F/g, '/')
-                .replace(/%22/g, "'");
-        }
-
-        function getModelSvg(shape, mainColor, centerColor) {
-            const leather = hexNumberToCss(mainColor);
-            const center = hexNumberToCss(centerColor);
-            const stitch = 'rgba(255,255,255,0.22)';
-            const edge = 'rgba(0,0,0,0.16)';
-            const metal = '#d4af37';
-            const commonDefs = `
-                <defs>
-                    <linearGradient id='bgGlow' x1='0' y1='0' x2='1' y2='1'>
-                        <stop offset='0%' stop-color='#2b2b2b'/>
-                        <stop offset='100%' stop-color='#0a0a0a'/>
-                    </linearGradient>
-                    <filter id='shadow' x='-50%' y='-50%' width='200%' height='200%'>
-                        <feDropShadow dx='0' dy='18' stdDeviation='18' flood-color='rgba(0,0,0,0.28)'/>
-                    </filter>
-                    <filter id='soft' x='-50%' y='-50%' width='200%' height='200%'>
-                        <feDropShadow dx='0' dy='8' stdDeviation='6' flood-color='rgba(255,255,255,0.08)'/>
-                    </filter>
-                </defs>
-                <rect width='800' height='800' rx='48' fill='url(#bgGlow)'/>
-                <ellipse cx='400' cy='670' rx='180' ry='36' fill='rgba(0,0,0,0.2)'/>
-                <path d='M400 110 C430 110 444 130 438 156 L420 198' fill='none' stroke='#b8bec8' stroke-width='8' stroke-linecap='round'/>
-                <circle cx='400' cy='118' r='8' fill='#b8bec8'/>
-                <circle cx='420' cy='222' r='18' fill='${center}' filter='url(#soft)'/>
-                <line x1='420' y1='240' x2='420' y2='278' stroke='#b8bec8' stroke-width='5' stroke-linecap='round'/>
-            `;
-
-            if (shape === 'margarita') {
-                const petals = Array.from({ length: 16 }, (_, i) => {
-                    const angle = (360 / 16) * i;
-                    return `<g transform='rotate(${angle} 420 430)'>
-                        <path d='M420 430 C456 378 474 320 420 276 C366 320 384 378 420 430 Z' fill='${leather}' stroke='${edge}' stroke-width='2.2' filter='url(#shadow)'/>
-                        <path d='M420 420 C442 384 450 342 420 300 C390 342 398 384 420 420 Z' fill='none' stroke='${stitch}' stroke-width='1.4' stroke-linecap='round'/>
-                    </g>`;
-                }).join('');
-                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}${petals}<circle cx='420' cy='430' r='56' fill='${center}' stroke='rgba(0,0,0,0.16)' stroke-width='3'/><circle cx='420' cy='430' r='36' fill='rgba(255,255,255,0.10)'/></svg>`;
-            }
-
-            if (shape === 'tulipan') {
-                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
-                    <g filter='url(#shadow)'>
-                        <path d='M420 300 C520 330 530 470 440 566 C420 586 410 596 400 610 C390 596 380 586 360 566 C270 470 280 330 380 300 C388 380 408 404 420 438 C432 404 452 380 460 300 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
-                        <path d='M400 322 C390 402 372 452 344 524' fill='none' stroke='${stitch}' stroke-width='2'/>
-                        <path d='M420 328 C434 400 456 452 492 524' fill='none' stroke='${stitch}' stroke-width='2'/>
-                        <path d='M410 342 C412 436 408 510 402 582' fill='none' stroke='${stitch}' stroke-width='2'/>
-                    </g>
-                    <circle cx='420' cy='222' r='18' fill='${center}'/>
-                    <path d='M392 604 Q404 638 418 660 Q434 640 446 604' fill='none' stroke='${metal}' stroke-width='8' stroke-linecap='round'/>
-                </svg>`;
-            }
-
-            if (shape === 'capnas') {
-                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
-                    <g filter='url(#shadow)'>
-                        <path d='M320 286 H520 C520 452 468 566 424 622 H416 C372 566 320 452 320 286 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
-                        <path d='M350 322 H490' stroke='${stitch}' stroke-width='2'/>
-                        <path d='M342 378 H498' stroke='${stitch}' stroke-width='2'/>
-                        <path d='M334 434 H506' stroke='${stitch}' stroke-width='2'/>
-                        <path d='M352 492 C386 516 454 516 488 492' fill='none' stroke='${stitch}' stroke-width='2'/>
-                    </g>
-                    <circle cx='420' cy='222' r='18' fill='${center}'/>
-                </svg>`;
-            }
-
-            if (shape === 'rosa') {
-                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
-                    <g filter='url(#shadow)'>
-                        <circle cx='420' cy='438' r='140' fill='${leather}' opacity='0.18'/>
-                        <path d='M420 314 C492 314 548 372 548 438 C548 518 476 576 420 612 C364 576 292 518 292 438 C292 372 348 314 420 314 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
-                        <path d='M420 350 C460 350 498 384 498 428 C498 472 460 504 420 540 C380 504 342 472 342 428 C342 384 380 350 420 350 Z' fill='none' stroke='${stitch}' stroke-width='2.2'/>
-                        <path d='M420 388 C446 388 470 408 470 434 C470 458 446 480 420 502 C394 480 370 458 370 434 C370 408 394 388 420 388 Z' fill='${center}' opacity='0.95'/>
-                    </g>
-                </svg>`;
-            }
-
-            return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
-                <g filter='url(#shadow)'>
-                    <circle cx='420' cy='454' r='156' fill='${leather}' stroke='${edge}' stroke-width='3'/>
-                    <circle cx='420' cy='454' r='126' fill='none' stroke='${stitch}' stroke-width='2.2'/>
-                    <circle cx='420' cy='454' r='54' fill='${center}' stroke='rgba(0,0,0,0.16)' stroke-width='3'/>
-                </g>
-            </svg>`;
+        function getCurrentImageVariant() {
+            const data = catalog[activeModelKey];
+            if (!data) return null;
+            const colorValue = leatherMat?.color?.value;
+            return data.colors.find(c => c.hex === colorValue) || data.colors[0] || null;
         }
 
         function renderCurrentModelImage() {
             const data = catalog[activeModelKey];
-            if (!data || !currentGroup) return;
-            const svg = getModelSvg(data.shape, leatherMat.color.value, centerMat.color.value);
-            currentGroup.src = encodeSvg(svg);
-            currentGroup.alt = `${data.title} en color ${leatherMat.color.name}`;
+            const variant = getCurrentImageVariant();
+            if (!data || !currentGroup || !variant) return;
+            currentGroup.src = variant.image || defaultEarringImage;
+            currentGroup.alt = `${data.title} en color ${variant.name}`;
         }
 
         function updateViewerTransform() {
