@@ -426,7 +426,7 @@
                     <button onclick="showPage('earring-selection'); toggleMobileMenu()" class="text-left">Ver todos los modelos</button>
                     <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left">Margarita</button>
                     <button onclick="handleModelSelect('tulipan'); toggleMobileMenu()" class="text-left">Tulipán</button>
-                    <button onclick="handleModelSelect('capnas'); toggleMobileMenu()" class="text-left">Campanas</button>
+                    <button onclick="handleModelSelect('capnas'); toggleMobileMenu()" class="text-left">Campana</button>
                 </div>
             </div>
 
@@ -439,7 +439,7 @@
             </div>
 
             <div class="py-2">
-                <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Ganchos</span>
+                <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Gancho</span>
                 <div class="flex flex-col space-y-3 pl-4">
                     <button onclick="handleHookSelect('margarita'); toggleMobileMenu()" class="text-left">Gancho Margarita</button>
                     <button onclick="handleHookSelect('gota'); toggleMobileMenu()" class="text-left">Gancho Gota</button>
@@ -537,7 +537,7 @@
                 <div class="space-y-6 reveal" style="transition-delay: 0.2s;">
                     <div class="feature-icon"></div>
                     <h3 class="text-2xl serif italic font-bold">Materiales Nobles</h3>
-                    <p class="text-neutral-500 font-light text-sm leading-loose">Solo utilizamos cuero curtido al vegetal, procesado sin químicos agresivos, respetando la textura orgánica y la respiración natural de la materia.</p>
+                    <p class="text-neutral-500 font-light text-sm leading-loose">Solo utilizamos cuero , procesado sin químicos agresivos, respetando la textura orgánica y la respiración natural de la materia.</p>
                 </div>
                 <div class="space-y-6 reveal" style="transition-delay: 0.4s;">
                     <div class="feature-icon"></div>
@@ -850,14 +850,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center text-black">
                 <div class="relative group text-black">
                     <div id="canvas-container"></div>
-                    <div class="absolute top-4 right-4 bg-black/20 text-white text-[8px] uppercase p-2 rounded backdrop-blur font-bold">Rotar con el dedo/mouse</div>
+                    <div class="absolute top-4 right-4 bg-black/20 text-white text-[8px] uppercase p-2 rounded backdrop-blur font-bold">IMAGEN CON DERECHOS DE AUTOR</div>
                     <div id="swatch-container" class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-2xl p-4 rounded-3xl shadow-2xl flex items-center space-x-3 border border-white/10 max-w-[90%] overflow-x-auto scrollbar-hide font-bold"></div>
                 </div>
                 <div class="text-center lg:text-left text-black">
                     <span id="detail-ref" class="text-[10px] font-semibold uppercase tracking-widest text-neutral-300 font-bold text-black">REF: 001-A</span>
                     <h1 id="detail-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic text-black font-bold">Cargando...</h1>
                     <p id="detail-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12 text-black"></p>
-                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">CONTACTAR POR WHATSAPP</a>
+                    <a id="earring-whatsapp-link" href="#" target="_blank" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">CONTACTANOS POR WHATSAPP</a>
                 </div>
             </div>
             <div id="style-gallery-section" class="mt-40 font-bold text-black">
@@ -1038,16 +1038,16 @@
 
         // Paleta ajustada a exactamente 10 colores para los aretes
         const baseEarringColors = [
-            { name: 'Onyx Black', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg' },
-            { name: 'Snow Marble', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg' },
-            { name: 'Classic Cognac', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg' },
-            { name: 'Autumn Spice', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg' },
-            { name: 'Deep Burgundy', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png' },
-            { name: 'Forest Spirit', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png' },
-            { name: 'Zafiro Royal', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png' },
-            { name: 'Dusty Rose', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%209.png' },
-            { name: 'Terracota Earth', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png' },
-            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%209.png' }
+            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg' },
+            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg' },
+            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg' },
+            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg' },
+            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png' },
+            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png' },
+            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png' },
+            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%208.png' },
+            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png' },
+            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png' }
         ];
 
         const defaultEarringImage = 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg';
