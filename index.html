@@ -15,6 +15,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%209.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
@@ -70,6 +78,12 @@
             #canvas-container, #custom-canvas-container { height: 550px; }
         }
         #canvas-container:active, #custom-canvas-container:active { cursor: grabbing; }
+        #canvas-container {
+            background: #ffffff;
+        }
+        #canvas-container img {
+            transition: opacity 0.22s ease;
+        }
 
         .view-section { display: none; }
         .view-section.active { display: block; animation: sectionFade 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -1037,6 +1051,8 @@
         ];
 
         const defaultEarringImage = 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg';
+        const imagePreloadCache = new Map();
+        let viewerSwapToken = 0;
 
 
         /* =========================================================
@@ -1249,12 +1265,45 @@
             return data.colors.find(c => c.hex === colorValue) || data.colors[0] || null;
         }
 
+        function preloadSingleImage(src) {
+            const safeSrc = src || defaultEarringImage;
+            if (imagePreloadCache.has(safeSrc)) return imagePreloadCache.get(safeSrc);
+            const promise = new Promise((resolve) => {
+                const img = new Image();
+                img.decoding = 'async';
+                img.onload = () => resolve(safeSrc);
+                img.onerror = () => resolve(defaultEarringImage);
+                img.src = safeSrc;
+            });
+            imagePreloadCache.set(safeSrc, promise);
+            return promise;
+        }
+
+        function preloadVariantImages(colors = []) {
+            colors.forEach(color => {
+                if (color?.image) preloadSingleImage(color.image);
+            });
+        }
+
         function renderCurrentModelImage() {
             const data = catalog[activeModelKey];
             const variant = getCurrentImageVariant();
             if (!data || !currentGroup || !variant) return;
-            currentGroup.src = variant.image || defaultEarringImage;
+
+            const targetSrc = variant.image || defaultEarringImage;
+            const swapId = ++viewerSwapToken;
             currentGroup.alt = `${data.title} en color ${variant.name}`;
+
+            preloadSingleImage(targetSrc).then((readySrc) => {
+                if (!currentGroup || swapId !== viewerSwapToken) return;
+                if (currentGroup.src === readySrc) return;
+                currentGroup.style.opacity = '0.96';
+                currentGroup.src = readySrc;
+                requestAnimationFrame(() => {
+                    if (!currentGroup || swapId !== viewerSwapToken) return;
+                    currentGroup.style.opacity = '1';
+                });
+            });
         }
 
         function updateViewerTransform() {
@@ -1275,6 +1324,8 @@
             if (r) r.textContent = data.ref;
             if (d) d.textContent = data.desc;
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${data.title} (${data.ref}) color ${data.colors[0].name}`;
+
+            preloadVariantImages(data.colors);
 
             if (sw) {
                 sw.innerHTML = '';
@@ -1300,12 +1351,16 @@
             cont.innerHTML = '';
             cont.style.perspective = 'none';
             cont.style.overflow = 'hidden';
+            cont.style.background = '#ffffff';
+            preloadVariantImages(data.colors);
 
             currentGroup = document.createElement('img');
             currentGroup.className = 'w-full h-full object-contain select-none pointer-events-none';
             currentGroup.loading = 'eager';
             currentGroup.decoding = 'async';
+            currentGroup.fetchPriority = 'high';
             currentGroup.draggable = false;
+            currentGroup.style.opacity = '1';
             currentGroup.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.18))';
             currentGroup.style.transform = 'none';
             currentGroup.style.transformStyle = 'flat';
@@ -1585,6 +1640,7 @@
             initRevealObserver();
             revealElements();
             markImagesForPerformance();
+            Object.values(catalog).forEach(item => preloadVariantImages(item.colors || []));
             setMenuA11yState(false);
         });
 
