@@ -1176,7 +1176,7 @@
 
 
         /* =========================================================
-           VISOR 3D DEL MODELO PRINCIPAL
+           VISOR DE IMAGEN DEL MODELO PRINCIPAL
         ========================================================= */
         let scene, camera, renderer, currentGroup, leatherMat, centerMat;
         let isDragging = false, prevX = 0, prevY = 0, targetRY = 0, targetRX = 0;
@@ -1192,16 +1192,13 @@
                 material.forEach(disposeMaterial);
                 return;
             }
-            if (material.map) material.map.dispose();
+            if (material.map) material.map.dispose?.();
             material.dispose?.();
         }
 
         function disposeObject3D(object) {
             if (!object) return;
-            object.traverse(child => {
-                if (child.geometry) child.geometry.dispose();
-                if (child.material) disposeMaterial(child.material);
-            });
+            if (object.remove) object.remove();
         }
 
         function destroy3DViewer() {
@@ -1209,24 +1206,27 @@
                 cancelAnimationFrame(viewerAnimationId);
                 viewerAnimationId = null;
             }
-            if (currentGroup) {
-                disposeObject3D(currentGroup);
-                if (scene) scene.remove(currentGroup);
-                currentGroup = null;
+            const cont = document.getElementById('canvas-container');
+            if (cont) {
+                cont.onpointerdown = null;
+                cont.onpointermove = null;
+                cont.onpointerup = null;
+                cont.onpointercancel = null;
+                cont.onpointerleave = null;
             }
-            if (renderer) {
-                renderer.dispose();
-                if (renderer.domElement && renderer.domElement.parentNode) {
-                    renderer.domElement.parentNode.removeChild(renderer.domElement);
-                }
-                renderer = null;
+            if (currentGroup && currentGroup.parentNode) {
+                currentGroup.parentNode.removeChild(currentGroup);
             }
+            currentGroup = null;
             scene = null;
             camera = null;
+            renderer = null;
             leatherMat = null;
             centerMat = null;
             isDragging = false;
             activePointerId = null;
+            targetRY = 0;
+            targetRX = prefersReducedMotion ? 0 : -0.08;
         }
 
         function openModel(key) {
@@ -1234,6 +1234,119 @@
             showPage('detail');
             updateDetailUI();
             requestAnimationFrame(() => init3D());
+        }
+
+        function hexNumberToCss(hexValue) {
+            return '#' + Number(hexValue).toString(16).padStart(6, '0');
+        }
+
+        function encodeSvg(svg) {
+            return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg)
+                .replace(/%0A/g, '')
+                .replace(/%20/g, ' ')
+                .replace(/%3D/g, '=')
+                .replace(/%3A/g, ':')
+                .replace(/%2F/g, '/')
+                .replace(/%22/g, "'");
+        }
+
+        function getModelSvg(shape, mainColor, centerColor) {
+            const leather = hexNumberToCss(mainColor);
+            const center = hexNumberToCss(centerColor);
+            const stitch = 'rgba(255,255,255,0.22)';
+            const edge = 'rgba(0,0,0,0.16)';
+            const metal = '#d4af37';
+            const commonDefs = `
+                <defs>
+                    <linearGradient id='bgGlow' x1='0' y1='0' x2='1' y2='1'>
+                        <stop offset='0%' stop-color='#2b2b2b'/>
+                        <stop offset='100%' stop-color='#0a0a0a'/>
+                    </linearGradient>
+                    <filter id='shadow' x='-50%' y='-50%' width='200%' height='200%'>
+                        <feDropShadow dx='0' dy='18' stdDeviation='18' flood-color='rgba(0,0,0,0.28)'/>
+                    </filter>
+                    <filter id='soft' x='-50%' y='-50%' width='200%' height='200%'>
+                        <feDropShadow dx='0' dy='8' stdDeviation='6' flood-color='rgba(255,255,255,0.08)'/>
+                    </filter>
+                </defs>
+                <rect width='800' height='800' rx='48' fill='url(#bgGlow)'/>
+                <ellipse cx='400' cy='670' rx='180' ry='36' fill='rgba(0,0,0,0.2)'/>
+                <path d='M400 110 C430 110 444 130 438 156 L420 198' fill='none' stroke='#b8bec8' stroke-width='8' stroke-linecap='round'/>
+                <circle cx='400' cy='118' r='8' fill='#b8bec8'/>
+                <circle cx='420' cy='222' r='18' fill='${center}' filter='url(#soft)'/>
+                <line x1='420' y1='240' x2='420' y2='278' stroke='#b8bec8' stroke-width='5' stroke-linecap='round'/>
+            `;
+
+            if (shape === 'margarita') {
+                const petals = Array.from({ length: 16 }, (_, i) => {
+                    const angle = (360 / 16) * i;
+                    return `<g transform='rotate(${angle} 420 430)'>
+                        <path d='M420 430 C456 378 474 320 420 276 C366 320 384 378 420 430 Z' fill='${leather}' stroke='${edge}' stroke-width='2.2' filter='url(#shadow)'/>
+                        <path d='M420 420 C442 384 450 342 420 300 C390 342 398 384 420 420 Z' fill='none' stroke='${stitch}' stroke-width='1.4' stroke-linecap='round'/>
+                    </g>`;
+                }).join('');
+                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}${petals}<circle cx='420' cy='430' r='56' fill='${center}' stroke='rgba(0,0,0,0.16)' stroke-width='3'/><circle cx='420' cy='430' r='36' fill='rgba(255,255,255,0.10)'/></svg>`;
+            }
+
+            if (shape === 'tulipan') {
+                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
+                    <g filter='url(#shadow)'>
+                        <path d='M420 300 C520 330 530 470 440 566 C420 586 410 596 400 610 C390 596 380 586 360 566 C270 470 280 330 380 300 C388 380 408 404 420 438 C432 404 452 380 460 300 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
+                        <path d='M400 322 C390 402 372 452 344 524' fill='none' stroke='${stitch}' stroke-width='2'/>
+                        <path d='M420 328 C434 400 456 452 492 524' fill='none' stroke='${stitch}' stroke-width='2'/>
+                        <path d='M410 342 C412 436 408 510 402 582' fill='none' stroke='${stitch}' stroke-width='2'/>
+                    </g>
+                    <circle cx='420' cy='222' r='18' fill='${center}'/>
+                    <path d='M392 604 Q404 638 418 660 Q434 640 446 604' fill='none' stroke='${metal}' stroke-width='8' stroke-linecap='round'/>
+                </svg>`;
+            }
+
+            if (shape === 'capnas') {
+                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
+                    <g filter='url(#shadow)'>
+                        <path d='M320 286 H520 C520 452 468 566 424 622 H416 C372 566 320 452 320 286 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
+                        <path d='M350 322 H490' stroke='${stitch}' stroke-width='2'/>
+                        <path d='M342 378 H498' stroke='${stitch}' stroke-width='2'/>
+                        <path d='M334 434 H506' stroke='${stitch}' stroke-width='2'/>
+                        <path d='M352 492 C386 516 454 516 488 492' fill='none' stroke='${stitch}' stroke-width='2'/>
+                    </g>
+                    <circle cx='420' cy='222' r='18' fill='${center}'/>
+                </svg>`;
+            }
+
+            if (shape === 'rosa') {
+                return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
+                    <g filter='url(#shadow)'>
+                        <circle cx='420' cy='438' r='140' fill='${leather}' opacity='0.18'/>
+                        <path d='M420 314 C492 314 548 372 548 438 C548 518 476 576 420 612 C364 576 292 518 292 438 C292 372 348 314 420 314 Z' fill='${leather}' stroke='${edge}' stroke-width='3'/>
+                        <path d='M420 350 C460 350 498 384 498 428 C498 472 460 504 420 540 C380 504 342 472 342 428 C342 384 380 350 420 350 Z' fill='none' stroke='${stitch}' stroke-width='2.2'/>
+                        <path d='M420 388 C446 388 470 408 470 434 C470 458 446 480 420 502 C394 480 370 458 370 434 C370 408 394 388 420 388 Z' fill='${center}' opacity='0.95'/>
+                    </g>
+                </svg>`;
+            }
+
+            return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'>${commonDefs}
+                <g filter='url(#shadow)'>
+                    <circle cx='420' cy='454' r='156' fill='${leather}' stroke='${edge}' stroke-width='3'/>
+                    <circle cx='420' cy='454' r='126' fill='none' stroke='${stitch}' stroke-width='2.2'/>
+                    <circle cx='420' cy='454' r='54' fill='${center}' stroke='rgba(0,0,0,0.16)' stroke-width='3'/>
+                </g>
+            </svg>`;
+        }
+
+        function renderCurrentModelImage() {
+            const data = catalog[activeModelKey];
+            if (!data || !currentGroup) return;
+            const svg = getModelSvg(data.shape, leatherMat.color.value, centerMat.color.value);
+            currentGroup.src = encodeSvg(svg);
+            currentGroup.alt = `${data.title} en color ${leatherMat.color.name}`;
+        }
+
+        function updateViewerTransform() {
+            if (!currentGroup) return;
+            const rotateY = targetRY * 28;
+            const rotateX = targetRX * -28;
+            currentGroup.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
         }
 
         function updateDetailUI() {
@@ -1245,7 +1358,7 @@
             const sw = document.getElementById('swatch-container');
             const l = document.getElementById('earring-whatsapp-link');
 
-            if (t) t.innerHTML = `${data.title} <br><span class="italic font-light text-neutral-400 font-bold text-black">${data.colors[0].name}</span>`;
+            if (t) t.innerHTML = `${data.title} <br><span class='italic font-light text-neutral-400 font-bold text-black'>${data.colors[0].name}</span>`;
             if (r) r.textContent = data.ref;
             if (d) d.textContent = data.desc;
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${data.title} (${data.ref}) color ${data.colors[0].name}`;
@@ -1268,54 +1381,64 @@
         function init3D() {
             const cont = document.getElementById('canvas-container');
             const data = catalog[activeModelKey];
-            if (!cont || !data || !window.THREE) return;
+            if (!cont || !data) return;
 
             destroy3DViewer();
             cont.innerHTML = '';
+            cont.style.perspective = '1200px';
+            cont.style.overflow = 'hidden';
 
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(35, cont.clientWidth/cont.clientHeight, 0.1, 1000);
-            camera.position.set(0, 0.2, 8);
+            currentGroup = document.createElement('img');
+            currentGroup.className = 'w-full h-full object-contain select-none pointer-events-none transition-transform duration-200';
+            currentGroup.loading = 'eager';
+            currentGroup.decoding = 'async';
+            currentGroup.draggable = false;
+            currentGroup.style.filter = 'drop-shadow(0 30px 45px rgba(0,0,0,0.26))';
+            currentGroup.style.transformStyle = 'preserve-3d';
+            currentGroup.style.willChange = 'transform';
+            cont.appendChild(currentGroup);
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-            renderer.setSize(cont.clientWidth, cont.clientHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.outputEncoding = THREE.sRGBEncoding;
-            cont.appendChild(renderer.domElement);
+            leatherMat = {
+                color: {
+                    value: data.colors[0].hex,
+                    name: data.colors[0].name,
+                    set(hexValue) { this.value = hexValue; renderCurrentModelImage(); }
+                }
+            };
+            centerMat = {
+                color: {
+                    value: data.colors[0].center,
+                    set(hexValue) { this.value = hexValue; renderCurrentModelImage(); }
+                }
+            };
 
-            scene.add(new THREE.AmbientLight(0xffffff, 1.05));
-            const keyLight = new THREE.SpotLight(0xffffff, 2.4, 30, Math.PI / 6, 0.35, 1);
-            keyLight.position.set(0, 10, 5);
-            scene.add(keyLight);
-            const rimLight = new THREE.DirectionalLight(0xfff7e8, 0.75);
-            rimLight.position.set(-4, 2, 6);
-            scene.add(rimLight);
-
-            currentGroup = new THREE.Group();
-            buildModel();
-            currentGroup.scale.set(0.32, 0.32, 0.32);
-            currentGroup.rotation.set(prefersReducedMotion ? 0 : -0.08, 0, 0);
-            scene.add(currentGroup);
-
+            scene = {};
+            camera = {};
+            renderer = {};
             targetRY = 0;
             targetRX = prefersReducedMotion ? 0 : -0.08;
+            renderCurrentModelImage();
+            updateViewerTransform();
 
             const startDrag = (x, y, pointerId = null) => {
                 isDragging = true;
                 activePointerId = pointerId;
                 prevX = x;
                 prevY = y;
+                cont.style.cursor = 'grabbing';
             };
             const stopDrag = () => {
                 isDragging = false;
                 activePointerId = null;
+                cont.style.cursor = 'grab';
             };
             const handleMove = (x, y) => {
-                targetRY += (x - prevX) * 0.015;
-                targetRX += (y - prevY) * 0.012;
-                targetRX = Math.max(-0.8, Math.min(0.8, targetRX));
+                targetRY += (x - prevX) * 0.0028;
+                targetRX += (y - prevY) * 0.0022;
+                targetRX = Math.max(-0.45, Math.min(0.45, targetRX));
                 prevX = x;
                 prevY = y;
+                updateViewerTransform();
             };
 
             cont.onpointerdown = e => {
@@ -1337,91 +1460,41 @@
         }
 
         function buildModel() {
-            const data = catalog[activeModelKey];
-            if (!data || !currentGroup) return;
-
-            leatherMat = new THREE.MeshStandardMaterial({ color: data.colors[0].hex, roughness: 0.62, metalness: 0.04 });
-            centerMat = new THREE.MeshStandardMaterial({ color: data.colors[0].center, roughness: 0.82, metalness: 0.02 });
-            const gold = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 1, roughness: 0.15 });
-
-            if (data.shape === 'margarita') {
-                const pS = new THREE.Shape();
-                pS.moveTo(0,0);
-                pS.bezierCurveTo(0.3,0.5,0.4,1.2,0,1.8);
-                pS.bezierCurveTo(-0.4,1.2,-0.3,0.5,0,0);
-                const pG = new THREE.ExtrudeGeometry(pS, { depth: 0.08, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.01, bevelThickness: 0.02 });
-                for(let i=0; i<16; i++) {
-                    const p = new THREE.Mesh(pG, leatherMat);
-                    p.rotation.z = (i/16)*Math.PI*2;
-                    currentGroup.add(p);
-                }
-                const c = new THREE.Mesh(new THREE.CylinderGeometry(0.42,0.42,0.18,32), centerMat);
-                c.rotation.x = Math.PI/2;
-                currentGroup.add(c);
-            } else if (data.shape === 'tulipan') {
-                const s = new THREE.Shape();
-                s.moveTo(0,0);
-                s.quadraticCurveTo(1.5,0.5,0.8,2.5);
-                s.quadraticCurveTo(0,1.8,-0.8,2.5);
-                s.quadraticCurveTo(-1.5,0.5,0,0);
-                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.1, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.02, bevelThickness: 0.02 }), leatherMat));
-            } else if (data.shape === 'capnas') {
-                const s = new THREE.Shape();
-                s.moveTo(-1,0);
-                s.lineTo(1,0);
-                s.quadraticCurveTo(0.8,2,0.1,2.5);
-                s.lineTo(-0.1,2.5);
-                s.quadraticCurveTo(-0.8,2,-1,0);
-                currentGroup.add(new THREE.Mesh(new THREE.ExtrudeGeometry(s, { depth: 0.15, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.02, bevelThickness: 0.025 }), leatherMat));
-            } else if (data.shape === 'rosa') {
-                for(let i=1; i<=3; i++) {
-                    const c = new THREE.Mesh(new THREE.TorusGeometry(0.5*i, 0.2, 16, 48), leatherMat);
-                    c.position.z = 0.1*i;
-                    currentGroup.add(c);
-                }
-                const center = new THREE.Mesh(new THREE.SphereGeometry(0.4, 32, 32), centerMat);
-                center.position.z = 0.4;
-                currentGroup.add(center);
-            } else if (data.shape === 'redondos') {
-                const disc = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 0.2, 64), leatherMat);
-                disc.rotation.x = Math.PI/2;
-                currentGroup.add(disc);
-                const button = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.1, 32), centerMat);
-                button.rotation.x = Math.PI/2;
-                button.position.z = 0.15;
-                currentGroup.add(button);
-            }
-
-            const h = new THREE.Mesh(new THREE.TorusGeometry(0.25, 0.03, 16, 100, Math.PI*1.5), gold);
-            h.position.y = 2.8;
-            h.rotation.z = Math.PI*1.25;
-            currentGroup.add(h);
+            renderCurrentModelImage();
         }
 
         function updateSelection(i) {
             const d = catalog[activeModelKey];
             if (!d || !d.colors[i]) return;
-            if (leatherMat) leatherMat.color.set(d.colors[i].hex);
-            if (centerMat) centerMat.color.set(d.colors[i].center);
+            if (leatherMat) {
+                leatherMat.color.value = d.colors[i].hex;
+                leatherMat.color.name = d.colors[i].name;
+            }
+            if (centerMat) centerMat.color.value = d.colors[i].center;
+            renderCurrentModelImage();
             const variantName = d.colors[i].name;
             const t = document.getElementById('detail-title');
-            if (t) t.innerHTML = `${d.title} <br><span class="italic font-light text-neutral-400 font-bold text-black">${variantName}</span>`;
+            if (t) t.innerHTML = `${d.title} <br><span class='italic font-light text-neutral-400 font-bold text-black'>${variantName}</span>`;
             document.querySelectorAll('.color-swatch').forEach((s, idx) => s.classList.toggle('active', idx === i));
             const l = document.getElementById('earring-whatsapp-link');
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${d.title} (${d.ref}) color ${variantName}`;
-            if (!prefersReducedMotion) targetRY += Math.PI*2;
+            if (!prefersReducedMotion) {
+                targetRY += 0.18;
+                updateViewerTransform();
+            }
         }
 
         function animate() {
-            if (!renderer || !scene || !camera || !currentGroup) return;
+            if (!currentGroup) return;
             viewerAnimationId = requestAnimationFrame(animate);
-            currentGroup.rotation.y += (targetRY - currentGroup.rotation.y) * 0.08;
-            currentGroup.rotation.x += (targetRX - currentGroup.rotation.x) * 0.08;
-            renderer.render(scene, camera);
+            if (!isDragging && !prefersReducedMotion) {
+                targetRY *= 0.985;
+                targetRX += ((-0.08) - targetRX) * 0.04;
+                updateViewerTransform();
+            }
         }
 
-
-        /* =========================================================
+/* =========================================================
            PERSONALIZADOR SVG
         ========================================================= */
         let cScene, cCamera, cRenderer, cGroup, outerMat, middleMat, innerMat;
@@ -1588,12 +1661,8 @@
 
         function updateResponsiveCanvases() {
             const container = document.getElementById('canvas-container');
-            if (camera && renderer && container) {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            }
+            if (!container || !currentGroup) return;
+            updateViewerTransform();
         }
 
         function markImagesForPerformance() {
