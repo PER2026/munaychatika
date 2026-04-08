@@ -1038,32 +1038,46 @@
 
         // Paleta ajustada a exactamente 10 colores para los aretes
         const baseEarringColors = [
-            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg' },
-            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg' },
-            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg' },
-            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg' },
-            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png' },
-            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png' },
-            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png' },
-            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%208.png' },
-            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png' },
-            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png' }
+            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg', desc: 'Una pieza que celebra la conexión con la tierra. Su tono profundo resalta la textura orgánica del cuero y transmite una elegancia sobria y artesanal.' },
+            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg', desc: 'Luminoso y delicado, este color aporta una sensación cálida y refinada. Ideal para una presencia elegante con un brillo sutil.' },
+            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg', desc: 'Un tono con carácter y profundidad visual, pensado para destacar con sofisticación y un aire contemporáneo.' },
+            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg', desc: 'Vibrante y expresivo, este acabado aporta energía a la pieza sin perder la esencia artesanal del cuero trabajado a mano.' },
+            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png', desc: 'El contraste de tonos crea una composición elegante y moderna. Perfecto para quienes buscan un diseño con personalidad y equilibrio.' },
+            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png', desc: 'Intenso y distinguido, este color envuelve la pieza en una presencia fuerte, sofisticada y llena de identidad.' },
+            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png', desc: 'Una propuesta atrevida y elegante, con una fuerza cromática que convierte al arete en un detalle protagonista.' },
+            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%208.png', desc: 'Suave y artística, esta tonalidad resalta la delicadeza de las formas y aporta una feminidad moderna y sofisticada.' },
+            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png', desc: 'Cálido y envolvente, este tono realza la riqueza natural del cuero con una apariencia elegante y cercana.' },
+            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png', desc: 'Radiante y lleno de vida, este color ilumina la pieza y transmite una sensación de alegría, lujo artesanal y frescura.' }
         ];
 
         const defaultEarringImage = 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg';
         const imagePreloadCache = new Map();
         let viewerSwapToken = 0;
 
+        function cloneColorsForModel(imageUrl, descPrefix) {
+            return baseEarringColors.map(color => ({
+                ...color,
+                image: imageUrl,
+                desc: `${descPrefix} ${color.name} aporta una identidad visual propia y resalta el trabajo artesanal del cuero en esta silueta.`
+            }));
+        }
+
+        const margaritaColors = [...baseEarringColors];
+        const tulipanColors = cloneColorsForModel('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600', 'Una interpretación estilizada del tulipán con caída elegante y presencia contemporánea.');
+        const capnasColors = cloneColorsForModel('https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600', 'Inspirado en formas andinas y movimiento ceremonial, este modelo transmite fuerza y tradición refinada.');
+        const rosaColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Una flor con volumen suave y detalle táctil que convierte cada color en una expresión delicada y artística.');
+        const redondosColors = cloneColorsForModel('https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600', 'Geometría limpia y equilibrio visual en una pieza pensada para una elegancia moderna y versátil.');
+
 
         /* =========================================================
            CATÁLOGO DE ARETES
         ========================================================= */
         const catalog = {
-            margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: [...baseEarringColors], shape: 'margarita', images: ["https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg", "https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg"] },
-            tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: [...baseEarringColors], shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            capnas: { title: "Campanas", ref: "REF: 005-C", desc: "Tradición andina.", colors: [...baseEarringColors], shape: 'capnas', images: ["https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600"] },
-            rosa: { title: "Rosa", ref: "REF: 006-R", desc: "Relieve táctil.", colors: [...baseEarringColors], shape: 'rosa', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
-            redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: [...baseEarringColors], shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
+            margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: margaritaColors, shape: 'margarita', images: ["https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg", "https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg"] },
+            tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            capnas: { title: "Campanas", ref: "REF: 005-C", desc: "Tradición andina.", colors: capnasColors, shape: 'capnas', images: ["https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600"] },
+            rosa: { title: "Rosa", ref: "REF: 006-R", desc: "Relieve táctil.", colors: rosaColors, shape: 'rosa', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
+            redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
         };
 
 
@@ -1415,6 +1429,8 @@
             const variantName = d.colors[i].name;
             const t = document.getElementById('detail-title');
             if (t) t.innerHTML = `${d.title} <br><span class='italic font-light text-neutral-400 font-bold text-black'>${variantName}</span>`;
+            const descEl = document.getElementById('detail-desc');
+            if (descEl) descEl.textContent = d.colors[i].desc || d.desc;
             document.querySelectorAll('.color-swatch').forEach((s, idx) => s.classList.toggle('active', idx === i));
             const l = document.getElementById('earring-whatsapp-link');
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${d.title} (${d.ref}) color ${variantName}`;
