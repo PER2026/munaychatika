@@ -15,17 +15,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%209.png">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <!-- =========================================================
          ESTILOS
     ========================================================= -->
@@ -80,6 +79,10 @@
         #canvas-container:active, #custom-canvas-container:active { cursor: grabbing; }
         #canvas-container {
             background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
         #canvas-container img {
             transition: opacity 0.22s ease;
@@ -202,11 +205,22 @@
             border-radius: 1.5rem;
             overflow: hidden;
             aspect-ratio: 3/4;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             transition: transform 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border: 1px solid #f1f1f1;
         }
         .model-img-card:hover {
             transform: scale(1.02);
+        }
+        .model-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
         }
 
         .insta-grid-item {
@@ -330,17 +344,41 @@
                         Aretes 2026
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3 text-black">
-                        <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Margarita</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Esencia Floral</span></div>
+                    <div class="absolute left-0 mt-2 w-80 max-h-[70vh] overflow-y-auto dropdown-menu rounded-2xl p-3 text-black">
+                        <button onclick="handleModelSelect('rosas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Rosas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Flor Esculpida</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('hojas-coca')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Hojas de Coca</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Raíz Andina</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('garras')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Garras</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Carácter Firme</span></div>
                             <span class="text-neutral-300">→</span>
                         </button>
                         <button onclick="handleModelSelect('tulipan')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Tulipán</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Elegancia</span></div>
+                            <div><span class="block serif text-xl">Tulipanes</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Elegancia</span></div>
                             <span class="text-neutral-300">→</span>
                         </button>
-                        <button onclick="handleModelSelect('capnas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Campanas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Tradición</span></div>
+                        <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Margaritas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Esencia Floral</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('rositas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Rositas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Delicadeza</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('redondos')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Redondos</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Geometría Pura</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('gotas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Gotas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Caída Suave</span></div>
+                            <span class="text-neutral-300">→</span>
+                        </button>
+                        <button onclick="handleModelSelect('colibris')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
+                            <div><span class="block serif text-xl">Colibríes</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Movimiento Vivo</span></div>
                             <span class="text-neutral-300">→</span>
                         </button>
                     </div>
@@ -424,9 +462,15 @@
                 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Aretes 2026</span>
                 <div class="flex flex-col space-y-3 pl-4">
                     <button onclick="showPage('earring-selection'); toggleMobileMenu()" class="text-left">Ver todos los modelos</button>
-                    <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left">Margarita</button>
-                    <button onclick="handleModelSelect('tulipan'); toggleMobileMenu()" class="text-left">Tulipán</button>
-                    <button onclick="handleModelSelect('capnas'); toggleMobileMenu()" class="text-left">Campana</button>
+                    <button onclick="handleModelSelect('rosas'); toggleMobileMenu()" class="text-left">Rosas</button>
+                    <button onclick="handleModelSelect('hojas-coca'); toggleMobileMenu()" class="text-left">Hojas de Coca</button>
+                    <button onclick="handleModelSelect('garras'); toggleMobileMenu()" class="text-left">Garras</button>
+                    <button onclick="handleModelSelect('tulipan'); toggleMobileMenu()" class="text-left">Tulipanes</button>
+                    <button onclick="handleModelSelect('margarita'); toggleMobileMenu()" class="text-left">Margaritas</button>
+                    <button onclick="handleModelSelect('rositas'); toggleMobileMenu()" class="text-left">Rositas</button>
+                    <button onclick="handleModelSelect('redondos'); toggleMobileMenu()" class="text-left">Redondos</button>
+                    <button onclick="handleModelSelect('gotas'); toggleMobileMenu()" class="text-left">Gotas</button>
+                    <button onclick="handleModelSelect('colibris'); toggleMobileMenu()" class="text-left">Colibríes</button>
                 </div>
             </div>
 
@@ -797,45 +841,55 @@
             <button onclick="showPage('collection')" class="mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Volver a Colección</button>
             <div class="text-center mb-16">
                 <h2 class="text-5xl md:text-6xl serif italic mb-4 font-bold text-black">Catálogo de Aretes</h2>
-                <p class="text-neutral-400 uppercase tracking-widest text-[10px] font-bold text-black">Selecciona una forma para explorar en 3D</p>
+                <p class="text-neutral-400 uppercase tracking-widest text-[10px] font-bold text-black">Selecciona una forma para explorar la colección</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div onclick="handleModelSelect('rosas')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌹</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Rosas</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Flor Esculpida</p>
+                </div>
+                <div onclick="handleModelSelect('hojas-coca')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🍃</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Hojas de Coca</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Raíz Andina</p>
+                </div>
+                <div onclick="handleModelSelect('garras')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🦅</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Garras</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Carácter Firme</p>
+                </div>
+                <div onclick="handleModelSelect('tulipan')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌷</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Tulipanes</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Elegancia</p>
+                </div>
                 <div onclick="handleModelSelect('margarita')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
-                    <div class="aspect-square flex items-center justify-center mb-6">
-                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌼</span>
-                    </div>
-                    <h3 class="text-2xl serif font-bold text-black">Margarita</h3>
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌼</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Margaritas</h3>
                     <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Esencia Floral</p>
                 </div>
-                <div onclick="handleModelSelect('tulipan')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center text-black">
-                    <div class="aspect-square flex items-center justify-center mb-6 text-black">
-                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500 text-black">🌷</span>
-                    </div>
-                    <h3 class="text-2xl serif font-bold text-black text-black">Tulipán</h3>
-                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Minimalismo Orgánico</p>
+                <div onclick="handleModelSelect('rositas')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌺</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Rositas</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Delicadeza</p>
                 </div>
-                <div onclick="handleModelSelect('capnas')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center text-black">
-                    <div class="aspect-square flex items-center justify-center mb-6 text-black">
-                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500 text-black">🔔</span>
-                    </div>
-                    <h3 class="text-2xl serif font-bold text-black text-black">Campanas</h3>
-                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Ritual Serrano</p>
+                <div onclick="handleModelSelect('redondos')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">⚫</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Redondos</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Geometría Pura</p>
                 </div>
-                <div onclick="handleModelSelect('rosa')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center text-black">
-                    <div class="aspect-square flex items-center justify-center mb-6 text-black">
-                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500 text-black">🌹</span>
-                    </div>
-                    <h3 class="text-2xl serif font-bold text-black text-black">Rosa</h3>
-                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Diseño Clásico</p>
+                <div onclick="handleModelSelect('gotas')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">💧</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Gotas</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Caída Suave</p>
                 </div>
-                <div onclick="handleModelSelect('redondos')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center text-black">
-                    <div class="aspect-square flex items-center justify-center mb-6 text-black">
-                        <span class="text-6xl group-hover:scale-110 transition-transform duration-500 text-black">⚫</span>
-                    </div>
-                    <h3 class="text-2xl serif font-bold text-black text-black">Redondos</h3>
-                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Esfera de Autor</p>
+                <div onclick="handleModelSelect('colibris')" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center">
+                    <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🐦</span></div>
+                    <h3 class="text-2xl serif font-bold text-black">Colibríes</h3>
+                    <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Movimiento Vivo</p>
                 </div>
-            </div>
+            </div>            </div>
         </div>
     </section>
 
@@ -1038,19 +1092,19 @@
 
         // Paleta ajustada a exactamente 10 colores para los aretes
         const baseEarringColors = [
-            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg', desc: 'Una pieza que celebra la conexión con la tierra. Su tono profundo resalta la textura orgánica del cuero y transmite una elegancia sobria y artesanal.' },
-            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg', desc: 'Luminoso y delicado, este color aporta una sensación cálida y refinada. Ideal para una presencia elegante con un brillo sutil.' },
-            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%203.jpg', desc: 'Un tono con carácter y profundidad visual, pensado para destacar con sofisticación y un aire contemporáneo.' },
-            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%204.jpg', desc: 'Vibrante y expresivo, este acabado aporta energía a la pieza sin perder la esencia artesanal del cuero trabajado a mano.' },
-            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%205.png', desc: 'El contraste de tonos crea una composición elegante y moderna. Perfecto para quienes buscan un diseño con personalidad y equilibrio.' },
-            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%206.png', desc: 'Intenso y distinguido, este color envuelve la pieza en una presencia fuerte, sofisticada y llena de identidad.' },
-            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%207.png', desc: 'Una propuesta atrevida y elegante, con una fuerza cromática que convierte al arete en un detalle protagonista.' },
-            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%208.png', desc: 'Suave y artística, esta tonalidad resalta la delicadeza de las formas y aporta una feminidad moderna y sofisticada.' },
-            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png', desc: 'Cálido y envolvente, este tono realza la riqueza natural del cuero con una apariencia elegante y cercana.' },
-            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/margatitas/marga%209.png', desc: 'Radiante y lleno de vida, este color ilumina la pieza y transmite una sensación de alegría, lujo artesanal y frescura.' }
+            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg', desc: 'Una pieza que celebra la conexión con la tierra. Su tono profundo resalta la textura orgánica del cuero y transmite una elegancia sobria y artesanal.' },
+            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg', desc: 'Luminoso y delicado, este color aporta una sensación cálida y refinada. Ideal para una presencia elegante con un brillo sutil.' },
+            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg', desc: 'Un tono con carácter y profundidad visual, pensado para destacar con sofisticación y un aire contemporáneo.' },
+            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg', desc: 'Vibrante y expresivo, este acabado aporta energía a la pieza sin perder la esencia artesanal del cuero trabajado a mano.' },
+            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png', desc: 'El contraste de tonos crea una composición elegante y moderna. Perfecto para quienes buscan un diseño con personalidad y equilibrio.' },
+            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png', desc: 'Intenso y distinguido, este color envuelve la pieza en una presencia fuerte, sofisticada y llena de identidad.' },
+            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png', desc: 'Una propuesta atrevida y elegante, con una fuerza cromática que convierte al arete en un detalle protagonista.' },
+            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png', desc: 'Suave y artística, esta tonalidad resalta la delicadeza de las formas y aporta una feminidad moderna y sofisticada.' },
+            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png', desc: 'Cálido y envolvente, este tono realza la riqueza natural del cuero con una apariencia elegante y cercana.' },
+            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png', desc: 'Radiante y lleno de vida, este color ilumina la pieza y transmite una sensación de alegría, lujo artesanal y frescura.' }
         ];
 
-        const defaultEarringImage = 'https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg';
+        const defaultEarringImage = 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg';
         const imagePreloadCache = new Map();
         let viewerSwapToken = 0;
 
@@ -1067,17 +1121,27 @@
         const capnasColors = cloneColorsForModel('https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600', 'Inspirado en formas andinas y movimiento ceremonial, este modelo transmite fuerza y tradición refinada.');
         const rosaColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Una flor con volumen suave y detalle táctil que convierte cada color en una expresión delicada y artística.');
         const redondosColors = cloneColorsForModel('https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600', 'Geometría limpia y equilibrio visual en una pieza pensada para una elegancia moderna y versátil.');
+        const rosasColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Volumen floral con presencia romántica y acabado artesanal refinado.');
+        const hojasCocaColors = cloneColorsForModel('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600', 'Silueta inspirada en la hoja de coca, símbolo andino de conexión, respeto y elegancia natural.');
+        const garrasColors = cloneColorsForModel('https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600', 'Diseño con carácter y líneas marcadas para una presencia audaz y sofisticada.');
+        const rositasColors = cloneColorsForModel('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600', 'Una versión más delicada y pequeña del lenguaje floral de la colección.');
+        const gotasColors = cloneColorsForModel('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600', 'Caída suave y alargada inspirada en la pureza del agua y el movimiento.');
+        const colibrisColors = cloneColorsForModel('https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600', 'Inspiración en el colibrí andino, ligero, vibrante y lleno de energía visual.');
 
 
         /* =========================================================
            CATÁLOGO DE ARETES
         ========================================================= */
         const catalog = {
-            margarita: { title: "Margarita", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: margaritaColors, shape: 'margarita', images: ["https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%201.jpg", "https://raw.githubusercontent.com/PER2026/munaychatika/main/margatitas/marga%202.jpg"] },
-            tulipan: { title: "Tulipán", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            capnas: { title: "Campanas", ref: "REF: 005-C", desc: "Tradición andina.", colors: capnasColors, shape: 'capnas', images: ["https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600"] },
-            rosa: { title: "Rosa", ref: "REF: 006-R", desc: "Relieve táctil.", colors: rosaColors, shape: 'rosa', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
-            redondos: { title: "Redondos", ref: "REF: 007-M", desc: "Pureza circular.", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] }
+            rosas: { title: "Rosas", ref: "REF: 001-RS", desc: "Flor esculpida con presencia elegante.", colors: rosasColors, shape: 'rosas', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
+            'hojas-coca': { title: "Hojas de Coca", ref: "REF: 002-HC", desc: "Inspiración andina en una silueta orgánica.", colors: hojasCocaColors, shape: 'hojas-coca', images: ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600"] },
+            garras: { title: "Garras", ref: "REF: 003-GR", desc: "Diseño audaz de carácter refinado.", colors: garrasColors, shape: 'garras', images: ["https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600"] },
+            tulipan: { title: "Tulipanes", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            margarita: { title: "Margaritas", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: margaritaColors, shape: 'margarita', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png"] },
+            rositas: { title: "Rositas", ref: "REF: 005-RT", desc: "Pequeñas flores con delicadeza artesanal.", colors: rositasColors, shape: 'rositas', images: ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"] },
+            redondos: { title: "Redondos", ref: "REF: 006-RD", desc: "Pureza circular.", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] },
+            gotas: { title: "Gotas", ref: "REF: 007-GT", desc: "Caída limpia y femenina.", colors: gotasColors, shape: 'gotas', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            colibris: { title: "Colibríes", ref: "REF: 008-CB", desc: "Movimiento vivo inspirado en el colibrí andino.", colors: colibrisColors, shape: 'colibris', images: ["https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600"] }
         };
 
 
@@ -1155,7 +1219,7 @@
                     data.images.forEach(imgUrl => {
                         const card = document.createElement('div');
                         card.className = 'model-img-card shadow-lg';
-                        card.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover" alt="Modelo" loading="lazy" decoding="async">`;
+                        card.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-contain" alt="Modelo" loading="${gallery.children.length === 0 ? 'eager' : 'lazy'}" decoding="async" fetchpriority="${gallery.children.length === 0 ? 'high' : 'auto'}">`;
                         gallery.appendChild(card);
                     });
                 }
@@ -1210,34 +1274,13 @@
         /* =========================================================
            VISOR DE IMAGEN DEL MODELO PRINCIPAL
         ========================================================= */
-        let scene, camera, renderer, currentGroup, leatherMat, centerMat;
-        let isDragging = false, prevX = 0, prevY = 0, targetRY = 0, targetRX = 0;
+        let currentGroup, leatherMat, centerMat;
         let activeModelKey = 'margarita';
-        let viewerAnimationId = null;
         let revealObserver = null;
         let activePointerId = null;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function disposeMaterial(material) {
-            if (!material) return;
-            if (Array.isArray(material)) {
-                material.forEach(disposeMaterial);
-                return;
-            }
-            if (material.map) material.map.dispose?.();
-            material.dispose?.();
-        }
-
-        function disposeObject3D(object) {
-            if (!object) return;
-            if (object.remove) object.remove();
-        }
-
         function destroy3DViewer() {
-            if (viewerAnimationId) {
-                cancelAnimationFrame(viewerAnimationId);
-                viewerAnimationId = null;
-            }
             const cont = document.getElementById('canvas-container');
             if (cont) {
                 cont.onpointerdown = null;
@@ -1250,21 +1293,17 @@
                 currentGroup.parentNode.removeChild(currentGroup);
             }
             currentGroup = null;
-            scene = null;
-            camera = null;
-            renderer = null;
             leatherMat = null;
             centerMat = null;
-            isDragging = false;
             activePointerId = null;
-            targetRY = 0;
-            targetRX = prefersReducedMotion ? 0 : -0.08;
         }
 
         function openModel(key) {
             activeModelKey = key;
             showPage('detail');
             updateDetailUI();
+            const modelData = catalog[key];
+            if (modelData?.images) modelData.images.forEach(preloadSingleImage);
             requestAnimationFrame(() => init3D());
         }
 
@@ -1373,6 +1412,7 @@
             currentGroup.loading = 'eager';
             currentGroup.decoding = 'async';
             currentGroup.fetchPriority = 'high';
+            currentGroup.sizes = '(max-width: 1024px) 100vw, 50vw';
             currentGroup.draggable = false;
             currentGroup.style.opacity = '1';
             currentGroup.style.filter = 'drop-shadow(0 20px 30px rgba(0,0,0,0.18))';
@@ -1395,15 +1435,9 @@
                 }
             };
 
-            scene = {};
-            camera = {};
-            renderer = {};
-            targetRY = 0;
-            targetRX = prefersReducedMotion ? 0 : -0.08;
             renderCurrentModelImage();
             updateViewerTransform();
 
-            isDragging = false;
             activePointerId = null;
             cont.style.cursor = 'default';
             cont.onpointerdown = null;
