@@ -344,43 +344,36 @@
                         Aretes 2026
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-80 max-h-[70vh] overflow-y-auto dropdown-menu rounded-2xl p-3 text-black">
-                        <button onclick="handleModelSelect('rosas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Rosas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Flor Esculpida</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('hojas-coca')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Hojas de Coca</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Raíz Andina</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('garras')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Garras</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Carácter Firme</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('tulipan')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Tulipanes</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Elegancia</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Margaritas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Esencia Floral</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('rositas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Rositas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Delicadeza</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('redondos')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Redondos</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Geometría Pura</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('gotas')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Gotas</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Caída Suave</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleModelSelect('colibris')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <div><span class="block serif text-xl">Colibríes</span><span class="block text-[9px] text-neutral-500 uppercase tracking-widest">Movimiento Vivo</span></div>
-                            <span class="text-neutral-300">→</span>
-                        </button>
+                    <div class="absolute left-0 mt-4 w-[420px] dropdown-menu rounded-[2rem] p-6 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
+                        <div class="mb-4">
+                            <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400">Colección</span>
+                            <h3 class="serif text-2xl italic">Aretes 2026</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="handleModelSelect('rosas')" class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left">
+                                <span class="serif text-lg block">Rosas</span>
+                                <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Flor Esculpida</span>
+                            </button>
+                            <button onclick="handleModelSelect('hojas-coca')" class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left">
+                                <span class="serif text-lg block">Hojas de Coca</span>
+                                <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Raíz Andina</span>
+                            </button>
+                            <button onclick="handleModelSelect('margarita')" class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left">
+                                <span class="serif text-lg block">Margaritas</span>
+                                <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Esencia Floral</span>
+                            </button>
+                            <button onclick="handleModelSelect('tulipan')" class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left">
+                                <span class="serif text-lg block">Tulipanes</span>
+                                <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Elegancia</span>
+                            </button>
+                            <button onclick="handleModelSelect('rositas')" class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left col-span-2">
+                                <span class="serif text-lg block">Rositas</span>
+                                <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Delicadeza</span>
+                            </button>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-neutral-100">
+                            <button onclick="handlePageSelect('earring-selection')" class="w-full text-center py-3 rounded-xl bg-black text-white text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition">Ver catálogo completo</button>
+                        </div>
                     </div>
                 </div>
 
@@ -389,19 +382,22 @@
                         COLLARES
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3 text-black">
-                        <button onclick="handleNecklaceSelect('gargantilla')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Gargantilla Solar</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleNecklaceSelect('pechera')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Pechera Ritual</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleNecklaceSelect('minimal')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Minimal Cord</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
+                    <div class="absolute left-0 mt-4 w-[360px] dropdown-menu rounded-[2rem] p-5 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
+                        <div class="mb-4">
+                            <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400">Colección</span>
+                            <h3 class="serif text-2xl italic">Collares</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="handleNecklaceSelect('gargantilla')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Gargantilla Solar</span>
+                            </button>
+                            <button onclick="handleNecklaceSelect('pechera')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Pechera Ritual</span>
+                            </button>
+                            <button onclick="handleNecklaceSelect('minimal')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Minimal Cord</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -410,19 +406,22 @@
                         GANCHOS
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-72 dropdown-menu rounded-2xl overflow-hidden p-3 text-black">
-                        <button onclick="handleHookSelect('margarita')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Gancho Margarita</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleHookSelect('gota')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Gancho Gota</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
-                        <button onclick="handleHookSelect('hoja')" class="w-full text-left p-4 rounded-xl hover:bg-neutral-50 transition flex justify-between items-center text-black">
-                            <span class="block serif text-xl font-bold">Gancho Hoja</span>
-                            <span class="text-neutral-300">→</span>
-                        </button>
+                    <div class="absolute left-0 mt-4 w-[360px] dropdown-menu rounded-[2rem] p-5 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
+                        <div class="mb-4">
+                            <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400">Colección</span>
+                            <h3 class="serif text-2xl italic">Ganchos</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <button onclick="handleHookSelect('margarita')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Gancho Margarita</span>
+                            </button>
+                            <button onclick="handleHookSelect('gota')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Gancho Gota</span>
+                            </button>
+                            <button onclick="handleHookSelect('hoja')" class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all">
+                                <span class="block serif text-xl">Gancho Hoja</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
