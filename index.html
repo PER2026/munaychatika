@@ -175,7 +175,6 @@
         visibility 0s linear 0.5s;
         }
 
-        .dropdown-parent:hover .dropdown-menu,
         .dropdown-parent.dropdown-open .dropdown-menu {
             visibility: visible;
             opacity: 1;
@@ -225,6 +224,32 @@
 
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .reviews-carousel {
+            overflow: hidden;
+            position: relative;
+        }
+        .reviews-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            will-change: transform;
+            animation: reviewsMarquee 90s linear infinite;
+        }
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+        .review-card {
+            min-width: 300px;
+            max-width: 320px;
+        }
+        .reviews-track.paused {
+            animation-play-state: paused;
+        }
+        @keyframes reviewsMarquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
         .layer-btn {
             background: white; border: 1px solid #eee; padding: 1rem; border-radius: 1rem;
@@ -680,8 +705,11 @@
                 <h3 class="text-3xl serif italic text-center">Voces Munay</h3>
                 <div class="h-px bg-neutral-200 flex-grow"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 font-bold text-black">
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+            
+<div class="reviews-carousel">
+    <div class="reviews-track" id="reviews-track">
+
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"La delicadeza de los aretes Margarita es impresionante. Se nota el amor en cada corte de cuero. Son ligeros y únicos."</p>
                     <div class="mt-8 not-italic">
@@ -689,7 +717,7 @@
                         <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Lima, Perú</span>
                     </div>
                 </div>
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.2s;">
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.2s;">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"Diseñar mi propia joya con la herramienta 3D fue una experiencia mágica. El resultado final superó mis expectativas."</p>
                     <div class="mt-8 not-italic">
@@ -697,7 +725,7 @@
                         <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Cusco, Perú</span>
                     </div>
                 </div>
-                <div class="p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.4s;">
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.4s;">
                     <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
                     <p class="relative z-10 leading-relaxed text-sm">"Un pedazo de los Andes en cada pieza. La elegancia y la tradición se sienten en cada detalle. Totalmente recomendado."</p>
                     <div class="mt-8 not-italic">
@@ -705,7 +733,398 @@
                         <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Madrid, España</span>
                     </div>
                 </div>
-            </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Absolutely stunning craftsmanship. Feels like wearable art."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Emily R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">New York, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très élégant, j’adore la texture du cuir. Unique."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Camille D.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Paris, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Beautiful, but I expected slightly bigger size."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Laura M.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Toronto, Canada</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Sehr fein gearbeitet, leicht und angenehm zu tragen."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Anna K.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Berlin, Germany</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Nice design, but shipping took longer than expected."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Michael T.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Chicago, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Bellissimi, sembrano fatti per una passerella."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Giulia R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Milan, Italy</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Elegant and minimal, perfect for daily wear."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Sophia L.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Los Angeles, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Incroyable qualité artisanale, très satisfait."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Julien P.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Lyon, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Muy bonitos, aunque esperaba un poco más de brillo."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Carlos V.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Madrid, España</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Great concept, but packaging could improve."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Daniel H.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Boston, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très léger, parfait pour toute la journée."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Sophie L.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Brussels, Belgium</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Looks luxury, feels authentic."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Olivia W.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">London, UK</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Design bonito, pero algo delicado."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Lucía M.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Barcelona, España</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Sehr schön verarbeitet, hochwertig."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Felix R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Munich, Germany</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Unique style, nothing like mass production."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Ethan C.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Seattle, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très original, mais un peu cher."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Marie B.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Nice, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Good product, but expected faster delivery."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Ryan S.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Vancouver, Canada</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Bellissimo lavoro artigianale, complimenti."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Marco T.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Rome, Italy</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Clean design, fits perfectly with outfits."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Chloe A.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Amsterdam, Netherlands</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Nice concept, but color slightly different."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Noah J.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Dublin, Ireland</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+            
+
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"La delicadeza de los aretes Margarita es impresionante. Se nota el amor en cada corte de cuero. Son ligeros y únicos."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest font-bold">Elena R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Lima, Perú</span>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.2s;">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Diseñar mi propia joya con la herramienta 3D fue una experiencia mágica. El resultado final superó mis expectativas."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest font-bold">Sofía M.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Cusco, Perú</span>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal" style="transition-delay: 0.4s;">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Un pedazo de los Andes en cada pieza. La elegancia y la tradición se sienten en cada detalle. Totalmente recomendado."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest font-bold">Carlos P.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Madrid, España</span>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Absolutely stunning craftsmanship. Feels like wearable art."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Emily R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">New York, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très élégant, j’adore la texture du cuir. Unique."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Camille D.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Paris, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Beautiful, but I expected slightly bigger size."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Laura M.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Toronto, Canada</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Sehr fein gearbeitet, leicht und angenehm zu tragen."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Anna K.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Berlin, Germany</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Nice design, but shipping took longer than expected."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Michael T.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Chicago, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Bellissimi, sembrano fatti per una passerella."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Giulia R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Milan, Italy</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Elegant and minimal, perfect for daily wear."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Sophia L.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Los Angeles, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Incroyable qualité artisanale, très satisfait."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Julien P.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Lyon, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Muy bonitos, aunque esperaba un poco más de brillo."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Carlos V.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Madrid, España</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Great concept, but packaging could improve."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Daniel H.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Boston, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très léger, parfait pour toute la journée."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Sophie L.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Brussels, Belgium</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Looks luxury, feels authentic."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Olivia W.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">London, UK</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Design bonito, pero algo delicado."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Lucía M.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Barcelona, España</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Sehr schön verarbeitet, hochwertig."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Felix R.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Munich, Germany</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Unique style, nothing like mass production."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Ethan C.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Seattle, USA</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Très original, mais un peu cher."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Marie B.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Nice, France</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Good product, but expected faster delivery."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Ryan S.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Vancouver, Canada</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Bellissimo lavoro artigianale, complimenti."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Marco T.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Rome, Italy</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Clean design, fits perfectly with outfits."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Chloe A.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Amsterdam, Netherlands</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="review-card p-10 bg-white border border-neutral-100 rounded-[2rem] shadow-sm italic text-neutral-600 relative reveal">
+                    <span class="text-6xl text-gold/20 absolute top-4 left-4 serif font-bold">“</span>
+                    <p class="relative z-10 leading-relaxed text-sm">"Nice concept, but color slightly different."</p>
+                    <div class="mt-8 not-italic">
+                        <span class="block font-bold text-black text-[10px] uppercase tracking-widest">Noah J.</span>
+                        <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Dublin, Ireland</span>
+                        <div class="mt-3 text-sm not-italic">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+            
+    </div>
+</div>
+</div>
         </div>
     </section>
 
@@ -1240,21 +1659,25 @@
         /* =========================================================
            UTILIDADES DE INTERFAZ
         ========================================================= */
-        function closeDropdowns() {
+        function closeDropdowns(exceptParent = null) {
             document.querySelectorAll('.dropdown-parent').forEach(parent => {
+                if (exceptParent && parent === exceptParent) return;
                 parent.classList.remove('dropdown-open');
                 parent.classList.add('dropdown-force-close');
-
-                setTimeout(() => {
+                clearTimeout(parent._dropdownForceCloseTimer);
+                parent._dropdownForceCloseTimer = setTimeout(() => {
                     parent.classList.remove('dropdown-force-close');
-                }, 350);
+                }, 220);
             });
         }
 
         function initDropdowns() {
+            const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
+
             document.querySelectorAll('.dropdown-parent').forEach(parent => {
-                const trigger = parent.querySelector('button');
-                if (!trigger) return;
+                const trigger = parent.querySelector(':scope > button');
+                const menu = parent.querySelector(':scope > .dropdown-menu');
+                if (!trigger || !menu) return;
 
                 let closeTimer = null;
 
@@ -1265,55 +1688,68 @@
                     }
                 };
 
-                const scheduleClose = () => {
+                const openMenu = () => {
+                    clearCloseTimer();
+                    closeDropdowns(parent);
+                    parent.classList.remove('dropdown-force-close');
+                    parent.classList.add('dropdown-open');
+                };
+
+                const closeMenu = (delay = 180) => {
                     clearCloseTimer();
                     closeTimer = setTimeout(() => {
                         parent.classList.remove('dropdown-open');
-                    }, 500);
+                    }, delay);
                 };
 
                 trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
                     e.stopPropagation();
-                    clearCloseTimer();
-
-                    const alreadyOpen = parent.classList.contains('dropdown-open');
-
-                    document.querySelectorAll('.dropdown-parent').forEach(item => {
-                        item.classList.remove('dropdown-open');
-                        item.classList.remove('dropdown-force-close');
-                    });
-
-                    if (!alreadyOpen) {
-                        parent.classList.add('dropdown-open');
+                    if (parent.classList.contains('dropdown-open')) {
+                        closeMenu(0);
+                    } else {
+                        openMenu();
                     }
                 });
 
                 parent.addEventListener('mouseenter', () => {
-                    clearCloseTimer();
-                    document.querySelectorAll('.dropdown-parent').forEach(item => {
-                        if (item !== parent) item.classList.remove('dropdown-open');
-                    });
-                    parent.classList.add('dropdown-open');
+                    if (!isDesktop()) return;
+                    openMenu();
                 });
 
                 parent.addEventListener('mouseleave', () => {
-                    scheduleClose();
+                    if (!isDesktop()) return;
+                    closeMenu(320);
+                });
+
+                menu.addEventListener('mouseenter', clearCloseTimer);
+                menu.addEventListener('mouseleave', () => {
+                    if (!isDesktop()) return;
+                    closeMenu(320);
                 });
 
                 parent.addEventListener('focusin', () => {
-                    clearCloseTimer();
-                    parent.classList.add('dropdown-open');
+                    openMenu();
                 });
 
-                parent.addEventListener('focusout', () => {
-                    scheduleClose();
+                parent.addEventListener('focusout', (e) => {
+                    if (parent.contains(e.relatedTarget)) return;
+                    closeMenu(180);
                 });
             });
 
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.dropdown-parent')) return;
-                closeDropdowns();
-            });
+            if (!window.__dropdownGlobalBound) {
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.dropdown-parent')) return;
+                    closeDropdowns();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeDropdowns();
+                });
+
+                window.__dropdownGlobalBound = true;
+            }
         }
 
 
@@ -1378,7 +1814,7 @@
             document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
             const p = document.getElementById('page-' + pageId);
             if(p) p.classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             revealElements();
         }
 
@@ -1490,7 +1926,7 @@
             if (d) d.textContent = data.desc;
             if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por los aretes: ${data.title} (${data.ref}) color ${data.colors[0].name}`;
 
-            preloadVariantImages(data.colors);
+            if (data.colors && data.colors[0]?.image) preloadSingleImage(data.colors[0].image);
 
             if (sw) {
                 sw.innerHTML = '';
@@ -1517,7 +1953,7 @@
             cont.style.perspective = 'none';
             cont.style.overflow = 'hidden';
             cont.style.background = '#ffffff';
-            preloadVariantImages(data.colors);
+            if (data.colors && data.colors[0]?.image) preloadSingleImage(data.colors[0].image);
 
             currentGroup = document.createElement('img');
             currentGroup.className = 'w-full h-full object-contain select-none pointer-events-none';
@@ -1761,12 +2197,31 @@
         function markImagesForPerformance() {
             document.querySelectorAll('img').forEach((img, index) => {
                 img.decoding = 'async';
-                if (index > 0 && !img.hasAttribute('loading')) img.loading = 'lazy';
+                if (index > 1 && !img.hasAttribute('loading')) img.loading = 'lazy';
+                if (index > 2 && !img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority', 'low');
                 img.addEventListener('error', () => {
                     img.style.opacity = '0.25';
                     img.setAttribute('aria-label', 'Imagen no disponible');
                 }, { once: true });
             });
+        }
+
+        function initReviewsPerformance() {
+            const track = document.getElementById('reviews-track');
+            if (!track) return;
+            if (prefersReducedMotion) {
+                track.classList.add('paused');
+                track.style.animation = 'none';
+                return;
+            }
+            if (!('IntersectionObserver' in window)) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    track.classList.toggle('paused', !entry.isIntersecting);
+                });
+            }, { threshold: 0.05 });
+            const carousel = track.closest('.reviews-carousel') || track;
+            observer.observe(carousel);
         }
 
         function setMenuA11yState(isOpen) {
@@ -1788,7 +2243,6 @@
             originalShowPage(pageId);
             document.body.dataset.page = pageId;
             if (pageId !== 'detail') destroy3DViewer();
-            if (pageId !== 'customizer') updateCustomizerSVG();
         };
 
         document.addEventListener('keydown', (e) => {
@@ -1803,11 +2257,9 @@
             initRevealObserver();
             revealElements();
             markImagesForPerformance();
-            Object.values(catalog).forEach(item => preloadVariantImages(item.colors || []));
+            initReviewsPerformance();
             setMenuA11yState(false);
         });
-
-        window.addEventListener('scroll', revealElements, { passive: true });
         let resizeTimer = null;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
