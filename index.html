@@ -169,10 +169,10 @@
             opacity: 0;
             transform: translateY(8px);
             pointer-events: none;
-            transition: 
-        opacity 0.3s ease,
-        transform 0.3s ease,
-        visibility 0s linear 0.5s;
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease,
+                visibility 0s linear 0.3s;
         }
 
         .dropdown-parent.dropdown-open .dropdown-menu {
@@ -1356,6 +1356,9 @@
         </div>
     </section>
 
+    <!-- SECCIONES INDEPENDIENTES DE PRODUCTOS -->
+    <div id="independent-product-pages"></div>
+
     <!-- DETALLE PRODUCTO 3D -->
 
     <!-- =========================================================
@@ -1596,15 +1599,15 @@
            CATÁLOGO DE ARETES
         ========================================================= */
         const catalog = {
-            rosas: { title: "Rosas", ref: "REF: 001-RS", desc: "Flor esculpida con presencia elegante.", colors: rosasColors, shape: 'rosas', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
-            'hojas-coca': { title: "Hojas de Coca", ref: "REF: 002-HC", desc: "Inspiración andina en una silueta orgánica.", colors: hojasCocaColors, shape: 'hojas-coca', images: ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600"] },
-            garras: { title: "Garras", ref: "REF: 003-GR", desc: "Diseño audaz de carácter refinado.", colors: garrasColors, shape: 'garras', images: ["https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600"] },
-            tulipan: { title: "Tulipanes", ref: "REF: 004-T", desc: "Elegancia minimalista.", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            margarita: { title: "Margaritas", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano.", colors: margaritaColors, shape: 'margarita', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png"] },
-            rositas: { title: "Rositas", ref: "REF: 005-RT", desc: "Pequeñas flores con delicadeza artesanal.", colors: rositasColors, shape: 'rositas', images: ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"] },
-            redondos: { title: "Redondos", ref: "REF: 006-RD", desc: "Pureza circular.", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] },
-            gotas: { title: "Gotas", ref: "REF: 007-GT", desc: "Caída limpia y femenina.", colors: gotasColors, shape: 'gotas', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            colibris: { title: "Colibríes", ref: "REF: 008-CB", desc: "Movimiento vivo inspirado en el colibrí andino.", colors: colibrisColors, shape: 'colibris', images: ["https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600"] }
+            rosas: { title: "Rosas", subtitle: "Flor esculpida", ref: "REF: 001-RS", desc: "Flor esculpida con presencia elegante y un acabado artesanal refinado para looks con más carácter.", price: "S/ 49", colors: rosasColors, shape: 'rosas', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
+            'hojas-coca': { title: "Hojas de Coca", subtitle: "Raíz andina", ref: "REF: 002-HC", desc: "Inspiración andina en una silueta orgánica que transmite identidad, historia y elegancia natural.", price: "S/ 52", colors: hojasCocaColors, shape: 'hojas-coca', images: ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600"] },
+            garras: { title: "Garras", subtitle: "Carácter audaz", ref: "REF: 003-GR", desc: "Diseño audaz de carácter refinado para una presencia visual más fuerte, moderna y sofisticada.", price: "S/ 54", colors: garrasColors, shape: 'garras', images: ["https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600"] },
+            tulipan: { title: "Tulipanes", subtitle: "Elegancia ligera", ref: "REF: 004-T", desc: "Elegancia minimalista con líneas suaves y una lectura femenina, limpia y contemporánea.", price: "S/ 48", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            margarita: { title: "Margaritas", subtitle: "Esencia floral", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano con textura orgánica, ligereza visual y un acabado delicado que destaca en cada variante.", price: "S/ 49", colors: margaritaColors, shape: 'margarita', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png"], imageNames: ["Margarita 1", "Margarita 2", "Margarita 3", "Margarita 4", "Margarita 5", "Margarita 6", "Margarita 7", "Margarita 8", "Margarita 9"] },
+            rositas: { title: "Rositas", subtitle: "Delicadeza artesanal", ref: "REF: 005-RT", desc: "Pequeñas flores con delicadeza artesanal y una estética fina ideal para looks suaves y elegantes.", price: "S/ 45", colors: rositasColors, shape: 'rositas', images: ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"] },
+            redondos: { title: "Redondos", subtitle: "Geometría limpia", ref: "REF: 006-RD", desc: "Pureza circular con una composición limpia que transmite equilibrio y modernidad.", price: "S/ 44", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] },
+            gotas: { title: "Gotas", subtitle: "Caída elegante", ref: "REF: 007-GT", desc: "Caída limpia y femenina con una silueta estilizada para acompañar looks de día y noche.", price: "S/ 46", colors: gotasColors, shape: 'gotas', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
+            colibris: { title: "Colibríes", subtitle: "Movimiento vivo", ref: "REF: 008-CB", desc: "Movimiento vivo inspirado en el colibrí andino, con un aire artístico y una energía visual única.", price: "S/ 56", colors: colibrisColors, shape: 'colibris', images: ["https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600"] }
         };
 
 
@@ -1612,9 +1615,9 @@
            CATÁLOGO DE COLLARES
         ========================================================= */
         const necklaceCatalog = {
-            gargantilla: { title: "Gargantilla Solar", ref: "REF: COLL-001", desc: "Pieza central radiante.", price: "$45.00", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" },
-            pechera: { title: "Pechera Ritual", ref: "REF: COLL-002", desc: "Arquitectura textil.", price: "$65.00", img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" },
-            minimal: { title: "Minimal Cord", ref: "REF: COLL-003", desc: "Línea pura.", price: "$30.00", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" }
+            gargantilla: { title: "Gargantilla Solar", subtitle: "Pieza central radiante", ref: "REF: COLL-001", desc: "Diseñada para enmarcar el cuello con presencia, elegancia y una lectura boutique contemporánea.", price: "S/ 79", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" },
+            pechera: { title: "Pechera Ritual", subtitle: "Arquitectura textil", ref: "REF: COLL-002", desc: "Una pieza de mayor impacto visual, pensada para looks con más identidad y fuerza artesanal.", price: "S/ 95", img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" },
+            minimal: { title: "Minimal Cord", subtitle: "Línea pura", ref: "REF: COLL-003", desc: "Collar de lectura limpia y refinada, ideal para una elegancia ligera y versátil.", price: "S/ 69", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" }
         };
 
 
@@ -1622,9 +1625,9 @@
            CATÁLOGO DE GANCHOS
         ========================================================= */
         const hookCatalog = {
-            margarita: { title: "Gancho Margarita", ref: "REF: HOOK-001", desc: "Diseño floral.", price: "$15.00", img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000" },
-            gota: { title: "Gancho Gota", ref: "REF: HOOK-002", desc: "Curva perfecta.", price: "$15.00", img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000" },
-            hoja: { title: "Gancho Hoja", ref: "REF: HOOK-003", desc: "Textura orgánica.", price: "$15.00", img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000" }
+            margarita: { title: "Gancho Margarita", subtitle: "Diseño floral", ref: "REF: HOOK-001", desc: "Gancho ligero con inspiración floral y una presencia delicada para uso diario elegante.", price: "S/ 29", img: "https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&fit=crop&q=80&w=1000" },
+            gota: { title: "Gancho Gota", subtitle: "Curva perfecta", ref: "REF: HOOK-002", desc: "Silueta limpia y femenina con una caída elegante para una lectura moderna y sobria.", price: "S/ 29", img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000" },
+            hoja: { title: "Gancho Hoja", subtitle: "Textura orgánica", ref: "REF: HOOK-003", desc: "Inspirado en formas orgánicas con una estética natural, fina y fácil de combinar.", price: "S/ 29", img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000" }
         };
 
 
@@ -1659,7 +1662,7 @@
         /* =========================================================
            UTILIDADES DE INTERFAZ
         ========================================================= */
-        function closeDropdowns(exceptParent = null) {
+        function closeDropdowns(exceptParent = null, immediate = false) {
             document.querySelectorAll('.dropdown-parent').forEach(parent => {
                 if (exceptParent && parent === exceptParent) return;
                 parent.classList.remove('dropdown-open');
@@ -1667,7 +1670,7 @@
                 clearTimeout(parent._dropdownForceCloseTimer);
                 parent._dropdownForceCloseTimer = setTimeout(() => {
                     parent.classList.remove('dropdown-force-close');
-                }, 220);
+                }, immediate ? 0 : 220);
             });
         }
 
@@ -1675,6 +1678,9 @@
             const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
 
             document.querySelectorAll('.dropdown-parent').forEach(parent => {
+                if (parent.dataset.dropdownBound === 'true') return;
+                parent.dataset.dropdownBound = 'true';
+
                 const trigger = parent.querySelector(':scope > button');
                 const menu = parent.querySelector(':scope > .dropdown-menu');
                 if (!trigger || !menu) return;
@@ -1690,12 +1696,12 @@
 
                 const openMenu = () => {
                     clearCloseTimer();
-                    closeDropdowns(parent);
+                    closeDropdowns(parent, true);
                     parent.classList.remove('dropdown-force-close');
                     parent.classList.add('dropdown-open');
                 };
 
-                const closeMenu = (delay = 180) => {
+                const closeMenu = (delay = 220) => {
                     clearCloseTimer();
                     closeTimer = setTimeout(() => {
                         parent.classList.remove('dropdown-open');
@@ -1719,33 +1725,30 @@
 
                 parent.addEventListener('mouseleave', () => {
                     if (!isDesktop()) return;
-                    closeMenu(320);
+                    closeMenu(260);
                 });
 
                 menu.addEventListener('mouseenter', clearCloseTimer);
                 menu.addEventListener('mouseleave', () => {
                     if (!isDesktop()) return;
-                    closeMenu(320);
+                    closeMenu(260);
                 });
 
-                parent.addEventListener('focusin', () => {
-                    openMenu();
-                });
-
+                parent.addEventListener('focusin', openMenu);
                 parent.addEventListener('focusout', (e) => {
                     if (parent.contains(e.relatedTarget)) return;
-                    closeMenu(180);
+                    closeMenu(160);
                 });
             });
 
             if (!window.__dropdownGlobalBound) {
                 document.addEventListener('click', (e) => {
                     if (e.target.closest('.dropdown-parent')) return;
-                    closeDropdowns();
+                    closeDropdowns(null, true);
                 });
 
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') closeDropdowns();
+                    if (e.key === 'Escape') closeDropdowns(null, true);
                 });
 
                 window.__dropdownGlobalBound = true;
@@ -1756,34 +1759,32 @@
         /* =========================================================
            NAVEGACIÓN Y CATÁLOGO
         ========================================================= */
+        function slugifyKey(value) {
+            return String(value || '')
+                .toLowerCase()
+                .normalize('NFD').replace(/[̀-ͯ]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function getIndependentPageId(category, key) {
+            return `${category}-${slugifyKey(key)}`;
+        }
+
         function handleModelSelect(key) {
             closeDropdowns();
-            openModel(key);
-            const gallery = document.getElementById('detail-images-gallery');
-            if (gallery && catalog[key]) {
-                gallery.innerHTML = '';
-                const data = catalog[key];
-                if (data.images) {
-                    data.images.forEach(imgUrl => {
-                        const card = document.createElement('div');
-                        card.className = 'model-img-card shadow-lg';
-                        card.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-contain" alt="Modelo" loading="${gallery.children.length === 0 ? 'eager' : 'lazy'}" decoding="async" fetchpriority="${gallery.children.length === 0 ? 'high' : 'auto'}">`;
-                        gallery.appendChild(card);
-                    });
-                }
-            }
+            activeModelKey = key;
+            showPage(getIndependentPageId('arete', key));
         }
 
         function handleNecklaceSelect(key) {
             closeDropdowns();
-            const data = necklaceCatalog[key];
-            updateImageView(data, "Collar");
+            showPage(getIndependentPageId('collar', key));
         }
 
         function handleHookSelect(key) {
             closeDropdowns();
-            const data = hookCatalog[key];
-            updateImageView(data, "Gancho");
+            showPage(getIndependentPageId('gancho', key));
         }
 
         function handlePageSelect(id) {
@@ -1800,20 +1801,287 @@
             const p = document.getElementById('display-price');
             const l = document.getElementById('display-whatsapp-link');
 
-            if (t) t.textContent = data.title;
-            if (r) r.textContent = data.ref;
-            if (d) d.textContent = data.desc;
-            if (i) { i.src = data.img; i.alt = data.title; }
-            if (p) p.innerHTML = `${data.price} <span class="text-sm opacity-40 uppercase">usd</span>`;
-            if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por el ${category.toLowerCase()}: ${data.title} (${data.ref})`;
-            
+            if (t) t.textContent = data.title || 'Pieza MunayChatika';
+            if (r) r.textContent = data.ref || '';
+            if (d) d.textContent = data.desc || '';
+            if (i) {
+                i.src = data.img || defaultEarringImage;
+                i.alt = data.title || 'Pieza MunayChatika';
+            }
+            if (p) {
+                if (data.price) {
+                    p.innerHTML = `${data.price} <span class="text-sm opacity-40 uppercase">usd</span>`;
+                    p.classList.remove('hidden');
+                } else {
+                    p.textContent = 'Consultar precio';
+                    p.classList.remove('hidden');
+                }
+            }
+            if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo contactar por el ${category.toLowerCase()}: ${data.title || 'modelo'} (${data.ref || 'sin referencia'})`;
+
             showPage('image-detail');
         }
 
+
+
+        function renderIndependentProductPages() {
+            const mount = document.getElementById('independent-product-pages');
+            if (!mount || mount.dataset.rendered === 'true') return;
+
+            const buildWhatsAppHref = (categoryLabel, data) => `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, deseo consultar por ${categoryLabel}: ${data.title} (${data.ref || 'sin referencia'})`;
+            const buildBadge = (label) => `<span class="inline-flex items-center rounded-full border border-[#e8ddc8] bg-[#fffaf1] px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-neutral-700 font-semibold">${label}</span>`;
+            const buildInfoCard = (title, text) => `
+                <div class="rounded-[1.75rem] border border-neutral-200 bg-white p-6 shadow-[0_12px_30px_rgba(0,0,0,0.04)]">
+                    <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-3 font-bold">Munay Signature</span>
+                    <h3 class="text-xl serif italic mb-3 font-bold">${title}</h3>
+                    <p class="text-sm leading-7 text-neutral-500">${text}</p>
+                </div>`;
+            const buildMetricCard = (number, label) => `
+                <div class="rounded-[1.5rem] border border-[#ece4d6] bg-[#fffaf2] px-5 py-6 text-center shadow-[0_10px_25px_rgba(0,0,0,0.03)]">
+                    <span class="block text-2xl md:text-3xl font-bold text-black">${number}</span>
+                    <span class="mt-2 block text-[10px] uppercase tracking-[0.35em] text-neutral-500 font-semibold">${label}</span>
+                </div>`;
+            const buildEditorialPanel = (eyebrow, title, text) => `
+                <div class="rounded-[2rem] border border-neutral-200 bg-white p-7 md:p-8 shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+                    <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400 font-bold">${eyebrow}</span>
+                    <h3 class="mt-3 text-2xl md:text-3xl serif italic font-bold text-black">${title}</h3>
+                    <p class="mt-4 text-sm md:text-base leading-7 text-neutral-500">${text}</p>
+                </div>`;
+            const buildSectionChrome = (categoryTitle, subtitle, accent) => `
+                <div class="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.45em] text-neutral-400 font-semibold">${accent}</span>
+                        <h2 class="mt-3 text-4xl md:text-5xl serif italic font-bold text-black">${categoryTitle}</h2>
+                        <p class="mt-4 max-w-2xl text-neutral-500 leading-relaxed">${subtitle}</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        ${buildBadge('Hecho a mano')}
+                        ${buildBadge('Edición independiente')}
+                        ${buildBadge('Presentación premium')}
+                    </div>
+                </div>`;
+
+            const earringCards = Object.entries(catalog).map(([key, data]) => {
+                const images = (data.images && data.images.length ? data.images : [defaultEarringImage]).slice(0, 9);
+                const isMargarita = key === 'margarita';
+                const colorItems = (data.colors || []).slice(0, 8);
+                const swatches = colorItems.map((color, index) => `
+                    <button type="button"
+                        class="flex items-center gap-2 rounded-full border border-neutral-200 bg-white/90 px-3 py-2 shadow-sm transition hover:-translate-y-0.5 ${index === 0 ? 'active' : ''}"
+                        onclick="selectEarringColor('${key}', ${index})"
+                        data-earring-key="${key}"
+                        data-earring-swatch="${index}">
+                        <span class="w-4 h-4 rounded-full border border-neutral-200" style="background:${hexNumberToCss(color.hex)}"></span>
+                        <span class="text-[10px] uppercase tracking-widest text-neutral-700 font-semibold">${color.name}</span>
+                    </button>`).join('');
+                const gallery = images.map((imgUrl, index) => {
+                    const imageLabel = (data.imageNames && data.imageNames[index]) ? data.imageNames[index] : `${data.title} ${index + 1}`;
+                    return `
+                    <article class="group rounded-[1.8rem] border border-neutral-200 bg-white p-4 shadow-[0_18px_45px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,0,0,0.08)]">
+                        <div class="model-img-card mb-4 bg-[#f8f5ef] shadow-none">
+                            <img src="${imgUrl}" alt="${imageLabel}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
+                        </div>
+                        <div class="flex items-center justify-between gap-4">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.35em] text-neutral-400 font-semibold">Variante</p>
+                                <h4 class="mt-2 text-lg serif italic font-bold text-black">${imageLabel}</h4>
+                            </div>
+                            <a href="${buildWhatsAppHref('el arete', data)}" target="_blank" class="text-[10px] uppercase tracking-[0.28em] text-neutral-700 font-bold opacity-70 group-hover:opacity-100 transition">Consultar</a>
+                        </div>
+                    </article>`;
+                }).join('');
+                return `
+                <section id="page-${getIndependentPageId('arete', key)}" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black bg-[linear-gradient(180deg,#fffdf9_0%,#ffffff_32%,#f8f5ef_100%)]">
+                    <div class="max-w-7xl mx-auto px-6 md:px-8">
+                        <button onclick="showPage('earring-selection')" class="mb-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar a aretes</button>
+                        ${buildSectionChrome(`Aretes ${data.title}`, 'Cada modelo vive en su propia sección, con presencia visual, detalles de color y una galería más protagonista para que se sienta como una colección completa.', 'Colección independiente')}
+                        <div class="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-10 items-stretch">
+                            <div class="rounded-[2.5rem] border border-[#ece4d6] bg-white/90 p-5 md:p-7 shadow-[0_30px_80px_rgba(0,0,0,0.06)]">
+                                <div class="aspect-[4/4.3] rounded-[2rem] overflow-hidden bg-[radial-gradient(circle_at_top,#f6f0e5_0%,#fbfaf8_45%,#f4efe7_100%)] border border-neutral-100 p-4 md:p-6">
+                                    <img id="earring-main-image-${key}" data-earring-image="${key}" src="${images[0] || defaultEarringImage}" alt="${data.title}" class="w-full h-full object-contain transition-opacity duration-300" loading="eager" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-3">
+                                    ${images.slice(0,3).map((imgUrl, index) => `<div class="rounded-[1.25rem] border border-neutral-100 bg-[#faf8f2] p-3 aspect-square"><img src="${imgUrl}" alt="${data.title} miniatura ${index+1}" class="w-full h-full object-contain" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>`).join('')}
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-4">
+                                    ${buildMetricCard(images.length, 'Variantes')}
+                                    ${buildMetricCard((data.colors || []).length || 'A pedido', 'Colores')}
+                                    ${buildMetricCard('100%', 'Artesanal')}
+                                </div>
+                            </div>
+                            <div class="rounded-[2.5rem] border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.06)] flex flex-col justify-between">
+                                <div>
+                                    <span class="text-[10px] font-semibold uppercase tracking-[0.35em] text-neutral-400 block mb-3">${data.ref || 'Edición MunayChatika'}</span>
+                                    <span class="text-[11px] uppercase tracking-[0.4em] text-[#b8952e] block mb-4 font-bold">${data.subtitle || 'Colección independiente'}</span>
+                                    <h1 class="text-5xl md:text-7xl serif mb-4 leading-tight italic font-bold">${data.title}</h1>
+                                    <p class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-6">${data.desc || 'Diseño artesanal con identidad propia y acabado elegante.'}</p>
+                                    <div class="rounded-[1.75rem] border border-[#ece4d6] bg-[#faf6ee] p-6 mb-8">
+                                        <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-3 font-bold">Precio referencial</span>
+                                        <div class="flex items-end justify-between gap-4 flex-wrap">
+                                            <span class="text-3xl md:text-4xl font-light text-black font-bold">${data.price || 'Consultar'}</span>
+                                            <span class="text-[10px] uppercase tracking-[0.28em] text-neutral-500 font-semibold">Reserva por WhatsApp</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap gap-3 mb-4">${swatches || buildBadge('Colores a pedido')}</div>
+                                    ${colorItems.length ? `<div class="mb-8 rounded-[1.5rem] border border-neutral-200 bg-white/80 px-5 py-4">
+                                        <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-2 font-bold">Color seleccionado</span>
+                                        <h3 id="earring-color-name-${key}" data-earring-color-name="${key}" class="text-xl serif italic font-bold text-black">${colorItems[0] ? colorItems[0].name : data.title}</h3>
+                                        <p id="earring-color-desc-${key}" data-earring-color-desc="${key}" class="mt-2 text-sm leading-7 text-neutral-500">${colorItems[0] ? colorItems[0].desc : ''}</p>
+                                    </div>` : ''}
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                        ${buildInfoCard('Presencia visual', 'Una composición más llena, pensada para que este modelo destaque por sí solo dentro de tu web.')}
+                                        ${buildInfoCard('Detalle artesanal', 'Texturas, variantes y nombres visibles para que el catálogo se vea más profesional y fácil de explorar.')}
+                                    </div>
+                                    <div class="rounded-[2rem] border border-[#ece4d6] bg-[#faf6ee] p-6">
+                                        <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400 font-bold">Lectura visual</span>
+                                        <p class="mt-4 text-sm leading-7 text-neutral-600">Esta sección fue reforzada para que el modelo se sienta completo: imagen principal, miniaturas, métricas, galería con nombres y bloques editoriales que elevan la percepción de marca.</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                                    <a href="${buildWhatsAppHref('el arete', data)}" target="_blank" class="bg-black text-white py-5 px-8 text-[10px] uppercase tracking-[0.28em] hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold rounded-full">Reservar por WhatsApp</a>
+                                    <button onclick="showPage('collection')" class="border border-neutral-300 py-5 px-8 text-[10px] uppercase tracking-[0.28em] text-black hover:bg-neutral-50 transition font-bold rounded-full">Ver catálogo general</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            ${buildEditorialPanel('Edición curada', 'Un modelo con protagonismo propio', 'La estructura ya no se siente como una ficha corta. Ahora la sección respira mejor, luce más editorial y tiene más capas visuales para proyectar lujo artesanal.')}
+                            ${buildEditorialPanel('Acabado premium', 'Más contenido sin verse recargado', 'Se añadieron bloques de apoyo, métricas y composición equilibrada para llenar el espacio con elegancia, sin hacer que la página se vea pesada.')}
+                            ${buildEditorialPanel('Exploración fácil', 'Nombres e imágenes mejor presentados', 'Las variantes quedan más claras, con mejor separación visual y una lectura mucho más profesional al recorrer cada tarjeta del modelo.')}
+                        </div>
+                        <div class="mt-20 rounded-[2.8rem] border border-neutral-200 bg-white/95 p-8 md:p-12 shadow-[0_30px_80px_rgba(0,0,0,0.04)]">
+                            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-[0.4em] text-neutral-400 font-semibold">Galería editorial</span>
+                                    <h3 class="mt-3 text-3xl md:text-4xl serif italic font-bold">Variantes de ${data.title}</h3>
+                                </div>
+                                <p class="max-w-xl text-sm leading-7 text-neutral-500">Cada imagen se presenta con más aire, nombre visible y una tarjeta propia para que la sección se sienta más completa y premium.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">${gallery}</div>
+                        </div>
+                        <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            ${buildEditorialPanel('Compra personalizada', 'Consulta acabados, tonos y pedidos', 'Puedes usar esta zona para dirigir a WhatsApp y mantener una sensación de atención más exclusiva, como una marca boutique.')}
+                            ${buildEditorialPanel('Narrativa de marca', 'Haz que cada modelo cuente algo', 'Si luego quieres, aquí mismo puedo añadir historias distintas por modelo: inspiración floral, andina, ritual o contemporánea, para que cada sección se sienta única de verdad.')}
+                        </div>
+                    </div>
+                </section>`;
+            }).join('');
+
+            const necklaceCards = Object.entries(necklaceCatalog).map(([key, data]) => `
+                <section id="page-${getIndependentPageId('collar', key)}" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black bg-[linear-gradient(180deg,#fcfbf8_0%,#ffffff_42%,#f8f5ef_100%)]">
+                    <div class="max-w-7xl mx-auto px-6 md:px-8">
+                        <button onclick="showPage('collection')" class="mb-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar a catálogo</button>
+                        ${buildSectionChrome(`Collar ${data.title}`, 'Una sección con más cuerpo visual, bloques de información y presencia editorial para que cada collar se sienta como una pieza protagonista.', 'Línea collares')}
+                        <div class="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
+                            <div class="rounded-[2.5rem] bg-neutral-950 p-5 md:p-7 shadow-[0_30px_90px_rgba(0,0,0,0.18)] border border-neutral-800">
+                                <div class="aspect-[4/4.2] rounded-[2rem] overflow-hidden bg-neutral-900">
+                                    <img src="${data.img || defaultEarringImage}" alt="${data.title}" class="w-full h-full object-cover" loading="eager" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-4">
+                                    ${buildMetricCard('Boutique', 'Estilo')}
+                                    ${buildMetricCard('Premium', 'Lectura')}
+                                    ${buildMetricCard('Lista', 'Consulta')}
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-3">
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 1" class="w-full h-full object-cover" style="object-position:center top" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 2" class="w-full h-full object-cover" style="object-position:center center" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 3" class="w-full h-full object-cover" style="object-position:center bottom" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                </div>
+                            </div>
+                            <div class="rounded-[2.5rem] border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.06)] flex flex-col justify-between">
+                                <div>
+                                    <span class="text-[10px] font-semibold uppercase tracking-[0.35em] text-neutral-400 block mb-3">${data.ref || 'Edición MunayChatika'}</span>
+                                    <span class="text-[11px] uppercase tracking-[0.4em] text-[#b8952e] block mb-4 font-bold">${data.subtitle || 'Línea collar independiente'}</span>
+                                    <h1 class="text-5xl md:text-7xl serif mb-4 leading-tight italic font-bold">${data.title}</h1>
+                                    <p class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8">${data.desc || ''}</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                        ${buildInfoCard('Estilo', 'Diseñado para dar una lectura más sofisticada al cuello y elevar la composición completa del look.')}
+                                        ${buildInfoCard('Presentación', 'La sección añade más profundidad, mejor jerarquía y una sensación de catálogo de marca.')}
+                                    </div>
+                                    <div class="rounded-[1.75rem] border border-[#ece4d6] bg-[#faf6ee] p-6 mb-8">
+                                        <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-3 font-bold">Inversión</span>
+                                        <span class="text-3xl md:text-4xl font-light text-black font-bold">${data.price || 'Consultar precio'}</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <a href="${buildWhatsAppHref('el collar', data)}" target="_blank" class="bg-black text-white py-5 px-8 text-[10px] uppercase tracking-[0.28em] hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold rounded-full">Reservar por WhatsApp</a>
+                                    <button onclick="showPage('collection')" class="border border-neutral-300 py-5 px-8 text-[10px] uppercase tracking-[0.28em] text-black hover:bg-neutral-50 transition font-bold rounded-full">Volver al catálogo</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            ${buildEditorialPanel('Impacto visual', 'Una ficha más protagonista', 'El collar ahora ocupa mejor la pantalla con una composición más lujosa, menos vacía y más coherente con una marca premium.')}
+                            ${buildEditorialPanel('Jerarquía clara', 'Más elegante al recorrer', 'El título, el precio, la imagen y los bloques informativos tienen más orden para que la página se sienta profesional.')}
+                            ${buildEditorialPanel('Marca boutique', 'Más sensación de colección', 'Aunque sea un solo modelo, la presentación ahora lo hace ver como una pieza central dentro de una colección cuidada.')}
+                        </div>
+                    </div>
+                </section>`).join('');
+
+            const hookCards = Object.entries(hookCatalog).map(([key, data]) => `
+                <section id="page-${getIndependentPageId('gancho', key)}" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black bg-[linear-gradient(180deg,#ffffff_0%,#f9f7f2_100%)]">
+                    <div class="max-w-7xl mx-auto px-6 md:px-8">
+                        <button onclick="showPage('collection')" class="mb-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar a catálogo</button>
+                        ${buildSectionChrome(`Gancho ${data.title}`, 'Ahora cada gancho tiene una vista con más presencia, mejor separación visual y un acabado más profesional.', 'Línea ganchos')}
+                        <div class="grid grid-cols-1 xl:grid-cols-[1fr_1fr] gap-10 items-stretch">
+                            <div class="rounded-[2.5rem] border border-neutral-200 bg-white p-5 md:p-7 shadow-[0_30px_80px_rgba(0,0,0,0.05)]">
+                                <div class="aspect-[4/4.2] rounded-[2rem] overflow-hidden bg-[radial-gradient(circle_at_top,#f5efe3_0%,#fcfbf8_45%,#f1ece4_100%)] border border-neutral-100">
+                                    <img src="${data.img || defaultEarringImage}" alt="${data.title}" class="w-full h-full object-cover" loading="eager" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-4">
+                                    ${buildMetricCard('Ligero', 'Uso diario')}
+                                    ${buildMetricCard('Simple', 'Estilo')}
+                                    ${buildMetricCard('Premium', 'Presentación')}
+                                </div>
+                                <div class="mt-6 grid grid-cols-3 gap-3">
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-100 aspect-square bg-[#faf8f2]"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 1" class="w-full h-full object-cover" style="object-position:center top" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-100 aspect-square bg-[#faf8f2]"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 2" class="w-full h-full object-cover" style="object-position:center center" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-100 aspect-square bg-[#faf8f2]"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 3" class="w-full h-full object-cover" style="object-position:center bottom" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                </div>
+                            </div>
+                            <div class="rounded-[2.5rem] border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.06)] flex flex-col justify-between">
+                                <div>
+                                    <span class="text-[10px] font-semibold uppercase tracking-[0.35em] text-neutral-400 block mb-3">${data.ref || 'Edición MunayChatika'}</span>
+                                    <span class="text-[11px] uppercase tracking-[0.4em] text-[#b8952e] block mb-4 font-bold">${data.subtitle || 'Línea gancho independiente'}</span>
+                                    <h1 class="text-5xl md:text-7xl serif mb-4 leading-tight italic font-bold">${data.title}</h1>
+                                    <p class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8">${data.desc || ''}</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                        ${buildInfoCard('Uso versátil', 'Ideal para una lectura más ligera y estilizada, manteniendo una imagen cuidada y elegante.')}
+                                        ${buildInfoCard('Sección premium', 'Tarjetas, fondos suaves y mejor composición para que la página se vea más llena y refinada.')}
+                                    </div>
+                                    <div class="rounded-[1.75rem] border border-[#ece4d6] bg-[#faf6ee] p-6 mb-8">
+                                        <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-3 font-bold">Inversión</span>
+                                        <span class="text-3xl md:text-4xl font-light text-black font-bold">${data.price || 'Consultar precio'}</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <a href="${buildWhatsAppHref('el gancho', data)}" target="_blank" class="bg-black text-white py-5 px-8 text-[10px] uppercase tracking-[0.28em] hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold rounded-full">Reservar por WhatsApp</a>
+                                    <button onclick="showPage('collection')" class="border border-neutral-300 py-5 px-8 text-[10px] uppercase tracking-[0.28em] text-black hover:bg-neutral-50 transition font-bold rounded-full">Volver al catálogo</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            ${buildEditorialPanel('Mejor composición', 'El gancho ya no se ve vacío', 'Se reforzó la estructura para que incluso los modelos más simples tengan una presentación con más peso visual y mejor lectura.')}
+                            ${buildEditorialPanel('Orden visual', 'Tarjetas y bloques mejor integrados', 'Ahora la imagen principal, el texto y el precio se sienten parte de una misma dirección estética.')}
+                            ${buildEditorialPanel('Apariencia profesional', 'Más catálogo, menos ficha básica', 'La página transmite una sensación más seria y de marca cuidada, sin recargarse ni perder elegancia.')}
+                        </div>
+                    </div>
+                </section>`).join('');
+
+            mount.innerHTML = earringCards + necklaceCards + hookCards;
+            mount.dataset.rendered = 'true';
+        }
+
+
         function showPage(pageId) {
             document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-            const p = document.getElementById('page-' + pageId);
-            if(p) p.classList.add('active');
+            const page = document.getElementById('page-' + pageId);
+            if (!page) {
+                console.warn(`No existe la sección: page-${pageId}`);
+                return;
+            }
+            page.classList.add('active');
+            if (document.body.classList.contains('mobile-menu-open')) {
+                toggleMobileMenu(false);
+            }
             window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             revealElements();
         }
@@ -1900,6 +2168,10 @@
                 if (currentGroup.src === readySrc) return;
                 currentGroup.style.opacity = '0.96';
                 currentGroup.src = readySrc;
+                currentGroup.onerror = () => {
+                    currentGroup.src = defaultEarringImage;
+                    currentGroup.style.opacity = '1';
+                };
                 requestAnimationFrame(() => {
                     if (!currentGroup || swapId !== viewerSwapToken) return;
                     currentGroup.style.opacity = '1';
@@ -2200,9 +2472,14 @@
                 if (index > 1 && !img.hasAttribute('loading')) img.loading = 'lazy';
                 if (index > 2 && !img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority', 'low');
                 img.addEventListener('error', () => {
+                    if (!img.dataset.fallbackApplied) {
+                        img.dataset.fallbackApplied = 'true';
+                        img.src = defaultEarringImage;
+                        return;
+                    }
                     img.style.opacity = '0.25';
-                    img.setAttribute('aria-label', 'Imagen no disponible');
-                }, { once: true });
+                    img.alt = 'Imagen no disponible';
+                }, { once: false });
             });
         }
 
@@ -2232,8 +2509,8 @@
         }
 
         const originalToggleMobileMenu = toggleMobileMenu;
-        toggleMobileMenu = function () {
-            originalToggleMobileMenu();
+        toggleMobileMenu = function (forceState = null) {
+            originalToggleMobileMenu(forceState);
             const isOpen = document.body.classList.contains('mobile-menu-open');
             setMenuA11yState(isOpen);
         };
@@ -2252,6 +2529,8 @@
         });
 
         window.addEventListener('DOMContentLoaded', () => {
+            renderIndependentProductPages();
+            initAllEarringColors();
             showPage('home');
             initDropdowns();
             initRevealObserver();
@@ -2261,6 +2540,76 @@
             setMenuA11yState(false);
         });
         let resizeTimer = null;
+
+        window.selectMargaritaColor = function(index) {
+            const margaritaData = catalog && catalog.margarita;
+            if (!margaritaData || !margaritaData.colors || !margaritaData.colors[index]) return;
+            const color = margaritaData.colors[index];
+            const mainImage = document.getElementById('margarita-main-image');
+            const nameNode = document.getElementById('margarita-color-name');
+            const descNode = document.getElementById('margarita-color-desc');
+            if (mainImage) {
+                mainImage.style.opacity = '0.25';
+                const nextImage = new Image();
+                nextImage.onload = () => {
+                    mainImage.src = color.image || defaultEarringImage;
+                    mainImage.style.opacity = '1';
+                };
+                nextImage.onerror = () => {
+                    mainImage.src = defaultEarringImage;
+                    mainImage.style.opacity = '1';
+                };
+                nextImage.src = color.image || defaultEarringImage;
+            }
+            if (nameNode) nameNode.textContent = color.name;
+            if (descNode) descNode.textContent = color.desc || '';
+            document.querySelectorAll('[data-margarita-swatch]').forEach((btn, btnIndex) => {
+                btn.classList.toggle('active', btnIndex === index);
+            });
+        };
+
+
+        function setActiveEarringSwatch(key, activeIndex) {
+            document.querySelectorAll(`[data-earring-key="${key}"][data-earring-swatch]`).forEach((btn) => {
+                const isActive = Number(btn.dataset.earringSwatch) === Number(activeIndex);
+                btn.classList.toggle('active', isActive);
+                btn.classList.toggle('border-[#d4af37]', isActive);
+                btn.classList.toggle('shadow-[0_0_0_3px_rgba(212,175,55,0.12)]', isActive);
+            });
+        }
+
+        function selectEarringColor(key, index) {
+            const model = catalog[key];
+            if (!model || !Array.isArray(model.colors) || !model.colors[index]) return;
+
+            const color = model.colors[index];
+            const image = document.querySelector(`[data-earring-image="${key}"]`);
+            const name = document.querySelector(`[data-earring-color-name="${key}"]`);
+            const desc = document.querySelector(`[data-earring-color-desc="${key}"]`);
+
+            if (image) {
+                image.style.opacity = '0';
+                window.setTimeout(() => {
+                    image.src = color.image || (model.images && model.images[0]) || defaultEarringImage;
+                    image.alt = `${model.title} ${color.name}`;
+                    image.style.opacity = '1';
+                }, 150);
+            }
+
+            if (name) name.textContent = color.name || model.title;
+            if (desc) desc.textContent = color.desc || model.desc || '';
+
+            setActiveEarringSwatch(key, index);
+        }
+
+        function initAllEarringColors() {
+            Object.entries(catalog).forEach(([key, model]) => {
+                if (Array.isArray(model.colors) && model.colors.length) {
+                    selectEarringColor(key, 0);
+                }
+            });
+        }
+
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(updateResponsiveCanvases, 120);
