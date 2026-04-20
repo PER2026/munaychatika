@@ -2840,18 +2840,7 @@ viewBox="0 0 21000 29700"
             })();
             group.querySelectorAll('path').forEach(p => {
                 const cls = p.getAttribute('class') || '';
-                const isTopConnector = p.parentElement === group;
                 const hasVisibleFill = !cls.includes('fil4') && p.getAttribute('fill') !== 'none';
-                if (isTopConnector) {
-                    p.style.fill = '#a9abae';
-                    p.style.stroke = '#7f8489';
-                    p.style.strokeWidth = '58';
-                    p.style.strokeOpacity = '1';
-                    p.style.strokeLinejoin = 'round';
-                    p.style.strokeLinecap = 'round';
-                    p.style.transition = 'stroke 260ms ease, fill 260ms ease';
-                    return;
-                }
                 if (hasVisibleFill) p.style.fill = color;
                 if (cls.includes('str0')) {
                     p.style.stroke = '#000000';
