@@ -266,6 +266,39 @@
             text-align: left; transition: all 0.3s ease; font-weight: 600;
         }
         .layer-btn.active { border-color: var(--gold); background: #faf9f6; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1); }
+
+
+        .customizer-model-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 1rem;
+            border-radius: 1.25rem;
+            text-align: left;
+            transition: all 0.35s ease;
+            font-weight: 600;
+        }
+        .customizer-model-card.active {
+            border-color: var(--gold);
+            background: linear-gradient(180deg, #fffdf7 0%, #faf7ef 100%);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.14);
+        }
+        .customizer-model-view { display: none; }
+        .customizer-model-view.active { display: flex; }
+        .customizer-editorial-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(0.75rem, 2vw, 1.5rem);
+        }
+        .customizer-editorial-frame svg {
+            width: min(100%, 520px);
+            height: auto;
+            overflow: visible;
+            display: block;
+            filter: drop-shadow(0 25px 40px rgba(0,0,0,0.12));
+        }
         
         .btn-gold-solid {
             background-color: var(--gold);
@@ -1250,7 +1283,7 @@
     ========================================================= -->
     <section id="page-collection" class="view-section pt-24 md:pt-32 pb-24 md:pb-40 bg-neutral-50 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
-            <div class="max-w-3xl mb-16 md:24 font-bold text-black">
+            <div class="max-w-3xl mb-16 md:mb-24 font-bold text-black">
                 <div class="flex items-center mb-6 font-bold text-black">
                     <div class="line-accent"></div>
                     <span class="text-[10px] uppercase tracking-[0.4em] text-neutral-400 font-semibold font-bold">Cusco • Edición 2026</span>
@@ -1261,9 +1294,9 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-24 md:32">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-24 md:mb-32">
                 <div onclick="showPage('earring-selection')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
-                    <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                    <div class="aspect-square bg-neutral-900 mb-6 md:mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
                         <img src="https://images.unsplash.com/photo-1535633302704-b02f4f145f5a?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Modelos</span>
@@ -1276,7 +1309,7 @@
                 </div>
 
                 <div onclick="handleNecklaceSelect('gargantilla')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
-                    <div class="aspect-square bg-neutral-800 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                    <div class="aspect-square bg-neutral-800 mb-6 md:mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
                         <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Detalles</span>
@@ -1289,7 +1322,7 @@
                 </div>
 
                 <div onclick="handleHookSelect('margarita')" class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100">
-                    <div class="aspect-square bg-neutral-900 mb-6 md:8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
+                    <div class="aspect-square bg-neutral-900 mb-6 md:mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
                         <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" loading="lazy" decoding="async">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Ganchos</span>
@@ -1414,7 +1447,7 @@
     ========================================================= -->
     <section id="page-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
-            <button onclick="showPage('earring-selection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
+            <button onclick="showPage('earring-selection')" class="mb-8 md:mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center text-black">
                 <div class="relative group text-black">
                     <div id="canvas-container"></div>
@@ -1424,7 +1457,7 @@
                 <div class="text-center lg:text-left text-black">
                     <span id="detail-ref" class="text-[10px] font-semibold uppercase tracking-widest text-neutral-300 font-bold text-black">REF: 001-A</span>
                     <h1 id="detail-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic text-black font-bold">Cargando...</h1>
-                    <p id="detail-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12 text-black"></p>
+                    <p id="detail-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:mb-12 text-black"></p>
                     <a id="earring-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">CONTACTANOS POR WHATSAPP</a>
                 </div>
             </div>
@@ -1445,7 +1478,7 @@
     ========================================================= -->
     <section id="page-image-detail" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black">
         <div class="max-w-7xl mx-auto px-6 md:px-8 text-black">
-            <button onclick="showPage('collection')" class="mb-8 md:12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
+            <button onclick="showPage('collection')" class="mb-8 md:mb-12 text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar</button>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center text-black">
                 <div class="aspect-square bg-neutral-900 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl">
                     <img id="display-image" src="" alt="Pieza MunayChatika" class="w-full h-full object-cover" loading="lazy" decoding="async">
@@ -1453,8 +1486,8 @@
                 <div class="text-center lg:text-left text-black">
                     <span id="display-ref" class="text-[10px] font-semibold uppercase tracking-widest text-neutral-300 font-bold text-black">REF: NC-001</span>
                     <h1 id="display-title" class="text-5xl md:text-7xl serif mb-6 leading-tight italic font-semibold text-black font-bold">Producto</h1>
-                    <p id="display-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:12 font-bold text-black"></p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 border-y border-neutral-100 py-8 md:py-10 mb-8 md:12">
+                    <p id="display-desc" class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8 md:mb-12 font-bold text-black"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 border-y border-neutral-100 py-8 md:py-10 mb-8 md:mb-12">
                         <div>
                             <h4 class="text-[9px] uppercase tracking-widest text-neutral-400 mb-2 font-bold text-black">Inversión</h4>
                             <span id="display-price" class="text-3xl md:text-4xl font-light text-black font-bold">$45.00 <span class="text-sm opacity-40 uppercase">usd</span></span>
@@ -1477,7 +1510,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start text-black">
                 <div class="relative text-black">
                     <div id="custom-canvas-container" class="flex items-center justify-center bg-white">
-                        <div class="relative bg-white aspect-square rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] border border-stone-100 flex items-center justify-center group w-full">
+                        <div class="customizer-model-view active relative bg-white aspect-square rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] border border-stone-100 items-center justify-center group w-full" id="customizer-view-flor">
                             <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#ffffff_0%,_#f9f8f6_100%)] opacity-60"></div>
                             <div class="absolute bottom-[15%] left-1/2 -translate-x-1/2 flex gap-24 opacity-10 blur-2xl">
                                 <div class="w-32 h-8 bg-black rounded-full"></div>
@@ -1503,21 +1536,48 @@
                                 Vista de Estudio Profesional
                             </div>
                         </div>
+
+                        <div class="customizer-model-view relative bg-white aspect-square rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] border border-stone-100 items-center justify-center w-full" id="customizer-view-editorial">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#ffffff_0%,_#f7f4ee_100%)] opacity-90"></div>
+                            <div class="customizer-editorial-frame relative">
+                                <div id="custom-editorial-host" class="w-full h-full flex items-center justify-center"></div>
+                            </div>
+                            <div class="absolute bottom-8 text-[9px] uppercase tracking-[0.4em] text-stone-300 font-sans">
+                                Edición Personalizable Atelier
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="mt-6 flex flex-col gap-4 font-bold text-black">
+                        <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400 text-black">Elige tu modelo personalizable:</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-black">
+                            <button id="customizer-model-btn-flor" onclick="selectCustomizerModel('flor')" class="customizer-model-card active font-bold text-black">
+                                <span class="block text-[8px] uppercase tracking-[0.3em] opacity-50 font-bold text-black">Modelo 01</span>
+                                <span class="text-sm uppercase font-bold text-black">Flor Signature</span>
+                                <span class="block text-[10px] normal-case opacity-60 mt-1">Composición floral ligera y elegante.</span>
+                            </button>
+                            <button id="customizer-model-btn-editorial" onclick="selectCustomizerModel('editorial')" class="customizer-model-card font-bold text-black">
+                                <span class="block text-[8px] uppercase tracking-[0.3em] opacity-50 font-bold text-black">Modelo 02</span>
+                                <span class="text-sm uppercase font-bold text-black">Editorial Petals</span>
+                                <span class="block text-[10px] normal-case opacity-60 mt-1">Tu nuevo diseño de capas con presencia premium.</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="mt-6 flex flex-col gap-4 font-bold text-black">
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400 text-black">Selecciona la capa a editar:</h4>
                         <div class="grid grid-cols-3 gap-3 text-black">
                             <button id="layer-btn-outer" onclick="selectLayer('outer')" class="layer-btn active font-bold text-black">
                                 <span class="block text-[8px] uppercase tracking-tighter opacity-50 font-bold text-black">Capa</span>
-                                <span class="text-xs uppercase font-bold">Exterior</span>
+                                <span class="text-xs uppercase font-bold" id="layer-label-outer">Exterior</span>
                             </button>
                             <button id="layer-btn-middle" onclick="selectLayer('middle')" class="layer-btn font-bold text-black">
                                 <span class="block text-[8px] uppercase tracking-tighter opacity-50 font-bold text-black">Capa</span>
-                                <span class="text-xs uppercase font-bold font-bold text-black">Media</span>
+                                <span class="text-xs uppercase font-bold text-black" id="layer-label-middle">Media</span>
                             </button>
                             <button id="layer-btn-inner" onclick="selectLayer('inner')" class="layer-btn font-bold text-black">
                                 <span class="block text-[8px] uppercase tracking-tighter opacity-50 font-bold text-black">Capa</span>
-                                <span class="text-xs uppercase font-bold font-bold text-black">Interior</span>
+                                <span class="text-xs uppercase font-bold text-black" id="layer-label-inner">Interior</span>
                             </button>
                         </div>
                     </div>
@@ -1525,17 +1585,27 @@
                 <div class="space-y-10 text-black">
                     <div>
                         <span class="text-[10px] uppercase tracking-[0.5em] text-gold mb-3 block font-bold italic text-black">Bespoke Experience</span>
-                        <h2 class="text-5xl serif mb-6 font-bold font-bold text-black">Tu Diseño <br><span class="italic font-light">Munay Exclusive</span></h2>
-                        <p class="text-neutral-500 font-light leading-relaxed text-black">Crea una pieza única seleccionando el color de cada una de las tres capas de cuero artesanal.</p>
+                        <h2 class="text-5xl serif mb-6 font-bold text-black">Tu Diseño <br><span class="italic font-light">Munay Exclusive</span></h2>
+                        <p class="text-neutral-500 font-light leading-relaxed text-black">Ahora puedes personalizar dos modelos exclusivos dentro de la misma experiencia: una flor signature y tu nuevo diseño editorial por capas, con una presentación más elegante y profesional.</p>
                     </div>
                     <div>
-                        <div class="flex justify-between items-center mb-6 text-black">
-                            <h4 class="text-[10px] uppercase tracking-widest font-bold text-black font-bold">Colores Disponibles (17)</h4>
+                        <div class="flex justify-between items-center mb-6 text-black gap-4">
+                            <h4 class="text-[10px] uppercase tracking-widest font-bold text-black">Colores Disponibles (17)</h4>
                             <span id="selected-color-name" class="text-[10px] font-light text-gold italic font-bold text-black">Cargando...</span>
                         </div>
                         <div id="custom-swatch-grid" class="grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-6 gap-4 p-6 bg-white rounded-[2rem] shadow-sm border border-neutral-100 text-black"></div>
                     </div>
-                    <div class="pt-6 font-bold text-black">
+                    <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4 text-black">
+                        <div class="bg-white border border-neutral-100 rounded-[1.75rem] p-6">
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-neutral-400 block mb-3">Acabado</span>
+                            <p class="text-sm text-neutral-500 leading-relaxed">Combinación libre por capas para crear una pieza única con carácter artesanal y lectura premium.</p>
+                        </div>
+                        <div class="bg-white border border-neutral-100 rounded-[1.75rem] p-6">
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-neutral-400 block mb-3">Diseño</span>
+                            <p class="text-sm text-neutral-500 leading-relaxed">El nuevo modelo se integra a la sección sin reemplazar el anterior, conservando la experiencia de personalización.</p>
+                        </div>
+                    </div>
+                    <div class="pt-2 font-bold text-black">
                         <a id="customizer-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-black text-white py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold">SOLICITAR MI DISEÑO PERSONALIZADO</a>
                     </div>
                 </div>
@@ -1706,8 +1776,6 @@
             { name: 'Imperial Plum', hex: 0x8e4585 }, { name: 'Slate Gray', hex: 0x708090 },
             { name: 'Golden Champagne', hex: 0xf7e7ce }
         ];
-
-        let customizerState = { activeLayer: 'outer', outerColor: customizerColors[2], middleColor: customizerColors[16], innerColor: customizerColors[0] };
 
         function toggleMobileMenu(forceState = null) {
             const shouldOpen = typeof forceState === 'boolean'
@@ -2358,12 +2426,157 @@
         let cScene, cCamera, cRenderer, cGroup, outerMat, middleMat, innerMat;
         const SVG_NS = 'http://www.w3.org/2000/svg';
         const CUSTOM_PETAL_COUNT = 16;
+        const CUSTOMIZER_MODEL_META = {
+            flor: {
+                name: 'Flor Signature',
+                layerLabels: { outer: 'Exterior', middle: 'Media', inner: 'Interior' }
+            },
+            editorial: {
+                name: 'Editorial Petals',
+                layerLabels: { outer: 'Pétalo grande', middle: 'Pétalo mediano', inner: 'Pétalo del medio' }
+            }
+        };
+        const EDITORIAL_SVG_TEMPLATE = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#373435;stroke-width:50;stroke-miterlimit:22.9256}
+    .str1 {stroke:black;stroke-width:50;stroke-linecap:square;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil4 {fill:#D2D3D5}
+    .fil0 {fill:#F7ADAF}
+    .fil3 {fill:#ED3237}
+    .fil2 {fill:#A8518A}
+   ]]>
+  </style>
+ </defs>
+ <g id="petalo_x0020_del_x0020_medio">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2448648549184">
+   <path class="fil0 str0" d="M5651.51 14832.25c79.31,-45.82 134.89,-126.49 159.28,-216.06 1.34,-4.95 28.05,-41.74 32.92,-43.28 224.38,-71.19 450.24,-123.72 531.22,-296.05 0.35,-0.74 0.57,-1.63 1.05,-2.26 57.29,-75.01 406.34,101.73 502.28,185.55 2.12,1.86 14.25,7.75 15.13,5.36 103.58,-279.42 934.07,118.49 752.88,394.56 -0.89,1.35 -1.81,2.72 -2.73,4.04 -5.7,8.23 -24.8,43.36 0.4,50.27 1.22,0.33 2.55,0.9 3.97,0.79 246.45,-19.03 288,187.55 351.24,400.91 1.01,3.4 6.53,10.88 3.05,10.23 -8.97,-1.67 27.17,205.1 42.56,290.68 0.7,3.9 5.38,11.21 1.97,10.93 -32.68,-2.7 -70.33,21.77 -80.06,55.41 -2.5,8.63 -7.2,19.66 -1.43,27.42 41.48,55.76 63.85,125.49 69.6,197.97 12.84,161.82 -129.78,450.35 -197.76,403.74 -30.46,-20.89 -55.62,-27.42 -74.95,-24.35 -19.33,3.06 -36.81,14.61 -40.04,33.26 -2.08,12.01 -14.93,26.34 -7.62,37.06 45.49,66.72 23.53,157.05 42.34,171.77 5.28,4.13 -9.57,2.83 -11.68,16.04 -7.86,49.23 -124.08,72.63 -178.97,84.35 -0.65,0.13 -11.68,1.16 -17.68,3.16 -38.93,13.01 -66.11,18.28 -136.02,96.85 -81.58,91.69 -190.12,95.94 -261.54,-14.32 -18.88,-29.15 -70.34,-30.09 -105.38,-13.76 -9.14,4.25 -16.84,9.75 -23.22,15.46 -6.38,5.71 -13.47,10.64 -15.28,16.75 -63,213.04 -251.78,92.29 -399.72,10.83 -2.13,-1.17 -6.45,-0.25 -10.72,-2.78 -56.08,-33.35 -264.17,1.71 -358.9,20.32 -3.47,0.68 -8.84,4.98 -9.94,1.98 -39.81,-107.92 -259.61,-353.34 -384.57,-325.49 -72.49,16.16 -85.67,-56.48 -85.38,-106.49 0.04,-6.69 2.27,-24.01 0.74,-18.61 -3.06,10.79 41.12,-163.13 -112.56,-207.05 -173.84,-49.69 -153.06,-227.73 -160.35,-293.72 -2.16,-19.56 10.28,-201.42 14.62,-322.79 0.31,-8.76 -7.54,-31.46 -7.19,-39.48 0.8,-18.12 -1.33,-40.35 7.38,-56.59 12.09,-22.55 -43.73,-104.75 -77.79,-124.9 -6.4,-3.78 -8.75,-38.26 6.64,-61.28 10.26,-15.36 52.41,-35.99 73.75,-47.93 123.8,-69.23 181.95,-323.34 148.46,-328.5z"/>
+   <path class="fil0 str1" d="M6768.21 14813.37c-209.73,149.42 -184.86,-108.19 -447.48,116.79 -70.1,77.35 -68.62,84.59 -117.08,165.49 -80.81,79.05 -74.33,73.64 -164.66,117.62 -70.93,122.89 -47.05,158.42 -47.05,305.8 -23.69,73.06 -23.36,115.13 -47.04,188.19 50.65,119.8 91.19,138.25 188.18,235.23 1.6,73.33 11,98.41 23.53,164.67 42.04,78.52 126.32,55.76 329.32,258.76 216.91,0 112.26,23.41 211.71,70.56 117.57,55.75 166.61,-30.46 235.23,-47.04l211.72 -23.52 117.61 -117.62c39.67,-21.49 351.01,-78.13 235.24,-376.37l117.62 -117.62c-8.31,-108.14 -32.68,-117.24 -70.58,-211.71 33.9,-104.54 23.53,-144.13 23.53,-258.76 -143.31,-140.19 -168.89,-100.86 -305.81,-258.76 -65.26,-87.06 -129.45,-98.71 -235.23,-141.14 -216.57,-135.02 -47.93,-70.57 -258.76,-70.57z"/>
+   <path class="fil0 str1" d="M6744.69 15142.7c-205.45,4.47 -174.68,39.43 -282.28,164.66 -62.41,57.62 -102.26,83.53 -164.67,141.14 0,325.29 63.59,369.39 258.76,564.57 97.36,0 77.49,4.74 164.66,-23.53 47.22,22.99 94.5,46.63 141.15,70.57 119.43,-12.04 66.53,-11.32 164.66,-117.62 118.22,-11.65 69.39,-0.89 164.67,-94.09 9.88,-52.3 19.23,-85.29 23.52,-141.14 41.74,-70.74 30.68,-39.95 47.04,-117.61 -213.2,-213.21 -88.75,-144.84 -141.14,-258.76l-211.71 -211.71c-71.82,0 -146.49,23.52 -164.66,23.52z"/>
+   <path class="fil1 str1" d="M6956.4 15683.74c-90.53,-28.42 -15.78,-0.01 -70.57,-141.14 -76.61,-30.99 -273.63,-76.31 -235.23,70.57"/>
+  </g>
+  <g id="_2448648549136">
+   <path class="fil0 str0" d="M12818.22 14586.03c79.31,-45.82 134.89,-126.49 159.28,-216.06 1.34,-4.95 28.05,-41.74 32.92,-43.28 224.38,-71.19 450.24,-123.72 531.22,-296.05 0.35,-0.74 0.57,-1.63 1.05,-2.26 57.29,-75.01 406.34,101.73 502.28,185.55 2.12,1.86 14.25,7.75 15.13,5.36 103.58,-279.42 934.07,118.49 752.88,394.56 -0.89,1.35 -1.81,2.72 -2.73,4.04 -5.7,8.23 -24.8,43.36 0.4,50.27 1.22,0.33 2.55,0.9 3.97,0.79 246.45,-19.03 288,187.55 351.24,400.91 1.01,3.4 6.53,10.88 3.05,10.23 -8.97,-1.67 27.17,205.1 42.56,290.68 0.7,3.9 5.38,11.21 1.97,10.93 -32.68,-2.7 -70.33,21.77 -80.06,55.41 -2.5,8.63 -7.2,19.66 -1.43,27.42 41.48,55.76 63.85,125.49 69.6,197.97 12.84,161.82 -129.78,450.35 -197.76,403.74 -30.46,-20.89 -55.62,-27.42 -74.95,-24.35 -19.33,3.06 -36.81,14.61 -40.04,33.26 -2.08,12.01 -14.93,26.34 -7.62,37.06 45.49,66.72 23.53,157.05 42.34,171.77 5.28,4.13 -9.57,2.83 -11.68,16.04 -7.86,49.23 -124.08,72.63 -178.97,84.35 -0.65,0.13 -11.68,1.16 -17.68,3.16 -38.93,13.01 -66.11,18.28 -136.02,96.85 -81.58,91.69 -190.12,95.94 -261.54,-14.32 -18.88,-29.15 -70.34,-30.09 -105.38,-13.76 -9.14,4.25 -16.84,9.75 -23.22,15.46 -6.38,5.71 -13.47,10.64 -15.28,16.75 -63,213.04 -251.78,92.29 -399.72,10.83 -2.13,-1.17 -6.45,-0.25 -10.72,-2.78 -56.08,-33.35 -264.17,1.71 -358.9,20.32 -3.47,0.68 -8.84,4.98 -9.94,1.98 -39.81,-107.92 -259.61,-353.34 -384.57,-325.49 -72.49,16.16 -85.67,-56.48 -85.38,-106.49 0.04,-6.69 2.27,-24.01 0.74,-18.61 -3.06,10.79 41.12,-163.13 -112.56,-207.05 -173.84,-49.69 -153.06,-227.73 -160.35,-293.72 -2.16,-19.56 10.28,-201.42 14.62,-322.79 0.31,-8.76 -7.54,-31.46 -7.19,-39.48 0.8,-18.12 -1.33,-40.35 7.38,-56.59 12.09,-22.55 -43.73,-104.75 -77.79,-124.9 -6.4,-3.78 -8.75,-38.26 6.64,-61.28 10.26,-15.36 52.41,-35.99 73.75,-47.93 123.8,-69.23 181.95,-323.34 148.46,-328.5z"/>
+   <path class="fil0 str1" d="M13934.92 14567.15c-209.73,149.42 -184.86,-108.19 -447.48,116.79 -70.1,77.35 -68.62,84.59 -117.08,165.49 -80.81,79.05 -74.33,73.64 -164.66,117.62 -70.93,122.89 -47.05,158.42 -47.05,305.8 -23.69,73.06 -23.36,115.13 -47.04,188.19 50.65,119.8 91.19,138.25 188.18,235.23 1.6,73.33 11,98.41 23.53,164.67 42.04,78.52 126.32,55.76 329.32,258.76 216.91,0 112.26,23.41 211.71,70.56 117.57,55.75 166.61,-30.46 235.23,-47.04l211.72 -23.52 117.61 -117.62c39.67,-21.49 351.01,-78.13 235.24,-376.37l117.62 -117.62c-8.31,-108.14 -32.68,-117.24 -70.58,-211.71 33.9,-104.54 23.53,-144.13 23.53,-258.76 -143.31,-140.19 -168.89,-100.86 -305.81,-258.76 -65.26,-87.06 -129.45,-98.71 -235.23,-141.14 -216.57,-135.02 -47.93,-70.57 -258.76,-70.57z"/>
+   <path class="fil0 str1" d="M13911.4 14896.48c-205.45,4.47 -174.68,39.43 -282.28,164.66 -62.41,57.62 -102.26,83.53 -164.67,141.14 0,325.29 63.59,369.39 258.76,564.57 97.36,0 77.49,4.74 164.66,-23.53 47.22,22.99 94.5,46.63 141.15,70.57 119.43,-12.04 66.53,-11.32 164.66,-117.62 118.22,-11.65 69.39,-0.89 164.67,-94.09 9.88,-52.3 19.23,-85.29 23.52,-141.14 41.74,-70.74 30.68,-39.95 47.04,-117.61 -213.2,-213.21 -88.75,-144.84 -141.14,-258.76l-211.71 -211.71c-71.82,0 -146.49,23.52 -164.66,23.52z"/>
+   <path class="fil1 str1" d="M14123.11 15437.52c-90.53,-28.42 -15.78,-0.01 -70.57,-141.14 -76.61,-30.99 -273.63,-76.31 -235.23,70.57"/>
+  </g>
+  <path class="fil0 str0" d="M6937.27 11546.17c638.7,-53.58 654.59,-904.33 -29.61,-955.65 -19.49,-1.46 -28.15,30.4 -50.88,34.74 -62.69,11.98 -138.82,7.48 -153.61,-41.13 -0.66,-2.18 -4.56,0.81 -6.82,1.22 -630.79,115.53 -585.04,920.15 -1.89,953.09 1.8,0.1 3.65,0.07 5.45,0.28 86.7,10.33 229.88,7.09 237.36,7.45z"/>
+  <path class="fil0 str0" d="M14103.98 11299.95c638.7,-53.58 654.59,-904.33 -29.61,-955.65 -19.49,-1.46 -28.15,30.4 -50.88,34.74 -62.69,11.98 -138.82,7.48 -153.61,-41.13 -0.66,-2.18 -4.56,0.81 -6.82,1.22 -630.79,115.53 -585.04,920.15 -1.89,953.09 1.8,0.1 3.65,0.07 5.45,0.28 86.7,10.33 229.88,7.09 237.36,7.45z"/>
+ </g>
+ <g id="petalo_x0020_mediano">
+  <metadata id="CorelCorpID_1Corel-Layer"/>
+  <g id="_2448648546160">
+   <path class="fil2 str0" d="M8517.82 17550.14c-217.3,-69.53 -399.09,-88.95 -533.97,-44.65 -155.59,51.09 -352.36,46.26 -577.38,-2 -13.32,-2.86 -24.72,-11.18 -36.66,-17.14 -243.12,-121.41 -351.71,-363.32 -368.7,-694.65 -0.11,-2.27 0.75,-4.86 -0.34,-6.81 -39.32,-70.55 127.46,-131.03 176.67,-31.21 3.79,7.68 11.92,10.41 18.28,16.8 53.25,53.58 164.44,31.77 213.73,-35.51 116.62,-159.18 287.99,-88.17 341.38,-191.14 2.19,-4.24 7.32,-8.66 5.98,-13.63 -15.98,-59.16 -8.14,-103.91 -26.37,-134.12 -49.49,-81.97 34.9,-127.11 101.84,-97.28 94.43,42.08 230.91,-272.26 205.47,-390.31 -2.52,-11.69 -34.12,-155.52 -67.77,-185.04 -26.01,-22.82 13.85,-92.98 76.42,-92.87 7.66,0.02 -23.73,-159.97 -43.03,-255 -2.66,-13.12 -17.39,-35.79 -7.17,-35.08 998.33,69.02 1015.22,1074.41 723.34,1324.88 -7.76,6.65 -14.61,21.65 -23.93,18.35 -203.93,-72.25 -320.71,793.8 -177.79,866.41z"/>
+   <path class="fil2 str0" d="M6645.62 13969.02c46.54,-280.46 200.47,-412.23 392.29,-501.24 250.81,-116.39 530.74,-122.39 853.99,48.34 5.2,2.74 12.59,3.29 15.65,8.39 32.06,53.47 70.03,100.64 132.53,104.59 4.27,0.26 10.12,-3.06 13.18,0.19 88.69,94.27 652.71,77.32 826.47,54.36 57.29,-7.57 54.94,95.68 -21.98,202.36 -80.95,112.28 -53.02,300.27 -28.75,412.62 1.81,8.41 0.24,170.28 2.96,177.48 22.11,58.56 55.52,287.2 -5.34,473.7 -1.69,5.18 -3.65,10.28 -5.29,15.44 -19.88,62.38 -55.13,117.61 -92.94,171.67 -95.48,136.52 -234.18,242.9 -396.46,256.76 -7.92,0.68 -15.53,-0.1 -22.96,-0.26 -81.33,-1.85 -180.98,-42.68 -294,-53.71 -5.13,-0.5 -15.4,3.86 -15.5,-1.31 -2.21,-105.55 -65.15,-252.42 -141.17,-356.66 -76.02,-104.24 -259.65,-26.19 -219.65,-100.92 84.44,-157.73 -27.3,-294.12 -188.35,-384.89 -161.05,-90.77 -371.43,-135.93 -484.29,-111.25 -4.92,1.07 -11.21,5.83 -18.07,12.5 -6.86,6.66 -14.31,15.26 -21.54,23.96 -7.23,8.71 -17.74,15.75 -20.29,24.78 -37.35,132.44 -276.23,-403.14 -260.49,-476.9z"/>
+   <path class="fil2 str0" d="M4968.15 13579.51c425.28,-180.49 957.04,-68.41 1595.29,336.19 10.78,6.84 31.79,18.42 36.06,30.6 18.91,53.85 149.36,373.22 239.24,483.24 5.58,6.83 20.91,23.33 16.22,17.86 -54.67,-63.68 -334.83,-220.3 -462.34,-187.5 -7.02,1.8 -18.72,0.53 -19.62,7.19 -22.21,164.33 -392.19,289.33 -529.29,305.82 -4.82,0.58 -40.05,15.09 -42.84,51.94 -5.97,79 -69.51,158.37 -119.02,192.11 -11.08,7.55 -21.49,12.84 -30.34,15.29 -9.17,2.54 52.04,225.86 -222.21,376.43 -2.14,1.17 -20.16,55.36 -5.97,65.19 90.34,62.63 93.43,155.67 50.24,185.13 -6.02,4.1 -13.21,5.97 -20.64,8.36 -18.85,6.06 -248.42,96.12 -311.08,119.78 -1.85,0.69 -3.69,2.68 -5.11,1.92 -434,-234.99 -549.02,-741.23 -473.91,-965.19 2.06,-6.16 1.39,-14.55 6.62,-17.81 194.72,-121.32 644.42,-664.61 298.7,-1026.55z"/>
+   <path class="fil2 str0" d="M5488.65 15443.49c-55.29,19.03 -104.79,48.18 -157.41,64.93 -167.21,53.22 -262.34,181.6 -376.24,296.99 -332.7,337.05 -277.79,1063.01 -10.37,1542.66 4.4,7.91 9.11,15.63 13.4,23.53 74.41,137.13 286.42,-45.78 434.8,-86.63 24.39,-6.71 47.85,-12.85 67.13,-6.58 460.94,149.88 892.8,886.27 1594.02,-82.67 3.67,-5.08 28.24,-29.12 22.24,-31.18 -21.35,-7.34 -92.7,-332.16 -85.55,-399.4 0.11,-1.04 0.53,-3.88 0.39,-2.97 -16.71,112.63 -177.62,128.93 -366.25,-6.46 -84.25,-60.46 -291.1,-3.29 -374.42,2.43 -11.49,0.79 -23.21,4.24 -26.77,-1.01 -72.58,-106.96 -265.36,-379.74 -380.43,-317.54 -38.95,21.05 -64.84,-15.38 -78.61,-45.41 -1.74,-3.78 -5,-7.27 -4.63,-10.92 33.02,-324.31 -190.07,-254.21 -242.14,-360.67 -85.77,-175.33 32.25,-557.8 -29.16,-579.1z"/>
+  </g>
+  <g id="_2448648546400">
+   <path class="fil2 str0" d="M15684.53 17303.92c-217.3,-69.53 -399.09,-88.95 -533.97,-44.65 -155.59,51.09 -352.36,46.26 -577.38,-2 -13.32,-2.86 -24.72,-11.18 -36.66,-17.14 -243.12,-121.41 -351.71,-363.32 -368.7,-694.65 -0.11,-2.27 0.75,-4.86 -0.34,-6.81 -39.32,-70.55 127.46,-131.03 176.67,-31.21 3.79,7.68 11.92,10.41 18.28,16.8 53.25,53.58 164.44,31.77 213.73,-35.51 116.62,-159.18 287.99,-88.17 341.38,-191.14 2.19,-4.24 7.32,-8.66 5.98,-13.63 -15.98,-59.16 -8.14,-103.91 -26.37,-134.12 -49.49,-81.97 34.9,-127.11 101.84,-97.28 94.43,42.08 230.91,-272.26 205.47,-390.31 -2.52,-11.69 -34.12,-155.52 -67.77,-185.04 -26.01,-22.82 13.85,-92.98 76.42,-92.87 7.66,0.02 -23.73,-159.97 -43.03,-255 -2.66,-13.12 -17.39,-35.79 -7.17,-35.08 998.33,69.02 1015.22,1074.41 723.34,1324.88 -7.76,6.65 -14.61,21.65 -23.93,18.35 -203.93,-72.25 -320.71,793.8 -177.79,866.41z"/>
+   <path class="fil2 str0" d="M13812.33 13722.8c46.54,-280.46 200.47,-412.23 392.29,-501.24 250.81,-116.39 530.74,-122.39 853.99,48.34 5.2,2.74 12.59,3.29 15.65,8.39 32.06,53.47 70.03,100.64 132.53,104.59 4.27,0.26 10.12,-3.06 13.18,0.19 88.69,94.27 652.71,77.32 826.47,54.36 57.29,-7.57 54.94,95.68 -21.98,202.36 -80.95,112.28 -53.02,300.27 -28.75,412.62 1.81,8.41 0.24,170.28 2.96,177.48 22.11,58.56 55.52,287.2 -5.34,473.7 -1.69,5.18 -3.65,10.28 -5.29,15.44 -19.88,62.38 -55.13,117.61 -92.94,171.67 -95.48,136.52 -234.18,242.9 -396.46,256.76 -7.92,0.68 -15.53,-0.1 -22.96,-0.26 -81.33,-1.85 -180.98,-42.68 -294,-53.71 -5.13,-0.5 -15.4,3.86 -15.5,-1.31 -2.21,-105.55 -65.15,-252.42 -141.17,-356.66 -76.02,-104.24 -259.65,-26.19 -219.65,-100.92 84.44,-157.73 -27.3,-294.12 -188.35,-384.89 -161.05,-90.77 -371.43,-135.93 -484.29,-111.25 -4.92,1.07 -11.21,5.83 -18.07,12.5 -6.86,6.66 -14.31,15.26 -21.54,23.96 -7.23,8.71 -17.74,15.75 -20.29,24.78 -37.35,132.44 -276.23,-403.14 -260.49,-476.9z"/>
+   <path class="fil2 str0" d="M12134.86 13333.29c425.28,-180.49 957.04,-68.41 1595.29,336.19 10.78,6.84 31.79,18.42 36.06,30.6 18.91,53.85 149.36,373.22 239.24,483.24 5.58,6.83 20.91,23.33 16.22,17.86 -54.67,-63.68 -334.83,-220.3 -462.34,-187.5 -7.02,1.8 -18.72,0.53 -19.62,7.19 -22.21,164.33 -392.19,289.33 -529.29,305.82 -4.82,0.58 -40.05,15.09 -42.84,51.94 -5.97,79 -69.51,158.37 -119.02,192.11 -11.08,7.55 -21.49,12.84 -30.34,15.29 -9.17,2.54 52.04,225.86 -222.21,376.43 -2.14,1.17 -20.16,55.36 -5.97,65.19 90.34,62.63 93.43,155.67 50.24,185.13 -6.02,4.1 -13.21,5.97 -20.64,8.36 -18.85,6.06 -248.42,96.12 -311.08,119.78 -1.85,0.69 -3.69,2.68 -5.11,1.92 -434,-234.99 -549.02,-741.23 -473.91,-965.19 2.06,-6.16 1.39,-14.55 6.62,-17.81 194.72,-121.32 644.42,-664.61 298.7,-1026.55z"/>
+   <path class="fil2 str0" d="M12655.36 15197.27c-55.29,19.03 -104.79,48.18 -157.41,64.93 -167.21,53.22 -262.34,181.6 -376.24,296.99 -332.7,337.05 -277.79,1063.01 -10.37,1542.66 4.4,7.91 9.11,15.63 13.4,23.53 74.41,137.13 286.42,-45.78 434.8,-86.63 24.39,-6.71 47.85,-12.85 67.13,-6.58 460.94,149.88 892.8,886.27 1594.02,-82.67 3.67,-5.08 28.24,-29.12 22.24,-31.18 -21.35,-7.34 -92.7,-332.16 -85.55,-399.4 0.11,-1.04 0.53,-3.88 0.39,-2.97 -16.71,112.63 -177.62,128.93 -366.25,-6.46 -84.25,-60.46 -291.1,-3.29 -374.42,2.43 -11.49,0.79 -23.21,4.24 -26.77,-1.01 -72.58,-106.96 -265.36,-379.74 -380.43,-317.54 -38.95,21.05 -64.84,-15.38 -78.61,-45.41 -1.74,-3.78 -5,-7.27 -4.63,-10.92 33.02,-324.31 -190.07,-254.21 -242.14,-360.67 -85.77,-175.33 32.25,-557.8 -29.16,-579.1z"/>
+  </g>
+ </g>
+ <g id="petalo_x0020_grande">
+  <metadata id="CorelCorpID_2Corel-Layer"/>
+  <g id="_2448648530656">
+   <path class="fil3 str0" d="M6750.68 11940.34c-39.36,343.49 -199.02,558.08 -319.94,594.03 -7.73,2.3 -32.5,27.15 -75.63,27.61 -161.99,1.72 -383.55,55.78 -451.14,76.73 -612.98,190.07 -572.31,702.37 -571.28,840.69 0.14,18.81 284.48,14.22 549.2,85.96 283.65,76.87 668.99,332.23 709.94,372.8 0.19,0.18 52.13,86.2 66.47,100.21 14.42,14.1 -8.7,-43.86 -4.7,-68.25 15.1,-92.14 22.63,-122.95 52.69,-206.69 147.39,-410.55 1001.34,-495.23 1274.32,-157.35 5.87,7.27 89.71,52.24 100.27,22.41 186.71,-527.48 -1158.67,-1705.5 -1330.2,-1688.15z"/>
+   <path class="fil3 str0" d="M8662.81 16707.03c528.87,192.64 1295.07,-588.62 1243.18,-912.41 -4.76,-29.69 -18.18,-17.37 -19.08,-17.63 -256.89,-75.02 -413.09,-197.81 -543.97,-444.7 -103.87,-195.92 0.63,-476.89 -73.33,-662.28 -87.15,-218.43 -423.73,-466.09 -421.38,-372.3 2.04,81.37 -18.7,159.96 -1.87,230.06 119.54,497.85 -251.47,849.46 -484.86,863.16 -1.06,0.06 -0.14,38.8 38.12,50.22 594.91,177.7 594.61,1091.76 263.19,1265.88z"/>
+   <path class="fil3 str0" d="M5032.57 14133.18c-657.17,-131.64 -1274.5,471.3 -1292.05,781.34 -0.96,16.97 -16.23,54.23 6.08,59.2 250.38,55.78 581.87,387.21 655.31,713.19 96.45,428.09 85.32,808.63 299.24,913.88 5.28,2.59 40.91,20.92 36.49,-7.42 -21.38,-137.2 15.24,-410.07 102.96,-611.66 82.02,-188.49 242.95,-322.8 323.06,-374.38 1.52,-0.98 -5.94,-12.5 -23,-21.59 -94.83,-50.54 -166.64,-115.85 -226.82,-176 -120.17,-120.14 -160.41,-207.11 -200.11,-320.52 -19.79,-56.51 -37.38,-122.91 -52.18,-192.67 -23.9,-112.6 -29.4,-229.08 17.9,-290.49 28.44,-36.91 91.22,-68.47 123.46,-102.66 178.62,-189.37 310.57,-368.74 229.66,-370.22z"/>
+   <path class="fil3 str0" d="M7086.23 17163.31c-341.04,390.57 -393.63,493.47 -746.07,525.55 -16.06,1.46 -32.32,-1.63 -48.47,-3.25 -173.66,-17.43 -347.64,-97.03 -493.99,-235.8 -49.19,-46.64 -177.67,-109.62 -245.04,-148.19 -27.93,-15.98 -51.27,-9.86 -51.27,-9.66 21.47,463.36 544.57,1109.89 1123.08,1370.19 18.84,8.47 83.06,25.72 63.95,11.93 -146.38,-105.65 -80.36,-277.52 82.67,-455.82 24.13,-26.4 43.49,-63.13 78.42,-79.43 91.72,-42.79 177.4,-103.9 273.71,-128.12 240.68,-60.52 448.77,-145.96 595.9,-232.21 133.98,-78.55 276.61,-254.56 214.58,-252.52 -154.54,5.1 -362.4,36.12 -519.96,-18.51 -169.89,-58.91 -288.6,-206.39 -327.51,-344.16z"/>
+  </g>
+  <g id="_2449086738384">
+   <path class="fil3 str0" d="M13917.39 11694.12c-39.36,343.49 -199.02,558.08 -319.94,594.03 -7.73,2.3 -32.5,27.15 -75.63,27.61 -161.99,1.72 -383.55,55.78 -451.14,76.73 -612.98,190.07 -572.31,702.37 -571.28,840.69 0.14,18.81 284.48,14.22 549.2,85.96 283.65,76.87 668.99,332.23 709.94,372.8 0.19,0.18 52.13,86.2 66.47,100.21 14.42,14.1 -8.7,-43.86 -4.7,-68.25 15.1,-92.14 22.63,-122.95 52.69,-206.69 147.39,-410.55 1001.34,-495.23 1274.32,-157.35 5.87,7.27 89.71,52.24 100.27,22.41 186.71,-527.48 -1158.67,-1705.5 -1330.2,-1688.15z"/>
+   <path class="fil3 str0" d="M15829.52 16460.81c528.87,192.64 1295.07,-588.62 1243.18,-912.41 -4.76,-29.69 -18.18,-17.37 -19.08,-17.63 -256.89,-75.02 -413.09,-197.81 -543.97,-444.7 -103.87,-195.92 0.63,-476.89 -73.33,-662.28 -87.15,-218.43 -423.73,-466.09 -421.38,-372.3 2.04,81.37 -18.7,159.96 -1.87,230.06 119.54,497.85 -251.47,849.46 -484.86,863.16 -1.06,0.06 -0.14,38.8 38.12,50.22 594.91,177.7 594.61,1091.76 263.19,1265.88z"/>
+   <path class="fil3 str0" d="M12199.28 13886.96c-657.17,-131.64 -1274.5,471.3 -1292.05,781.34 -0.96,16.97 -16.23,54.23 6.08,59.2 250.38,55.78 581.87,387.21 655.31,713.19 96.45,428.09 85.32,808.63 299.24,913.88 5.28,2.59 40.91,20.92 36.49,-7.42 -21.38,-137.2 15.24,-410.07 102.96,-611.66 82.02,-188.49 242.95,-322.8 323.06,-374.38 1.52,-0.98 -5.94,-12.5 -23,-21.59 -94.83,-50.54 -166.64,-115.85 -226.82,-176 -120.17,-120.14 -160.41,-207.11 -200.11,-320.52 -19.79,-56.51 -37.38,-122.91 -52.18,-192.67 -23.9,-112.6 -29.4,-229.08 17.9,-290.49 28.44,-36.91 91.22,-68.47 123.46,-102.66 178.62,-189.37 310.57,-368.74 229.66,-370.22z"/>
+   <path class="fil3 str0" d="M14252.94 16917.09c-341.04,390.57 -393.63,493.47 -746.07,525.55 -16.06,1.46 -32.32,-1.63 -48.47,-3.25 -173.66,-17.43 -347.64,-97.03 -493.99,-235.8 -49.19,-46.64 -177.67,-109.62 -245.04,-148.19 -27.93,-15.98 -51.27,-9.86 -51.27,-9.66 21.47,463.36 544.57,1109.89 1123.08,1370.19 18.84,8.47 83.06,25.72 63.95,11.93 -146.38,-105.65 -80.36,-277.52 82.67,-455.82 24.13,-26.4 43.49,-63.13 78.42,-79.43 91.72,-42.79 177.4,-103.9 273.71,-128.12 240.68,-60.52 448.77,-145.96 595.9,-232.21 133.98,-78.55 276.61,-254.56 214.58,-252.52 -154.54,5.1 -362.4,36.12 -519.96,-18.51 -169.89,-58.91 -288.6,-206.39 -327.51,-344.16z"/>
+  </g>
+ </g>
+ <g id="orejera">
+  <metadata id="CorelCorpID_3Corel-Layer"/>
+  <g id="_2449086744864">
+   <line class="fil1 str1" x1="6511.85" y1="6159.81" x2="6464.81" y2= "6159.81" />
+   <path class="fil1 str1" d="M7523.36 6889.03c-33.17,-175.56 -91.46,-275.5 -188.19,-423.42l-117.61 -117.62c-142.6,-93.25 -218,-133.38 -376.38,-188.18l-94.09 0"/>
+   <path class="fil1 str1" d="M5265.11 7853.49c285.72,-665.08 403.76,-1353.41 940.94,-1623.11 63.57,-29.56 68.7,-33.36 141.14,-47.05"/>
+   <path class="fil1 str1" d="M5194.55 7994.63c-161.1,401.68 -310.23,487.95 -470.48,682.18l-470.46 517.52c-93.89,138.93 -261.65,202.31 -141.14,305.8 101.6,-62.17 499.47,-504.2 588.08,-611.61 79.04,-116.96 199.66,-223.18 305.81,-329.33 530.36,-647.73 612.54,-2145.21 1434.93,-2281.76l376.37 0c172.47,28.99 399.07,202.59 493.99,352.84 38.93,97.06 74.06,176.23 94.1,282.28"/>
+   <path class="fil4 str0" d="M6906.54 8636.39c-3.49,-0.01 5.51,-658.28 1.16,-658.31 -74.75,-0.54 -270.62,-4.36 -285.51,-4.36 -4.75,0 -0.95,557.38 -0.24,657.27 0.06,9.83 284.59,5.4 284.59,5.4z"/>
+   <line class="fil1 str0" x1="6621.89" y1="8099.41" x2="6910.78" y2= "8100.53" />
+   <line class="fil1 str0" x1="6619.86" y1="8186.98" x2="6908.31" y2= "8188.89" />
+   <line class="fil1 str0" x1="6620.1" y1="8287.35" x2="6907.6" y2= "8289.55" />
+   <line class="fil1 str0" x1="6620.38" y1="8360.58" x2="6907.01" y2= "8362.79" />
+   <line class="fil1 str0" x1="6624.11" y1="8459.43" x2="6909.55" y2= "8461.38" />
+   <line class="fil1 str0" x1="6621.35" y1="8541.5" x2="6905.82" y2= "8542.67" />
+   <path class="fil1 str0" d="M6761.6 8644.5c-439.12,44.63 -376.9,626.97 17.59,608.9"/>
+   <path class="fil1 str0" d="M6769.19 9253.4c439.12,-44.63 376.9,-626.97 -17.59,-608.9"/>
+   <path class="fil1 str0" d="M6684.53 9245.38c10.2,91.1 1.19,198.09 -58.71,238.86 -129.26,87.97 -185.36,214.89 -169.56,326.91 15.49,109.84 100.14,205.39 252.73,235.88 2.69,0.53 2.43,-156.41 2.22,-191.19 -0.46,-77.88 166.67,-73.4 177.18,-1.36"/>
+   <path class="fil1 str0" d="M6887.3 9843.03c3.22,-0.81 1.15,211.22 4.33,210.31 217.25,-62.42 353.96,-357.12 52.96,-579.89 -8.31,-6.15 -14.84,-14.34 -21.5,-21.96 -56.77,-64.97 -77.11,-150.68 -58.8,-218.28"/>
+   <path class="fil1 str0" d="M6777.45 9377.31c1.2,142.94 -90.49,178.69 -157.61,250.32 -86.21,92 -4.59,256.43 91.86,304.9"/>
+   <path class="fil1 str0" d="M6777.33 9389.35c-1.2,142.94 93.67,168.24 160.78,239.86 86.2,91.99 47.71,250.18 -48.74,298.65"/>
+   <path class="fil1 str0" d="M6708.99 10047.03c13.67,302.41 7.32,485.89 6.81,534.58 -0.72,68.34 179.32,66.3 177.62,5.44"/>
+   <path class="fil1 str0" d="M6891.63 10053.34c1.46,291.37 2.05,471.79 1.76,541.26"/>
+   <path class="fil1 str0" d="M6933.96 11559.65c-0.36,1.06 -177.44,-7.87 -175.86,6.48 8.35,75.85 -25.92,117.49 -80.6,154.7 -129.24,87.95 -183.84,212.63 -171.43,325.03 7.2,65.3 23.34,106.39 59.15,150.47 14.65,18.03 81.47,84.19 105.25,41.89 85.08,-151.39 59.41,-285.46 70.21,-297.88 36.36,-41.82 267.62,156.22 389.29,239.28"/>
+   <path class="fil1 str0" d="M7125.78 12186.58c3.22,-0.81 134.72,-241.97 -112.61,-457.76 -7.78,-6.78 -14.85,-14.33 -21.5,-21.96 -56.77,-64.96 -72.71,-93.09 -54.4,-160.69"/>
+   <path class="fil1 str0" d="M6846.03 11632.68c1.2,142.94 -87.38,181.77 -157.61,250.32 -84.99,82.96 -83.28,234.67 0.21,297.51"/>
+   <path class="fil1 str0" d="M6845.91 11644.72c-1.2,142.94 102.65,160.81 160.78,239.86 32.66,44.4 66.74,133.91 18.68,225.39"/>
+   <path class="fil1 str0" d="M6741.8 7975.69c3.23,-1.28 -4.02,-79.01 6.57,-124.53 4.88,-20.95 28.93,-42.3 30.38,-42.89 511.31,-207.86 707.12,-554.32 587.38,-1039.26"/>
+   <path class="fil1 str0" d="M6857.31 7977.51c5.87,-2.33 -2.89,-56.42 4.8,-66.33 3.03,-3.92 43.03,-20.08 44.52,-20.7 411.49,-170.29 592.51,-432.61 612.07,-785.31 3.71,-66.86 21.16,-147.15 2.25,-228.55 -1.36,-5.88 -18.2,-75.63 -19.67,-81.58"/>
+  </g>
+  <g id="_2449086747840">
+   <line class="fil1 str1" x1="13678.56" y1="5913.59" x2="13631.52" y2= "5913.59" />
+   <path class="fil1 str1" d="M14690.07 6642.81c-33.17,-175.56 -91.46,-275.5 -188.19,-423.42l-117.61 -117.62c-142.6,-93.25 -218,-133.38 -376.38,-188.18l-94.09 0"/>
+   <path class="fil1 str1" d="M12431.82 7607.27c285.72,-665.08 403.76,-1353.41 940.94,-1623.11 63.57,-29.56 68.7,-33.36 141.14,-47.05"/>
+   <path class="fil1 str1" d="M12361.26 7748.41c-161.1,401.68 -310.23,487.95 -470.48,682.18l-470.46 517.52c-93.89,138.93 -261.65,202.31 -141.14,305.8 101.6,-62.17 499.47,-504.2 588.08,-611.61 79.04,-116.96 199.66,-223.18 305.81,-329.33 530.36,-647.73 612.54,-2145.21 1434.93,-2281.76l376.37 0c172.47,28.99 399.07,202.59 493.99,352.84 38.93,97.06 74.06,176.23 94.1,282.28"/>
+   <path class="fil4 str0" d="M14073.25 8390.17c-3.49,-0.01 5.51,-658.28 1.16,-658.31 -74.75,-0.54 -270.62,-4.36 -285.51,-4.36 -4.75,0 -0.95,557.38 -0.24,657.27 0.06,9.83 284.59,5.4 284.59,5.4z"/>
+   <line class="fil1 str0" x1="13788.6" y1="7853.19" x2="14077.49" y2= "7854.31" />
+   <line class="fil1 str0" x1="13786.57" y1="7940.76" x2="14075.02" y2= "7942.67" />
+   <line class="fil1 str0" x1="13786.81" y1="8041.13" x2="14074.31" y2= "8043.33" />
+   <line class="fil1 str0" x1="13787.09" y1="8114.36" x2="14073.72" y2= "8116.57" />
+   <line class="fil1 str0" x1="13790.82" y1="8213.21" x2="14076.26" y2= "8215.16" />
+   <line class="fil1 str0" x1="13788.06" y1="8295.28" x2="14072.53" y2= "8296.45" />
+   <path class="fil1 str0" d="M13928.31 8398.28c-439.12,44.63 -376.9,626.97 17.59,608.9"/>
+   <path class="fil1 str0" d="M13935.9 9007.18c439.12,-44.63 376.9,-626.97 -17.59,-608.9"/>
+   <path class="fil1 str0" d="M13851.24 8999.16c10.2,91.1 1.19,198.09 -58.71,238.86 -129.26,87.97 -185.36,214.89 -169.56,326.91 15.49,109.84 100.14,205.39 252.73,235.88 2.69,0.53 2.43,-156.41 2.22,-191.19 -0.46,-77.88 166.67,-73.4 177.18,-1.36"/>
+   <path class="fil1 str0" d="M14054.01 9596.81c3.22,-0.81 1.15,211.22 4.33,210.31 217.25,-62.42 353.96,-357.12 52.96,-579.89 -8.31,-6.15 -14.84,-14.34 -21.5,-21.96 -56.77,-64.97 -77.11,-150.68 -58.8,-218.28"/>
+   <path class="fil1 str0" d="M13944.16 9131.09c1.2,142.94 -90.49,178.69 -157.61,250.32 -86.21,92 -4.59,256.43 91.86,304.9"/>
+   <path class="fil1 str0" d="M13944.04 9143.13c-1.2,142.94 93.67,168.24 160.78,239.86 86.2,91.99 47.71,250.18 -48.74,298.65"/>
+   <path class="fil1 str0" d="M13875.7 9800.81c13.67,302.41 7.32,485.89 6.81,534.58 -0.72,68.34 179.32,66.3 177.62,5.44"/>
+   <path class="fil1 str0" d="M14058.34 9807.12c1.46,291.37 2.05,471.79 1.76,541.26"/>
+   <path class="fil1 str0" d="M14100.67 11313.43c-0.36,1.06 -177.44,-7.87 -175.86,6.48 8.35,75.85 -25.92,117.49 -80.6,154.7 -129.24,87.95 -183.84,212.63 -171.43,325.03 7.2,65.3 23.34,106.39 59.15,150.47 14.65,18.03 81.47,84.19 105.25,41.89 85.08,-151.39 59.41,-285.46 70.21,-297.88 36.36,-41.82 267.62,156.22 389.29,239.28"/>
+   <path class="fil1 str0" d="M14292.49 11940.36c3.22,-0.81 134.72,-241.97 -112.61,-457.76 -7.78,-6.78 -14.85,-14.33 -21.5,-21.96 -56.77,-64.96 -72.71,-93.09 -54.4,-160.69"/>
+   <path class="fil1 str0" d="M14012.74 11386.46c1.2,142.94 -87.38,181.77 -157.61,250.32 -84.99,82.96 -83.28,234.67 0.21,297.51"/>
+   <path class="fil1 str0" d="M14012.62 11398.5c-1.2,142.94 102.65,160.81 160.78,239.86 32.66,44.4 66.74,133.91 18.68,225.39"/>
+   <path class="fil1 str0" d="M13908.51 7729.47c3.23,-1.28 -4.02,-79.01 6.57,-124.53 4.88,-20.95 28.93,-42.3 30.38,-42.89 511.31,-207.86 707.12,-554.32 587.38,-1039.26"/>
+   <path class="fil1 str0" d="M14024.02 7731.29c5.87,-2.33 -2.89,-56.42 4.8,-66.33 3.03,-3.92 43.03,-20.08 44.52,-20.7 411.49,-170.29 592.51,-432.61 612.07,-785.31 3.71,-66.86 21.16,-147.15 2.25,-228.55 -1.36,-5.88 -18.2,-75.63 -19.67,-81.58"/>
+  </g>
+ </g>
+</svg>`;
+
+        let customizerState = { activeLayer: 'outer', activeModel: 'flor', outerColor: customizerColors[2], middleColor: customizerColors[16], innerColor: customizerColors[0] };
 
         function openCustomizer() {
             showPage('customizer');
             initCustomizer3D();
             renderCustomizerSwatches();
             updateCustomizerUI();
+        }
+        function selectCustomizerModel(model) {
+            customizerState.activeModel = model;
+            document.querySelectorAll('.customizer-model-card').forEach(el => el.classList.remove('active'));
+            const btn = document.getElementById(`customizer-model-btn-${model}`);
+            if (btn) btn.classList.add('active');
+            document.querySelectorAll('.customizer-model-view').forEach(el => el.classList.remove('active'));
+            const view = document.getElementById(`customizer-view-${model}`);
+            if (view) view.classList.add('active');
+            updateCustomizerUI();
+            updateCustomizerSVG();
         }
         function selectLayer(layer) {
             customizerState.activeLayer = layer;
@@ -2372,15 +2585,26 @@
             if(el) el.classList.add('active');
             updateCustomizerUI();
         }
+        function updateCustomizerLayerLabels() {
+            const meta = CUSTOMIZER_MODEL_META[customizerState.activeModel];
+            if (!meta) return;
+            ['outer','middle','inner'].forEach(key => {
+                const el = document.getElementById(`layer-label-${key}`);
+                if (el) el.textContent = meta.layerLabels[key];
+            });
+        }
         function updateCustomizerUI() {
+            updateCustomizerLayerLabels();
+            const meta = CUSTOMIZER_MODEL_META[customizerState.activeModel];
             const currentColor = customizerState[`${customizerState.activeLayer}Color`];
+            const currentLayerLabel = meta?.layerLabels?.[customizerState.activeLayer] || customizerState.activeLayer;
             const n = document.getElementById('selected-color-name');
-            if (n) n.innerText = `${customizerState.activeLayer.toUpperCase()}: ${currentColor.name}`;
+            if (n) n.innerText = `${meta?.name || 'Modelo'} · ${currentLayerLabel}: ${currentColor.name}`;
             document.querySelectorAll('.custom-swatch').forEach(s => {
                 s.classList.toggle('active', parseInt(s.dataset.hex, 10) === currentColor.hex);
             });
             const l = document.getElementById('customizer-whatsapp-link');
-            if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, he diseñado mi joya personalizada.%0AExterior: ${customizerState.outerColor.name}%0AMedia: ${customizerState.middleColor.name}%0AInterior: ${customizerState.innerColor.name}`;
+            if (l) l.href = `https://wa.me/${WHATSAPP_NUM}?text=Hola MunayChatika, he diseñado mi joya personalizada.%0AModelo: ${meta?.name || 'Personalizado'}%0A${meta.layerLabels.outer}: ${customizerState.outerColor.name}%0A${meta.layerLabels.middle}: ${customizerState.middleColor.name}%0A${meta.layerLabels.inner}: ${customizerState.innerColor.name}`;
         }
         function renderCustomizerSwatches() {
             const grid = document.getElementById('custom-swatch-grid');
@@ -2469,23 +2693,97 @@
             });
             group.appendChild(detail);
         }
+        function ensureEditorialSvg() {
+            const host = document.getElementById('custom-editorial-host');
+            if (!host) return null;
+            let svg = host.querySelector('svg');
+            if (!svg) {
+                host.innerHTML = EDITORIAL_SVG_TEMPLATE;
+                svg = host.querySelector('svg');
+                if (svg) {
+                    svg.removeAttribute('width');
+                    svg.removeAttribute('height');
+                    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                    svg.style.width = '100%';
+                    svg.style.height = 'auto';
+                    svg.style.display = 'block';
+                }
+            }
+            return svg;
+        }
+        function setEditorialPaths(group, fillColor) {
+            if (!group) return;
+            group.querySelectorAll('path').forEach(p => {
+                const cls = p.getAttribute('class') || '';
+                if (!cls.includes('fil1')) p.style.fill = fillColor;
+                if (cls.includes('str0') || cls.includes('str1')) {
+                    p.style.stroke = '#000000';
+                    p.style.strokeWidth = cls.includes('str1') ? '62' : '58';
+                    p.style.strokeOpacity = '1';
+                    p.style.strokeLinejoin = 'round';
+                    p.style.strokeLinecap = 'round';
+                }
+            });
+        }
+        function setEditorialMiddle(group, color) {
+            if (!group) return;
+            const lum = (() => {
+                const c = color.replace('#','');
+                const r = parseInt(c.slice(0,2),16);
+                const g = parseInt(c.slice(2,4),16);
+                const b = parseInt(c.slice(4,6),16);
+                return 0.299*r + 0.587*g + 0.114*b;
+            })();
+            group.querySelectorAll('path').forEach(p => {
+                const cls = p.getAttribute('class') || '';
+                if (cls.includes('fil0')) p.style.fill = color;
+                if (cls.includes('str0')) {
+                    p.style.stroke = '#000000';
+                    p.style.strokeWidth = '58';
+                    p.style.strokeOpacity = '1';
+                    p.style.strokeLinejoin = 'round';
+                    p.style.strokeLinecap = 'round';
+                }
+                if (cls.includes('fil1') && cls.includes('str1')) {
+                    p.style.fill = 'none';
+                    p.style.stroke = lum < 105 ? '#ffffff' : '#000000';
+                    p.style.strokeWidth = '62';
+                    p.style.strokeOpacity = '1';
+                    p.style.strokeLinejoin = 'round';
+                    p.style.strokeLinecap = 'round';
+                }
+            });
+        }
+        function updateEditorialSvg() {
+            const svg = ensureEditorialSvg();
+            if (!svg) return;
+            const medio = svg.querySelector('#petalo_x0020_del_x0020_medio');
+            const mediano = svg.querySelector('#petalo_x0020_mediano');
+            const grande = svg.querySelector('#petalo_x0020_grande');
+            setEditorialMiddle(medio, hexNumberToCss(customizerState.innerColor.hex));
+            setEditorialPaths(mediano, hexNumberToCss(customizerState.middleColor.hex));
+            setEditorialPaths(grande, hexNumberToCss(customizerState.outerColor.hex));
+        }
         function updateCustomizerSVG() {
-            const colors = {
+            const flowerColors = {
                 outerPetals: hexNumberToCss(customizerState.outerColor.hex),
                 innerPetals: hexNumberToCss(customizerState.middleColor.hex),
                 center: hexNumberToCss(customizerState.innerColor.hex)
             };
-            createFlower('flower1', colors);
-            createFlower('flower2', colors);
+            createFlower('flower1', flowerColors);
+            createFlower('flower2', flowerColors);
             const bead1 = document.getElementById('bead1');
             const bead2 = document.getElementById('bead2');
-            if (bead1) bead1.setAttribute('fill', colors.center);
-            if (bead2) bead2.setAttribute('fill', colors.center);
+            if (bead1) bead1.setAttribute('fill', flowerColors.center);
+            if (bead2) bead2.setAttribute('fill', flowerColors.center);
+            updateEditorialSvg();
         }
         function initCustomizer3D() {
             const cont = document.getElementById('custom-canvas-container');
             if (!cont) return;
+            ensureEditorialSvg();
             updateCustomizerSVG();
+            selectCustomizerModel(customizerState.activeModel || 'flor');
         }
 
         /* =========================================================
@@ -2612,9 +2910,9 @@
             const margaritaData = catalog && catalog.margarita;
             if (!margaritaData || !margaritaData.colors || !margaritaData.colors[index]) return;
             const color = margaritaData.colors[index];
-            const mainImage = document.getElementById('margarita-main-image');
-            const nameNode = document.getElementById('margarita-color-name');
-            const descNode = document.getElementById('margarita-color-desc');
+            const mainImage = document.querySelector('[data-earring-image="margarita"]');
+            const nameNode = document.querySelector('[data-earring-color-name="margarita"]');
+            const descNode = document.querySelector('[data-earring-color-desc="margarita"]');
 
             if (mainImage) {
                 mainImage.style.opacity = '0.25';
@@ -2635,9 +2933,10 @@
             if (nameNode) nameNode.textContent = color.name || 'Margaritas';
             if (descNode) descNode.textContent = color.desc || margaritaData.desc || '';
 
-            document.querySelectorAll('[data-margarita-swatch]').forEach((btn, btnIndex) => {
-                btn.classList.toggle('active', btnIndex === index);
-                btn.setAttribute('aria-pressed', String(btnIndex === index));
+            document.querySelectorAll('[data-earring-key="margarita"][data-earring-swatch]').forEach((btn) => {
+                const isActive = Number(btn.dataset.earringSwatch) === Number(index);
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', String(isActive));
             });
         };
 
