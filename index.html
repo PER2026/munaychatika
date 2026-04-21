@@ -602,6 +602,16 @@
                 font-size: 0.62rem;
                 line-height: 1.35;
             }
+
+            #customizer-mobile-controls #custom-swatch-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+                padding: 1rem;
+                gap: 0.85rem;
+            }
+
+            #customizer-mobile-controls #customizer-layer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1351,6 +1361,8 @@
                         </div>
                     </div>
 
+                    <div id="customizer-mobile-controls" class="md:hidden mt-5 space-y-5"></div>
+
                     <div class="mt-6 flex flex-col gap-4 font-bold text-black">
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400 text-black">Elige tu modelo personalizable:</h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5 text-black">
@@ -1393,14 +1405,15 @@
                         <h2 class="text-5xl serif mb-6 font-bold text-black">Tu Diseño <br><span class="italic font-light">Munay Exclusive</span></h2>
                         <p class="text-neutral-500 font-light leading-relaxed text-black">Ahora puedes personalizar cinco modelos exclusivos dentro de la misma experiencia, incluyendo Rosas Atelier, Hojas Duales y Hojas Cascada con capas independientes para una personalización más precisa y elegante.</p>
                     </div>
-                    <div>
+                    <div id="customizer-desktop-controls" class="space-y-6">
+                        <div id="customizer-color-panel">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 text-black gap-2 sm:gap-4">
                             <h4 class="text-[10px] uppercase tracking-widest font-bold text-black">Colores Disponibles (15)</h4>
                             <span id="selected-color-name" class="text-[10px] font-light text-gold italic font-bold text-black">Cargando...</span>
                         </div>
                         <div id="custom-swatch-grid" class="grid grid-cols-6 sm:grid-cols-9 lg:grid-cols-6 gap-4 p-6 bg-white rounded-[2rem] shadow-sm border border-neutral-100 text-black"></div>
-                    </div>
-                    <div class="pt-2 flex flex-col gap-4 text-black">
+                        </div>
+                    <div id="customizer-layer-panel" class="pt-2 flex flex-col gap-4 text-black">
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-neutral-400 text-black">Selecciona la capa a editar:</h4>
                         <div id="customizer-layer-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 text-black">
                             <button id="layer-btn-outer" onclick="selectLayer('outer')" class="layer-btn active font-bold text-black">
@@ -1420,6 +1433,7 @@
                                 <span class="text-xs uppercase font-bold text-black" id="layer-label-core">Centro</span>
                             </button>
                         </div>
+                    </div>
                     </div>
                     <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4 text-black">
                         <div class="bg-white border border-neutral-100 rounded-[1.75rem] p-6">
@@ -2808,6 +2822,23 @@ viewBox="0 0 21000 29700"
                 customizerState.activeLayer = ['outer','middle','inner','core'].find(key => Object.prototype.hasOwnProperty.call(meta.layerLabels, key)) || 'outer';
             }
         }
+
+        function relocateCustomizerControls() {
+            const mobileTarget = document.getElementById('customizer-mobile-controls');
+            const desktopTarget = document.getElementById('customizer-desktop-controls');
+            const colorPanel = document.getElementById('customizer-color-panel');
+            const layerPanel = document.getElementById('customizer-layer-panel');
+            if (!mobileTarget || !desktopTarget || !colorPanel || !layerPanel) return;
+
+            if (window.innerWidth <= 767) {
+                if (colorPanel.parentElement !== mobileTarget) mobileTarget.appendChild(colorPanel);
+                if (layerPanel.parentElement !== mobileTarget) mobileTarget.appendChild(layerPanel);
+            } else {
+                if (colorPanel.parentElement !== desktopTarget) desktopTarget.appendChild(colorPanel);
+                if (layerPanel.parentElement !== desktopTarget) desktopTarget.appendChild(layerPanel);
+            }
+        }
+
         function updateCustomizerUI() {
             updateCustomizerLayerLabels();
             const meta = CUSTOMIZER_MODEL_META[customizerState.activeModel];
@@ -3439,6 +3470,8 @@ viewBox="0 0 21000 29700"
             markImagesForPerformance();
             initReviewsPerformance();
             setMenuA11yState(false);
+            relocateCustomizerControls();
+            window.addEventListener('resize', relocateCustomizerControls);
         });
         let resizeTimer = null;
 
