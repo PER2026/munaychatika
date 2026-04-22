@@ -38,9 +38,11 @@
 &lt;/svg&gt;' rel="icon" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link crossorigin="" href="https://raw.githubusercontent.com" rel="preconnect"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net" rel="dns-prefetch"/>
+<link href="https://images.unsplash.com" rel="dns-prefetch"/>
 <link crossorigin="" href="https://images.unsplash.com" rel="preconnect"/>
-<link as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg" rel="preload"/>
+<link as="image" href="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg" imagesizes="100vw" rel="preload"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@200;300;400;600&amp;display=swap" rel="stylesheet"/>
 <!-- =========================================================
@@ -72,6 +74,19 @@
             max-width: 100%;
             display: block;
             height: auto;
+        }
+
+        img[loading="lazy"] {
+            contain: content;
+        }
+
+        .insta-grid-item,
+        .model-img-card,
+        .riel-card .aspect-square,
+        .customizer-stage-card,
+        #canvas-container {
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 600px;
         }
 
         .view-section,
@@ -308,7 +323,6 @@
             box-shadow: 0 12px 26px rgba(0,0,0,0.18), 0 0 0 1px rgba(212, 175, 55, 0.24);
         }
         .layer-btn.active span { color: inherit !important; }
-
 
         .customizer-model-card {
             background: rgba(255,255,255,0.92);
@@ -665,7 +679,6 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             }
 
-
             #customizer-combo-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 0.8rem !important;
@@ -693,7 +706,6 @@
                 letter-spacing: 0.18em;
             }
         }
-
 
         .combo-card {
             width: 100%;
@@ -1254,8 +1266,6 @@ footer,
     #custom-canvas-container{ border-radius: 1.25rem !important; padding: .8rem !important; }
 }
 
-
-
 /* ===== PREMIUM EDITORIAL V2 ===== */
 :root{
     --mc-editorial-bg:#f8f4ec;
@@ -1413,7 +1423,6 @@ body{
     .glass-nav{background: rgba(252,250,246,0.9) !important;}
     #page-home .bg-neutral-50.rounded-\[3rem\]{border-radius:2rem !important;}
 }
-
 
 /* ===== VOCES MUNAY · FULL LUJO EDITORIAL ===== */
 .munay-testimonials-shell{
@@ -1675,6 +1684,237 @@ body{
     .voice-tag,
     .voice-badge{ font-size:.52rem; }
 }
+
+#page-footer * { color: #d4af37 !important; }
+footer * { color: #d4af37 !important; }
+
+
+/* ===== AJUSTES GLOBALES CELULAR · CHATGPT ===== */
+@media (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+
+    .max-w-7xl,
+    .max-w-6xl,
+    .max-w-5xl,
+    .max-w-4xl,
+    .max-w-3xl,
+    .max-w-2xl {
+        width: 100%;
+    }
+
+    #page-home,
+    #page-about,
+    #page-collection,
+    #page-earring-selection,
+    #page-detail,
+    #page-image-detail,
+    #page-customizer,
+    [id^="page-arete-"],
+    [id^="page-collar-"],
+    [id^="page-gancho-"] {
+        padding-top: 6.25rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    #page-home .mt-40,
+    #page-about .mb-40,
+    #page-about .mt-40,
+    #page-collection .mt-40,
+    #page-collection .mb-24,
+    #page-collection .mb-32,
+    #page-earring-selection .mb-16,
+    #page-detail .mt-16,
+    #page-customizer .mb-14,
+    [id^="page-arete-"] .mt-24,
+    [id^="page-collar-"] .mt-24,
+    [id^="page-gancho-"] .mt-24 {
+        margin-top: 2.25rem !important;
+        margin-bottom: 2.25rem !important;
+    }
+
+    #page-home .py-32,
+    #page-about .p-12,
+    #page-about .p-24,
+    #page-collection .p-8,
+    #page-earring-selection .p-8,
+    #page-detail .p-8,
+    #page-image-detail .p-8,
+    #page-customizer .p-8 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    #page-home h1,
+    #page-about h2,
+    #page-collection h2,
+    #page-earring-selection h2,
+    #page-detail h1,
+    #page-image-detail h1,
+    #page-customizer h2,
+    [id^="page-arete-"] h1,
+    [id^="page-collar-"] h1,
+    [id^="page-gancho-"] h1 {
+        font-size: clamp(2.2rem, 10vw, 3.35rem) !important;
+        line-height: 1.04 !important;
+        word-break: break-word;
+        text-wrap: balance;
+    }
+
+    #page-home p,
+    #page-about p,
+    #page-collection p,
+    #page-earring-selection p,
+    #page-detail p,
+    #page-image-detail p,
+    #page-customizer p,
+    [id^="page-arete-"] p,
+    [id^="page-collar-"] p,
+    [id^="page-gancho-"] p {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+
+    #page-home .grid,
+    #page-about .grid,
+    #page-collection .grid,
+    #page-earring-selection .grid,
+    #page-detail .grid,
+    #page-image-detail .grid,
+    #page-customizer .grid {
+        gap: 1.1rem !important;
+    }
+
+    #page-home .flex.flex-col.sm\:flex-row,
+    #page-detail a.w-full,
+    #page-image-detail a.w-full,
+    #page-customizer #customizer-action-grid {
+        width: 100%;
+    }
+
+    #page-home .flex.flex-col.sm\:flex-row > *,
+    #page-detail a.w-full,
+    #page-image-detail a.w-full,
+    #page-customizer #customizer-action-grid > * {
+        width: 100%;
+    }
+
+    #page-home .order-1.lg\:order-2.aspect-\[4\/5\],
+    #page-image-detail .aspect-square,
+    .model-img-card,
+    .riel-card,
+    .voice-card,
+    .review-card,
+    .care-step,
+    .unboxing-card,
+    #page-about .bg-neutral-900,
+    .munay-testimonials-shell {
+        border-radius: 1.5rem !important;
+    }
+
+    #page-detail #canvas-container,
+    #page-image-detail .aspect-square {
+        min-height: 0 !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+    }
+
+    #swatch-container {
+        left: 50% !important;
+        right: auto !important;
+        bottom: 0.85rem !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - 1rem) !important;
+        max-width: calc(100% - 1rem) !important;
+        padding: 0.75rem !important;
+        gap: 0.5rem !important;
+        border-radius: 1rem !important;
+    }
+
+    #page-detail .absolute.top-4.right-4 {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+        font-size: 0.42rem !important;
+        padding: 0.45rem 0.5rem !important;
+        max-width: 48vw;
+        text-align: center;
+    }
+
+    #style-gallery-section .grid,
+    #detail-images-gallery,
+    .munay-voices-grid,
+    #page-customizer .customizer-model-grid,
+    #customizer-action-grid,
+    #customizer-combo-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .munay-voices-grid {
+        gap: 0.9rem !important;
+    }
+
+    .voice-card,
+    .voice-card.col-4,
+    .voice-card.col-5,
+    .voice-card.col-6,
+    .voice-card.col-7,
+    .voice-card.col-8 {
+        grid-column: span 1 !important;
+        min-height: auto !important;
+        transform: none !important;
+        padding: 1rem !important;
+    }
+
+    .voice-text {
+        max-width: 100% !important;
+        font-size: 0.95rem !important;
+        line-height: 1.75 !important;
+    }
+
+    .reviews-carousel {
+        overflow: hidden;
+    }
+
+    .reviews-track {
+        gap: 0.9rem !important;
+    }
+
+    .review-card {
+        min-width: calc(100vw - 3rem) !important;
+        max-width: calc(100vw - 3rem) !important;
+    }
+
+    .floating-wa {
+        width: 54px !important;
+        height: 54px !important;
+        right: 0.9rem !important;
+        bottom: 0.9rem !important;
+    }
+
+    footer .grid,
+    #page-footer .grid {
+        gap: 1.25rem !important;
+    }
+
+    footer form,
+    footer input,
+    footer button,
+    #page-footer form,
+    #page-footer input,
+    #page-footer button {
+        width: 100%;
+    }
+
+    img,
+    svg,
+    video,
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
 </style>
 </head>
 <body class="antialiased" data-page="home">
@@ -1687,7 +1927,7 @@ body{
     ========================================================= -->
 <!-- Botón WhatsApp Flotante -->
 <a class="floating-wa" href="https://wa.me/51927412063" rel="noopener noreferrer" target="_blank" title="Chatea con nosotros">
-<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+<svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24">
 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.215 3.076.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 4.754c-1.943 0-3.843-.522-5.503-1.508l-.395-.234-4.089 1.072 1.09-3.987-.256-.408C2.518 12.65 1.996 10.662 1.996 8.604c0-4.636 3.774-8.411 8.411-8.411 2.247 0 4.359.875 5.947 2.464 1.588 1.589 2.463 3.701 2.463 5.947 0 4.637-3.774 8.412-8.411 8.412m9.404-14.401C20.125 2.784 17.447.533 14.582.533h-.011C11.192.533 8.358 3.367 8.358 6.757c0 1.08.281 2.134.814 3.057L7.5 15.158l5.441-1.428c.883.481 1.879.735 2.89.735h.011c3.389 0 6.223-2.834 6.223-6.224 0-1.642-.64-3.185-1.801-4.346"></path>
 </svg>
 </a>
@@ -1705,7 +1945,7 @@ body{
 <div class="relative dropdown-parent text-black">
 <button class="btn-luxury flex items-center gap-2 py-2 font-bold text-black" type="button">
                         Aretes 2026
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="absolute left-0 top-full w-[420px] dropdown-menu rounded-[2rem] p-6 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
 <div class="mb-4">
@@ -1725,6 +1965,10 @@ body{
 <span class="serif text-lg block">Margaritas</span>
 <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Esencia Floral</span>
 </button>
+<button class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left" onclick="handleModelSelect('girasoles')" type="button">
+<span class="serif text-lg block">Girasoles</span>
+<span class="text-[9px] text-neutral-400 uppercase tracking-widest">Luz Botánica</span>
+</button>
 <button class="group p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all text-left" onclick="handleModelSelect('tulipan')" type="button">
 <span class="serif text-lg block">Cantus</span>
 <span class="text-[9px] text-neutral-400 uppercase tracking-widest">Elegancia</span>
@@ -1742,22 +1986,32 @@ body{
 <div class="relative dropdown-parent text-black">
 <button class="btn-luxury flex items-center gap-2 py-2 font-bold text-black" type="button">
                         COLLARES
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="absolute left-0 top-full w-[360px] dropdown-menu rounded-[2rem] p-5 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
 <div class="mb-4">
 <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400">Colección</span>
 <h3 class="serif text-2xl italic">Collares</h3>
 </div>
-<div class="grid grid-cols-1 gap-3">
-<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('gargantilla')" type="button">
-<span class="block serif text-xl">Gargantilla Solar</span>
+<div class="grid grid-cols-1 gap-3 max-h-[420px] overflow-y-auto pr-1 scrollbar-hide">
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('alba')" type="button">
+<span class="block serif text-xl">Orbis I – Alba</span>
+<span class="text-[9px] text-neutral-400 uppercase tracking-widest mt-1 block">Colección Orbis Andino</span>
 </button>
-<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('pechera')" type="button">
-<span class="block serif text-xl">Pechera Ritual</span>
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('tierra')" type="button">
+<span class="block serif text-xl">Orbis II – Tierra Viva</span>
 </button>
-<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('minimal')" type="button">
-<span class="block serif text-xl">Minimal Cord</span>
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('eclipse')" type="button">
+<span class="block serif text-xl">Orbis III – Eclipse</span>
+</button>
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('horizonte')" type="button">
+<span class="block serif text-xl">Orbis IV – Horizonte</span>
+</button>
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('fuego')" type="button">
+<span class="block serif text-xl">Orbis V – Fuego Suave</span>
+</button>
+<button class="w-full text-left p-4 rounded-2xl bg-neutral-50 hover:bg-white border border-transparent hover:border-neutral-200 transition-all" onclick="handleNecklaceSelect('nocturne')" type="button">
+<span class="block serif text-xl">Orbis VI – Nocturne</span>
 </button>
 </div>
 </div>
@@ -1765,7 +2019,7 @@ body{
 <div class="relative dropdown-parent text-black">
 <button class="btn-luxury flex items-center gap-2 py-2 font-bold text-black" type="button">
                         GANCHOS
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="absolute left-0 top-full w-[360px] dropdown-menu rounded-[2rem] p-5 backdrop-blur-xl border border-neutral-100 bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.15)] text-black">
 <div class="mb-4">
@@ -1789,7 +2043,7 @@ body{
 <button class="btn-gold-solid px-6 py-2 rounded-full text-[10px] font-bold shadow-md" onclick="openCustomizer()" type="button">DISEÑA TU JOYA</button>
 </div>
 <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú móvil" class="md:hidden p-2 text-black" onclick="toggleMobileMenu()" type="button">
-<svg class="w-6 h-6" fill="none" id="menu-icon" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-6 h-6" fill="none" id="menu-icon" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
@@ -1801,8 +2055,8 @@ body{
     ========================================================= -->
 <!-- Menú Móvil -->
 <div aria-hidden="true" class="fixed inset-0 z-[150] bg-white translate-x-full md:hidden flex flex-col p-8 pt-20 text-black" id="mobile-menu">
-<button aria-controls="mobile-menu" aria-controls="mobile-menu" aria-label="Cerrar menú móvil" class="absolute top-6 right-6 p-2" onclick="toggleMobileMenu()" type="button">
-<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<button aria-controls="mobile-menu" aria-label="Cerrar menú móvil" class="absolute top-6 right-6 p-2" onclick="toggleMobileMenu()" type="button">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="flex flex-col space-y-6 text-xl serif mt-4 text-black">
 <button class="text-left border-b border-neutral-100 pb-4 font-bold" onclick="showPage('home')" type="button">Inicio</button>
@@ -1818,19 +2072,21 @@ body{
 <button class="text-left" onclick="handleModelSelect('rosas')" type="button">Rosas</button>
 <button class="text-left" onclick="handleModelSelect('hojas-coca')" type="button">Hojas de Coca</button>
 <button class="text-left" onclick="handleModelSelect('garras')" type="button">Garras</button>
+<button class="text-left" onclick="handleModelSelect('girasoles')" type="button">Girasoles</button>
 <button class="text-left" onclick="handleModelSelect('tulipan')" type="button">Cantus</button>
 <button class="text-left" onclick="handleModelSelect('margarita')" type="button">Margaritas</button>
 <button class="text-left" onclick="handleModelSelect('rositas')" type="button">Rositas</button>
-<button class="text-left" onclick="handleModelSelect('redondos')" type="button">Redondos</button>
-<button class="text-left" onclick="handleModelSelect('gotas')" type="button">Gotas</button>
-<button class="text-left" onclick="handleModelSelect('colibris')" type="button">Colibríes</button>
 </div>
 </div>
 <div class="py-2">
 <span class="text-[9px] uppercase tracking-widest text-neutral-400 block mb-3 font-bold">Collares</span>
 <div class="flex flex-col space-y-3 pl-4">
-<button class="text-left" onclick="handleNecklaceSelect('gargantilla')" type="button">Gargantilla Solar</button>
-<button class="text-left" onclick="handleNecklaceSelect('pechera')" type="button">Pechera Ritual</button>
+<button class="text-left" onclick="handleNecklaceSelect('alba')" type="button">Orbis I – Alba</button>
+<button class="text-left" onclick="handleNecklaceSelect('tierra')" type="button">Orbis II – Tierra Viva</button>
+<button class="text-left" onclick="handleNecklaceSelect('eclipse')" type="button">Orbis III – Eclipse</button>
+<button class="text-left" onclick="handleNecklaceSelect('horizonte')" type="button">Orbis IV – Horizonte</button>
+<button class="text-left" onclick="handleNecklaceSelect('fuego')" type="button">Orbis V – Fuego Suave</button>
+<button class="text-left" onclick="handleNecklaceSelect('nocturne')" type="button">Orbis VI – Nocturne</button>
 </div>
 </div>
 <div class="py-2">
@@ -1868,7 +2124,7 @@ body{
 </div>
 </div>
 <div class="order-1 lg:order-2 aspect-[4/5] bg-neutral-100 rounded-3xl overflow-hidden shadow-2xl relative font-bold">
-<img alt="Joyas de Cuero" class="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105" decoding="async" fetchpriority="high" loading="eager" src="https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/imagenes/caja-nera.png"/>
+<img alt="Joyas de Cuero" class="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105" decoding="async" fetchpriority="high" loading="eager" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/imagenes/caja-nera.png"/>
 <div class="absolute bottom-8 right-8 bg-white/10 backdrop-blur px-6 py-4 rounded-2xl border border-white/20 hidden md:block">
 <span class="text-[8px] uppercase tracking-widest text-white/70 block mb-1 font-bold">Colección</span>
 <span class="text-xs text-white font-bold tracking-widest uppercase">Raíces Andinas</span>
@@ -1878,7 +2134,7 @@ body{
 <div class="max-w-7xl mx-auto px-6 md:px-8 mt-40">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div class="rounded-[2.5rem] overflow-hidden aspect-video shadow-2xl reveal">
-<img alt="Cuero sostenible" class="w-full h-full object-cover" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/imagenes/aretes-madera.png"/>
+<img alt="Cuero sostenible" class="w-full h-full object-cover" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/imagenes/aretes-madera.png"/>
 </div>
 <div class="space-y-8 reveal">
 <span class="text-gold text-[10px] uppercase tracking-[0.5em] font-bold">Compromiso Ético</span>
@@ -2009,7 +2265,7 @@ body{
 <h4 class="text-xl md:text-3xl serif italic text-center">Selección internacional</h4>
 <div class="h-px bg-neutral-200 flex-grow"></div>
 </div>
-<div class="munay-voices-grid" id="reviews-track" aria-live="polite"></div>
+<div aria-live="polite" class="munay-voices-grid" id="reviews-track"></div>
 </div>
 </div>
 </div>
@@ -2032,8 +2288,8 @@ body{
 </div>
 </div>
 <div class="grid grid-cols-2 gap-4">
-<img alt="Artesano" class="rounded-3xl shadow-xl mt-12" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/imagenes/corte-cuero.png"/>
-<img alt="Taller" class="rounded-3xl shadow-xl" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/imagenes/cueros.png"/>
+<img alt="Artesano" class="rounded-3xl shadow-xl mt-12" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/imagenes/corte-cuero.png"/>
+<img alt="Taller" class="rounded-3xl shadow-xl" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/imagenes/cueros.png"/>
 </div>
 </div>
 <div class="bg-neutral-900 text-white rounded-[4rem] p-12 md:p-24 text-center">
@@ -2107,16 +2363,16 @@ body{
 <p class="text-xs md:text-sm text-neutral-400 font-light">Florales, escultóricos y de edición contemporánea.</p>
 </div>
 </button>
-<button aria-label="Ver Detalles COLLARES Gargantillas y cordones minimalistas." class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100 text-left w-full" onclick="handleNecklaceSelect('gargantilla')" type="button">
+<button aria-label="Ver Detalles COLLARES Colección Orbis Andino." class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100 text-left w-full" onclick="handleNecklaceSelect('alba')" type="button">
 <div class="aspect-square bg-neutral-800 mb-6 md:mb-8 flex items-center justify-center relative overflow-hidden rounded-2xl shadow-lg">
-<img alt="Collar artesanal de la colección MunayChatika" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&amp;fit=crop&amp;q=80&amp;w=1000"/>
+<img alt="Collar artesanal de la colección Orbis Andino" class="w-full h-full object-cover opacity-70 group-hover:scale-110 transition-transform duration-700" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%201/00.png"/>
 <div class="absolute inset-0 flex items-center justify-center">
-<span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Detalles</span>
+<span class="text-white text-[9px] uppercase tracking-[0.5em] border border-white/30 px-5 py-2 backdrop-blur-sm md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 font-bold">Ver Modelos</span>
 </div>
 </div>
 <div class="space-y-3 px-2">
 <h3 class="text-xl md:text-2xl serif font-bold text-black">COLLARES</h3>
-<p class="text-xs md:text-sm text-neutral-400 font-light text-black">Piezas de presencia limpia con lectura editorial.</p>
+<p class="text-xs md:text-sm text-neutral-400 font-light text-black">Colección Orbis Andino. Seis modelos con lectura editorial, presencia limpia y acabado boutique.</p>
 </div>
 </button>
 <button aria-label="Ver Ganchos GANCHOS Detalles de autor para elevar la silueta." class="riel-card group cursor-pointer bg-white p-5 md:p-6 shadow-sm border border-neutral-100 text-left w-full" onclick="handleHookSelect('margarita')" type="button">
@@ -2152,7 +2408,7 @@ body{
 </div>
 </div>
 <div class="rounded-[2rem] overflow-hidden shadow-xl aspect-video bg-neutral-200">
-<img alt="Pendientes de cuero sobre banco de trabajo" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/PER2026/munaychatika/refs/heads/main/Pendientes%20de%20cuero%20sobre%20banco%20de%20trabajo.png"/>
+<img alt="Pendientes de cuero sobre banco de trabajo" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Pendientes%20de%20cuero%20sobre%20banco%20de%20trabajo.png"/>
 </div>
 </div>
 <div class="max-w-4xl mx-auto mt-40 text-black">
@@ -2197,6 +2453,11 @@ body{
 <h3 class="text-2xl serif font-bold text-black">Garras</h3>
 <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Carácter Firme</p>
 </button>
+<button aria-label="🌻 Girasoles Luz Botánica" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center w-full" onclick="handleModelSelect('girasoles')" type="button">
+<div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌻</span></div>
+<h3 class="text-2xl serif font-bold text-black">Girasoles</h3>
+<p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Luz Botánica</p>
+</button>
 <button aria-label="🌷 Tulipanes Elegancia" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center w-full" onclick="handleModelSelect('tulipan')" type="button">
 <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌷</span></div>
 <h3 class="text-2xl serif font-bold text-black">Cantus</h3>
@@ -2211,21 +2472,6 @@ body{
 <div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌺</span></div>
 <h3 class="text-2xl serif font-bold text-black">Rositas</h3>
 <p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Delicadeza</p>
-</button>
-<button aria-label="⚫ Redondos Geometría Pura" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center w-full" onclick="handleModelSelect('redondos')" type="button">
-<div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">⚫</span></div>
-<h3 class="text-2xl serif font-bold text-black">Redondos</h3>
-<p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Geometría Pura</p>
-</button>
-<button aria-label="💧 Gotas Caída Suave" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center w-full" onclick="handleModelSelect('gotas')" type="button">
-<div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">💧</span></div>
-<h3 class="text-2xl serif font-bold text-black">Gotas</h3>
-<p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Caída Suave</p>
-</button>
-<button aria-label="🐦 Colibríes Movimiento Vivo" class="group cursor-pointer bg-neutral-50 rounded-3xl p-8 hover:bg-neutral-100 transition-all border border-neutral-100 shadow-sm hover:shadow-xl text-center w-full" onclick="handleModelSelect('colibris')" type="button">
-<div class="aspect-square flex items-center justify-center mb-6"><span class="text-6xl group-hover:scale-110 transition-transform duration-500">🐦</span></div>
-<h3 class="text-2xl serif font-bold text-black">Colibríes</h3>
-<p class="text-neutral-400 text-[10px] uppercase mt-2 tracking-widest font-bold text-black">Movimiento Vivo</p>
 </button>
 </div>
 </div>
@@ -2252,7 +2498,7 @@ body{
 <a class="w-full bg-black text-white py-5 md:py-6 px-10 text-[10px] uppercase tracking-widest hover:bg-neutral-800 transition shadow-xl inline-block text-center font-bold" href="https://wa.me/51927412063?text=Hola%20MunayChatika,%20quiero%20informaci%C3%B3n%20sobre%20un%20arete." id="earring-whatsapp-link" rel="noopener noreferrer" target="_blank">CONTÁCTANOS POR WHATSAPP</a>
 </div>
 </div>
-<div class="mt-40 font-bold text-black" id="style-gallery-section">
+<div class="mt-16 font-bold text-black hidden" id="style-gallery-section">
 <div class="flex items-center gap-6 mb-12 font-bold text-black">
 <h3 class="text-3xl serif italic font-bold">Galería de Estilo</h3>
 <div class="h-px bg-neutral-200 flex-grow font-bold text-black"></div>
@@ -2320,14 +2566,14 @@ body{
 <div class="w-32 h-8 bg-black rounded-full"></div>
 </div>
 <div class="relative flex gap-12 md:gap-20 transition-transform duration-1000 ease-out group-hover:scale-105">
-<svg class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform -rotate-2" id="earring1" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
+<svg class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform -rotate-2" id="earring1" viewbox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
 <path d="M100 20 C 120 20, 130 40, 120 60 L 105 85" fill="none" stroke="#94A3B8" stroke-linecap="round" stroke-width="2.5"></path>
 <circle cx="100" cy="25" fill="#94A3B8" r="2.5"></circle>
 <circle cx="105" cy="95" fill="#000000" id="bead1" r="6.5"></circle>
 <line stroke="#94A3B8" stroke-width="1.5" x1="105" x2="105" y1="102" y2="120"></line>
 <g id="flower1" transform="translate(105, 195)"></g>
 </svg>
-<svg class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform rotate-2 translate-y-10" id="earring2" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
+<svg class="w-40 md:w-56 drop-shadow-[0_30px_40px_rgba(0,0,0,0.12)] transform rotate-2 translate-y-10" id="earring2" viewbox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
 <path d="M100 20 C 120 20, 130 40, 120 60 L 105 85" fill="none" stroke="#94A3B8" stroke-linecap="round" stroke-width="2.5"></path>
 <circle cx="100" cy="25" fill="#94A3B8" r="2.5"></circle>
 <circle cx="105" cy="95" fill="#000000" id="bead2" r="6.5"></circle>
@@ -2388,7 +2634,6 @@ body{
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="customizer-combo-grid"></div>
 </div>
-
 </div>
 </div>
 <div class="customizer-sidebar space-y-5 text-black">
@@ -2409,7 +2654,6 @@ body{
 <button class="customizer-model-card font-bold text-black" id="customizer-model-btn-nuevo-modelo" onclick="selectCustomizerModel('nuevo-modelo')" type="button"><span class="block text-[8px] uppercase tracking-[0.3em] opacity-50 font-bold text-black">Modelo 06</span><span class="text-sm uppercase font-bold text-black">Girasoles</span><span class="block text-[10px] normal-case opacity-60 mt-1">Belleza resplandeciente.</span></button>
 </div>
 </div>
-
 <div class="customizer-panel rounded-[1.8rem] border border-stone-200 bg-white p-5 md:p-6 shadow-[0_18px_40px_-28px_rgba(0,0,0,0.16)]">
 <div class="flex flex-col gap-4" id="customizer-desktop-controls">
 <div id="customizer-color-panel">
@@ -2480,12 +2724,12 @@ body{
 <a class="text-[10px] uppercase tracking-widest font-bold border-b border-black pb-1 hover:text-gold hover:border-gold transition-all font-bold text-black" href="https://www.instagram.com/munay_chatika/" rel="noopener noreferrer" target="_blank">Seguir en Instagram</a>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 text-black">
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Publicación de Instagram de joyería artesanal" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Detalle de joya artesanal" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Accesorio de moda artesanal" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Joyas en composición editorial" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1629227314026-02e7dc308472?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Accesorios premium fotografiados en estudio" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
-<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Fotografía de joya elegante para catálogo" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1596944229583-492708b17974?auto=format&amp;fit=crop&amp;q=80&amp;w=400"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 1" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2001.png"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 2" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2002.png"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 3" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2003.png"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 4" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2004.png"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 5" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2005.png"/></div>
+<div class="insta-grid-item bg-neutral-100 rounded-lg overflow-hidden font-bold"><img alt="Momento Munay 6" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/Nueva%20carpeta/intagram%2006.png"/></div>
 </div>
 </div>
 </section>
@@ -2513,7 +2757,6 @@ body{
            CONSTANTES GLOBALES
         ========================================================= */
         const WHATSAPP_NUM = "51927412063";
-
 
         const reviewsData = [
             { text: 'Nunca imaginé que unos aretes pudieran sentirse tan míos. Se ven suaves, ligeros y con una presencia muy fina.', name: 'Valeria M.', location: 'Perú 🇵🇪', language: 'ES', tag: 'Edición favorita', size: 'hero', span: '7', rotate: 'rotate-soft-left', accent: '#d4af37', accentSoft: 'rgba(212,175,55,0.16)' },
@@ -2553,35 +2796,33 @@ body{
             track.dataset.rendered = 'true';
         }
 
-        // Paleta ajustada a exactamente 10 colores para los aretes
+        // Paleta curada para la sección Margaritas
         const baseEarringColors = [
-            { name: 'Amber Earth', hex: 0x1a1a1a, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg', desc: 'Una pieza que celebra la conexión con la tierra. Su tono profundo resalta la textura orgánica del cuero y transmite una elegancia sobria y artesanal.' },
-            { name: 'Saffron Gold', hex: 0xf8f9fa, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg', desc: 'Luminoso y delicado, este color aporta una sensación cálida y refinada. Ideal para una presencia elegante con un brillo sutil.' },
-            { name: 'Royal Sapphire', hex: 0x8b4513, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg', desc: 'Un tono con carácter y profundidad visual, pensado para destacar con sofisticación y un aire contemporáneo.' },
-            { name: 'Emerald Lime', hex: 0xc2410c, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg', desc: 'Vibrante y expresivo, este acabado aporta energía a la pieza sin perder la esencia artesanal del cuero trabajado a mano.' },
-            { name: 'Ivory & Onyx', hex: 0x800020, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png', desc: 'El contraste de tonos crea una composición elegante y moderna. Perfecto para quienes buscan un diseño con personalidad y equilibrio.' },
-            { name: 'Crimson Velvet', hex: 0x228b22, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png', desc: 'Intenso y distinguido, este color envuelve la pieza en una presencia fuerte, sofisticada y llena de identidad.' },
-            { name: 'Magenta Orchid', hex: 0x002366, center: 0xd4af37, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png', desc: 'Una propuesta atrevida y elegante, con una fuerza cromática que convierte al arete en un detalle protagonista.' },
-            { name: 'Deep Amethyst', hex: 0xdcae96, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png', desc: 'Suave y artística, esta tonalidad resalta la delicadeza de las formas y aporta una feminidad moderna y sofisticada.' },
-            { name: 'Smoked Cocoa', hex: 0xe2725b, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png', desc: 'Cálido y envolvente, este tono realza la riqueza natural del cuero con una apariencia elegante y cercana.' },
-            { name: 'Saffron Sun', hex: 0xeab308, center: 0x1a1a1a, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png', desc: 'Radiante y lleno de vida, este color ilumina la pieza y transmite una sensación de alegría, lujo artesanal y frescura.' }
+            { name: 'Margarita Noir Doré', hex: 0x121211, center: 0xe3c20e, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%201.png', desc: 'Colección Jardín Andino. Un contraste sobrio entre negro profundo y centro dorado que eleva la flor a una lectura elegante, firme y atemporal.' },
+            { name: 'Margarita Nieve', hex: 0xf8f4ec, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%202.png', desc: 'Colección Jardín Andino. Clara, luminosa y pulida, esta variante transmite una delicadeza limpia con una presencia visual refinada.' },
+            { name: 'Margarita Tierra Canela', hex: 0x853404, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%203.png', desc: 'Colección Jardín Andino. Un tono cálido con carácter artesanal que resalta la textura del cuero y aporta profundidad boutique.' },
+            { name: 'Margarita Terracota Viva', hex: 0xe68300, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%204.png', desc: 'Colección Jardín Andino. Expresiva y cálida, esta versión proyecta energía elegante con un acabado sofisticado y contemporáneo.' },
+            { name: 'Margarita Guinda Royal', hex: 0x800000, center: 0xe3c20e, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%205.png', desc: 'Colección Jardín Andino. Rica en contraste y presencia, fusiona intensidad cromática con una estética editorial muy pulida.' },
+            { name: 'Margarita Verde Noble', hex: 0x5d8a3f, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%206.png', desc: 'Colección Jardín Andino. Natural y distinguida, esta tonalidad conecta con la tierra y ofrece una elegancia orgánica de inspiración andina.' },
+            { name: 'Margarita Azul Imperial', hex: 0x060645, center: 0xe3c20e, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%207.png', desc: 'Colección Jardín Andino. Profunda y majestuosa, crea una presencia visual más intensa sin perder la suavidad floral del diseño.' },
+            { name: 'Margarita Natural Rosé', hex: 0xffbe86, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%208.png', desc: 'Colección Jardín Andino. Su lectura suave y femenina ilumina la pieza con un aire delicado, cálido y muy elegante.' },
+            { name: 'Margarita Coral Atelier', hex: 0xfc4e7b, center: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%209.png', desc: 'Colección Jardín Andino. Un acabado vibrante con espíritu de atelier que convierte la flor en un acento protagonista y refinado.' }
         ];
 
-        const defaultEarringImage = 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg';
+        const defaultEarringImage = 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%201.png';
         const imagePreloadCache = new Map();
         let viewerSwapToken = 0;
 
         const colorDescriptionMap = {
-            'Amber Earth': 'aporta una elegancia terrosa y una presencia sobria que resalta la textura natural del cuero.',
-            'Saffron Gold': 'ilumina la pieza con un matiz cálido y refinado, ideal para un estilo más luminoso.',
-            'Royal Sapphire': 'añade profundidad visual y un carácter más intenso, con una lectura sofisticada.',
-            'Emerald Lime': 'da una energía viva y moderna, perfecta para una presencia fresca y expresiva.',
-            'Ivory & Onyx': 'crea un contraste fino y equilibrado que se siente moderno, limpio y muy elegante.',
-            'Crimson Velvet': 'envuelve la silueta en una fuerza cromática intensa y una elegancia de alto impacto.',
-            'Magenta Orchid': 'convierte la pieza en un acento protagonista con una vibra artística y atrevida.',
-            'Deep Amethyst': 'suaviza el diseño con un aire femenino, sereno y visualmente sofisticado.',
-            'Smoked Cocoa': 'acentúa la riqueza del cuero con una calidez cercana y una estética boutique.',
-            'Saffron Sun': 'proyecta brillo, alegría y una sensación artesanal más radiante y viva.'
+            'Margarita Noir Doré': 'aporta una elegancia oscura y escultórica con un centro luminoso de acabado joya.',
+            'Margarita Nieve': 'proyecta limpieza visual, ligereza y una sofisticación muy serena.',
+            'Margarita Tierra Canela': 'añade profundidad artesanal y una calidez boutique muy natural.',
+            'Margarita Terracota Viva': 'ofrece energía cálida y una presencia editorial más expresiva.',
+            'Margarita Guinda Royal': 'eleva el contraste con una intensidad rica y una lectura refinada.',
+            'Margarita Verde Noble': 'conecta la pieza con un lujo orgánico de inspiración natural.',
+            'Margarita Azul Imperial': 'suma profundidad visual y un carácter elegante de mayor impacto.',
+            'Margarita Natural Rosé': 'suaviza la silueta con un aire delicado, femenino y luminoso.',
+            'Margarita Coral Atelier': 'convierte el diseño en un detalle protagonista, fresco y sofisticado.'
         };
 
         function cloneColorsForModel(imageUrl, descPrefix) {
@@ -2592,44 +2833,71 @@ body{
             }));
         }
 
-        const margaritaColors = [...baseEarringColors];
+        const margaritaColors = [baseEarringColors[0], baseEarringColors[4], baseEarringColors[1], baseEarringColors[7], baseEarringColors[3], baseEarringColors[6], baseEarringColors[2], baseEarringColors[8], baseEarringColors[5]].filter(Boolean);
         const tulipanColors = cloneColorsForModel('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600', 'Una interpretación estilizada del tulipán con caída elegante y presencia contemporánea.');
         const capnasColors = cloneColorsForModel('https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=600', 'Inspirado en formas andinas y movimiento ceremonial, este modelo transmite fuerza y tradición refinada.');
         const rosaColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Una flor con volumen suave y detalle táctil que convierte cada color en una expresión delicada y artística.');
-        const redondosColors = cloneColorsForModel('https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600', 'Geometría limpia y equilibrio visual en una pieza pensada para una elegancia moderna y versátil.');
-        const rosasColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Volumen floral con presencia romántica y acabado artesanal refinado.');
-        const hojasCocaColors = cloneColorsForModel('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600', 'Silueta inspirada en la hoja de coca, símbolo andino de conexión, respeto y elegancia natural.');
-        const garrasColors = cloneColorsForModel('https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600', 'Resultado con carácter y líneas marcadas para una presencia audaz y sofisticada.');
-        const rositasColors = cloneColorsForModel('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600', 'Una versión más delicada y pequeña del lenguaje floral de la colección.');
-        const gotasColors = cloneColorsForModel('https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600', 'Caída suave y alargada inspirada en la pureza del agua y el movimiento.');
-        const colibrisColors = cloneColorsForModel('https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600', 'Inspiración en el colibrí andino, ligero, vibrante y lleno de energía visual.');
 
+        const rosasColors = cloneColorsForModel('https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600', 'Volumen floral con presencia romántica y acabado artesanal refinado.');
+        const hojasCocaColors = [
+            { name: 'Coca Verde Origen', hex: 0x5d8a3f, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%201.png', desc: 'Colección Coca Sagrada. Una lectura fresca y orgánica que honra la hoja andina con elegancia natural y una presencia serena.' },
+            { name: 'Coca Marfil Andino', hex: 0xf8f4ec, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%202.png', desc: 'Colección Coca Sagrada. Clara y refinada, esta versión suaviza la silueta con una estética limpia, delicada y muy boutique.' },
+            { name: 'Coca Tierra Noble', hex: 0x853404, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%203.png', desc: 'Colección Coca Sagrada. Un tono cálido y artesanal que resalta la textura del cuero con profundidad natural y carácter elegante.' },
+            { name: 'Coca Ámbar Solar', hex: 0xe68300, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%204.png', desc: 'Colección Coca Sagrada. Luminosa y expresiva, aporta energía visual sin perder la sofisticación editorial de la colección.' },
+            { name: 'Coca Guinda Ritual', hex: 0x800000, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%205.png', desc: 'Colección Coca Sagrada. Intensa y distinguida, crea una lectura más profunda, ceremonial y visualmente memorable.' },
+            { name: 'Coca Azul Nocturne', hex: 0x060645, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%206.png', desc: 'Colección Coca Sagrada. Profunda y contemporánea, esta variante proyecta sobriedad, lujo silencioso y mucha presencia.' },
+            { name: 'Coca Natural Rosé', hex: 0xffbe86, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%207.png', desc: 'Colección Coca Sagrada. Cálida y suave, envuelve la silueta con una feminidad luminosa y una elegancia artesanal muy fina.' },
+            { name: 'Coca Coral Atelier', hex: 0xfc4e7b, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%208.png', desc: 'Colección Coca Sagrada. Vibrante y curada, transforma la pieza en un acento fresco con identidad visual premium.' },
+            { name: 'Coca Negro Imperial', hex: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%209.png', desc: 'Colección Coca Sagrada. Sobria, firme y elegante, enfatiza la forma de la hoja con una fuerza estética más marcada.' }
+        ];
+        const garrasColors = [
+            { name: 'Garra Noir Imperial', hex: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%201.png', desc: 'Colección Garra Éclat. Una lectura profunda y sobria que proyecta firmeza, lujo contemporáneo y una presencia visual muy definida.' },
+            { name: 'Garra Marfil Atelier', hex: 0xf8f4ec, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%202.png', desc: 'Colección Garra Éclat. Clara y refinada, esta variante ilumina la silueta con una elegancia limpia y una sensación más delicada.' },
+            { name: 'Garra Tierra Cobre', hex: 0x853404, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%203.png', desc: 'Colección Garra Éclat. Un tono cálido de carácter artesanal que resalta la textura del cuero con una profundidad boutique.' },
+            { name: 'Garra Ámbar Fuego', hex: 0xe68300, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%204.png', desc: 'Colección Garra Éclat. Expresiva, luminosa y audaz, crea un acento protagonista sin perder la elegancia de la colección.' },
+            { name: 'Garra Guinda Royale', hex: 0x800000, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%205.png', desc: 'Colección Garra Éclat. Intensa y sofisticada, esta versión aporta un contraste rico con una presencia editorial más lujosa.' },
+            { name: 'Garra Verde Noble', hex: 0x5d8a3f, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%206.png', desc: 'Colección Garra Éclat. Una interpretación orgánica y distinguida que conecta la pieza con un lujo natural de inspiración artesanal.' },
+            { name: 'Garra Azul Imperial', hex: 0x060645, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%207.png', desc: 'Colección Garra Éclat. Profunda y elegante, suma impacto visual con una lectura más seria, limpia y contemporánea.' },
+            { name: 'Garra Natural Rosé', hex: 0xffbe86, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%208.png', desc: 'Colección Garra Éclat. Suaviza el diseño con una calidez luminosa y femenina que mantiene el aire premium de la línea.' },
+            { name: 'Garra Coral Atelier', hex: 0xfc4e7b, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%209.png', desc: 'Colección Garra Éclat. Vibrante y curada, convierte la silueta en una pieza más fresca, expresiva y visualmente memorable.' }
+        ];
+        const girasolesColors = [
+            { name: 'Girasol Sol Doré', hex: 0xe3c20e, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%201.png', desc: 'Colección Helia Dorada. Una interpretación luminosa que proyecta calidez editorial, energía refinada y un acento joya muy memorable.' },
+            { name: 'Girasol Miel Atelier', hex: 0xffbe86, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%202.png', desc: 'Colección Helia Dorada. Suave y envolvente, esta variante aporta una elegancia cálida con una lectura artesanal delicada.' },
+            { name: 'Girasol Cobre Solar', hex: 0xe68300, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%203.png', desc: 'Colección Helia Dorada. Más intensa y expresiva, resalta la flor con profundidad cromática y una presencia boutique.' },
+            { name: 'Girasol Tierra Noble', hex: 0x853404, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%204.png', desc: 'Colección Helia Dorada. Un tono terroso y sofisticado que conecta la pieza con un lujo orgánico de carácter firme.' },
+            { name: 'Girasol Coral Aura', hex: 0xfc4e7b, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%205.png', desc: 'Colección Helia Dorada. Fresca y curada, convierte el girasol en una pieza más vibrante sin perder la elegancia artesanal.' },
+            { name: 'Girasol Guinda Royale', hex: 0x800000, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%206.png', desc: 'Colección Helia Dorada. Rica en contraste y profundidad, proyecta una estética más lujosa, intensa y editorial.' },
+            { name: 'Girasol Azul Nocturne', hex: 0x060645, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%207.png', desc: 'Colección Helia Dorada. Profunda y contemporánea, suma sofisticación silenciosa y una lectura visual de mayor impacto.' },
+            { name: 'Girasol Verde Noble', hex: 0x5d8a3f, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%208.png', desc: 'Colección Helia Dorada. Botánica y distinguida, esta versión une la luz de la flor con una sensación natural más exclusiva.' },
+            { name: 'Girasol Noir Éclat', hex: 0x121211, image: 'https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%209.png', desc: 'Colección Helia Dorada. Sobria y poderosa, enfatiza la silueta del girasol con contraste elegante y mucha presencia visual.' }
+        ];
+        const rositasColors = cloneColorsForModel('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600', 'Una versión más delicada y pequeña del lenguaje floral de la colección.');
 
         /* =========================================================
            CATÁLOGO DE ARETES
         ========================================================= */
         const catalog = {
             rosas: { title: "Rosas", subtitle: "Flor esculpida", ref: "REF: 001-RS", desc: "Flor esculpida con presencia elegante y un acabado artesanal refinado para looks con más carácter.", price: "S/ 49", colors: rosasColors, shape: 'rosas', images: ["https://images.unsplash.com/photo-1535102220466-9e67d7350700?auto=format&fit=crop&q=80&w=600"] },
-            'hojas-coca': { title: "Hojas de Coca", subtitle: "Raíz andina", ref: "REF: 002-HC", desc: "Inspiración andina en una silueta orgánica que transmite identidad, historia y elegancia natural.", price: "S/ 52", colors: hojasCocaColors, shape: 'hojas-coca', images: ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=600"] },
-            garras: { title: "Garras", subtitle: "Carácter audaz", ref: "REF: 003-GR", desc: "Resultado audaz de carácter refinado para una presencia visual más fuerte, moderna y sofisticada.", price: "S/ 54", colors: garrasColors, shape: 'garras', images: ["https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&q=80&w=600"] },
+            'hojas-coca': { title: "Hojas de Coca", subtitle: "Colección Coca Sagrada", ref: "REF: 002-HC", desc: "Nueve variantes inspiradas en la hoja de coca andina, pensadas para expresar raíz cultural, elegancia natural y una lectura artesanal más refinada.", price: "S/ 52", colors: hojasCocaColors, shape: 'hojas-coca', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%201.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%202.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%203.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%204.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/coca/coca%209.png"], imageNames: ["Coca Verde Origen", "Coca Marfil Andino", "Coca Tierra Noble", "Coca Ámbar Solar", "Coca Guinda Ritual", "Coca Azul Nocturne", "Coca Natural Rosé", "Coca Coral Atelier", "Coca Negro Imperial"] },
+            garras: { title: "Garras", subtitle: "Colección Garra Éclat", ref: "REF: 003-GR", desc: "Nueve variantes curadas para una silueta de carácter firme, líneas marcadas y presencia boutique dentro de una lectura más audaz y sofisticada.", price: "S/ 54", colors: garrasColors, shape: 'garras', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%201.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%202.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%203.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%204.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/garra/garra%209.png"], imageNames: ["Garra Noir Imperial", "Garra Marfil Atelier", "Garra Tierra Cobre", "Garra Ámbar Fuego", "Garra Guinda Royale", "Garra Verde Noble", "Garra Azul Imperial", "Garra Natural Rosé", "Garra Coral Atelier"] },
+            girasoles: { title: "Girasoles", subtitle: "Colección Helia Dorada", ref: "REF: 004-GI", desc: "Nueve variantes inspiradas en la fuerza solar del girasol, pensadas para proyectar luz botánica, elegancia cálida y una presencia artesanal mucho más curada.", price: "S/ 56", colors: girasolesColors, shape: 'girasoles', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%201.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%202.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%203.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%204.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/girasol/gira%209.png"], imageNames: ["Girasol Sol Doré", "Girasol Miel Atelier", "Girasol Cobre Solar", "Girasol Tierra Noble", "Girasol Coral Aura", "Girasol Guinda Royale", "Girasol Azul Nocturne", "Girasol Verde Noble", "Girasol Noir Éclat"] },
             tulipan: { title: "Tulipanes", subtitle: "Elegancia ligera", ref: "REF: 004-T", desc: "Elegancia minimalista con líneas suaves y una lectura femenina, limpia y contemporánea.", price: "S/ 48", colors: tulipanColors, shape: 'tulipan', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            margarita: { title: "Margaritas", subtitle: "Esencia floral", ref: "REF: 001-A", desc: "Esencia floral moldeada a mano con textura orgánica, ligereza visual y un acabado delicado que destaca en cada variante.", price: "S/ 49", colors: margaritaColors, shape: 'margarita', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%201.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%202.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%203.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%204.jpg", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%206.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margatitas/marga%209.png"], imageNames: ["Margarita 1", "Margarita 2", "Margarita 3", "Margarita 4", "Margarita 5", "Margarita 6", "Margarita 7", "Margarita 8", "Margarita 9"] },
+            margarita: { title: "Margaritas", subtitle: "Colección Jardín Andino", ref: "REF: 001-MG", desc: "Nueve variantes florales curadas para resaltar color, textura y presencia artesanal en una línea elegante, viva y contemporánea.", price: "S/ 49", colors: margaritaColors, shape: 'margarita', images: ["https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%201.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%205.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%202.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%208.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%204.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%207.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%203.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%209.png", "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/margarita/marga%206.png"], imageNames: ["Margarita Noir Doré", "Margarita Guinda Royal", "Margarita Nieve", "Margarita Natural Rosé", "Margarita Terracota Viva", "Margarita Azul Imperial", "Margarita Tierra Canela", "Margarita Coral Atelier", "Margarita Verde Noble"] },
             rositas: { title: "Rositas", subtitle: "Delicadeza artesanal", ref: "REF: 005-RT", desc: "Pequeñas flores con delicadeza artesanal y una estética fina ideal para looks suaves y elegantes.", price: "S/ 45", colors: rositasColors, shape: 'rositas', images: ["https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"] },
-            redondos: { title: "Redondos", subtitle: "Geometría limpia", ref: "REF: 006-RD", desc: "Pureza circular con una composición limpia que transmite equilibrio y modernidad.", price: "S/ 44", colors: redondosColors, shape: 'redondos', images: ["https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&q=80&w=600"] },
-            gotas: { title: "Gotas", subtitle: "Caída elegante", ref: "REF: 007-GT", desc: "Caída limpia y femenina con una silueta estilizada para acompañar looks de día y noche.", price: "S/ 46", colors: gotasColors, shape: 'gotas', images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=600"] },
-            colibris: { title: "Colibríes", subtitle: "Movimiento vivo", ref: "REF: 008-CB", desc: "Movimiento vivo inspirado en el colibrí andino, con un aire artístico y una energía visual única.", price: "S/ 56", colors: colibrisColors, shape: 'colibris', images: ["https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&q=80&w=600"] }
         };
-
 
         /* =========================================================
            CATÁLOGO DE COLLARES
         ========================================================= */
         const necklaceCatalog = {
-            gargantilla: { title: "Gargantilla Solar", subtitle: "Pieza central radiante", ref: "REF: COLL-001", desc: "Diseñada para enmarcar el cuello con presencia, elegancia y una lectura boutique contemporánea.", price: "S/ 79", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=1000" },
-            pechera: { title: "Pechera Ritual", subtitle: "Arquitectura textil", ref: "REF: COLL-002", desc: "Una pieza de mayor impacto visual, pensada para looks con más identidad y fuerza artesanal.", price: "S/ 95", img: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1000" },
-            minimal: { title: "Minimal Cord", subtitle: "Línea pura", ref: "REF: COLL-003", desc: "Collar de lectura limpia y refinada, ideal para una elegancia ligera y versátil.", price: "S/ 69", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=1000" }
+            alba: { title: "Orbis I – Alba", subtitle: "Colección Orbis Andino", ref: "REF: COLL-001", desc: "Una pieza luminosa que abre la colección. Formas suaves, equilibrio preciso y una lectura editorial sobria con acabado artesanal premium.", price: "S/ 89", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%201/00.png" },
+            tierra: { title: "Orbis II – Tierra Viva", subtitle: "Colección Orbis Andino", ref: "REF: COLL-002", desc: "Inspirado en la energía de la tierra. Un modelo cálido, elegante y con presencia natural para looks sofisticados de todos los días.", price: "S/ 92", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%202/02.png" },
+            eclipse: { title: "Orbis III – Eclipse", subtitle: "Colección Orbis Andino", ref: "REF: COLL-003", desc: "Contraste, profundidad y una silueta moderna que destaca con equilibrio. Diseñado para verse refinado sin exceso.", price: "S/ 94", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%203/01.png" },
+            horizonte: { title: "Orbis IV – Horizonte", subtitle: "Colección Orbis Andino", ref: "REF: COLL-004", desc: "Líneas limpias y composición visual armónica. Una pieza elegante pensada para estilismos contemporáneos con aire boutique.", price: "S/ 96", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%204/03.png" },
+            fuego: { title: "Orbis V – Fuego Suave", subtitle: "Colección Orbis Andino", ref: "REF: COLL-005", desc: "Intensidad controlada y carácter visual. Un modelo con fuerza artesanal y acabado fino para una presencia más protagonista.", price: "S/ 98", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%205/04.png" },
+            nocturne: { title: "Orbis VI – Nocturne", subtitle: "Colección Orbis Andino", ref: "REF: COLL-006", desc: "Sobrio, profundo y refinado. Un collar concebido para elevar la composición completa del look con una elegancia más nocturna.", price: "S/ 99", img: "https://cdn.jsdelivr.net/gh/PER2026/munaychatika@main/collares/modelo%206/05.png" }
         };
-
 
         /* =========================================================
            CATÁLOGO DE GANCHOS
@@ -2639,7 +2907,6 @@ body{
             gota: { title: "Gancho Gota", subtitle: "Curva perfecta", ref: "REF: HOOK-002", desc: "Silueta limpia y femenina con una caída elegante para una lectura moderna y sobria.", price: "S/ 29", img: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=1000" },
             hoja: { title: "Gancho Hoja", subtitle: "Textura orgánica", ref: "REF: HOOK-003", desc: "Inspirado en formas orgánicas con una estética natural, fina y fácil de combinar.", price: "S/ 29", img: "https://images.unsplash.com/photo-1630019019624-99745f980473?auto=format&fit=crop&q=80&w=1000" }
         };
-
 
         /* =========================================================
            COLORES DEL PERSONALIZADOR
@@ -2693,7 +2960,6 @@ body{
                 menu.classList.toggle('translate-x-0', shouldOpen);
             }
         }
-
 
         /* =========================================================
            UTILIDADES DE INTERFAZ
@@ -2812,7 +3078,6 @@ body{
             }
         }
 
-
         /* =========================================================
            NAVEGACIÓN Y CATÁLOGO
         ========================================================= */
@@ -2879,8 +3144,6 @@ body{
             showPage('image-detail');
         }
 
-
-
         function renderIndependentProductPages() {
             const mount = document.getElementById('independent-product-pages');
             if (!mount || mount.dataset.rendered === 'true') return;
@@ -2921,7 +3184,10 @@ body{
             const earringCards = Object.entries(catalog).map(([key, data]) => {
                 const images = (data.images && data.images.length ? data.images : [defaultEarringImage]).slice(0, 9);
                 const isMargarita = key === 'margarita';
-                const colorItems = (data.colors || []).slice(0, 8);
+                const colorSource = isMargarita && Array.isArray(data.colors)
+                    ? [0, 4, 1, 7, 3, 6, 2, 8, 5].map(i => data.colors[i]).filter(Boolean)
+                    : (data.colors || []);
+                const colorItems = colorSource.slice(0, 9);
                 const swatches = colorItems.map((color, index) => `
                     <button type="button"
                         class="flex items-center gap-2 rounded-full border border-neutral-200 bg-white/90 px-3 py-2 shadow-sm transition hover:-translate-y-0.5 ${index === 0 ? 'active' : ''}"
@@ -2931,6 +3197,26 @@ body{
                         <span class="w-4 h-4 rounded-full border border-neutral-200" style="background:${hexNumberToCss(color.hex)}"></span>
                         <span class="text-[10px] uppercase tracking-widest text-neutral-700 font-semibold">${color.name}</span>
                     </button>`).join('');
+                const margaritaTopFill = isMargarita ? `
+                    <div class="mb-6 rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#fffdf9_0%,#faf5ea_100%)] p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.05)]">
+                        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                            <div class="max-w-2xl">
+                                <span class="text-[10px] uppercase tracking-[0.35em] text-[#b8952e] font-bold">Colección floral</span>
+                                <h3 class="mt-3 text-3xl md:text-4xl serif italic font-bold text-black">Margaritas, más limpia y mejor equilibrada</h3>
+                                <p class="mt-4 text-sm md:text-base leading-7 text-neutral-600">Se retiraron las distracciones visuales para que el protagonismo quede en el arete principal, la paleta y la lectura del modelo.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 md:justify-end">${buildBadge('9 variantes')} ${buildBadge('Paleta curada')} ${buildBadge('Edición floral')}</div>
+                        </div>
+                    </div>` : '';
+                const margaritaBottomFill = isMargarita ? `
+                    <div class="mt-8 rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#fffefb_0%,#f8f3e8_100%)] p-5 md:p-6 shadow-[0_24px_70px_rgba(0,0,0,0.05)]">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-[0.35em] text-neutral-400 font-bold">Paleta curada</span>
+                            <h3 class="mt-3 text-2xl md:text-3xl serif italic font-bold text-black">Cierre compacto y sin vacíos</h3>
+                            <p class="mt-4 text-sm md:text-base leading-7 text-neutral-600 max-w-3xl">La parte inferior ahora solo acompaña con colores clave de la colección, sin bloques largos ni galerías que distraigan del diseño.</p>
+                            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">${colorItems.slice(0,6).map((color) => `<div class="rounded-[1.1rem] border border-neutral-200 bg-white px-4 py-4 shadow-sm"><div class="flex items-center gap-3"><span class="w-5 h-5 rounded-full border border-neutral-200" style="background:${hexNumberToCss(color.hex)}"></span><span class="text-[10px] uppercase tracking-[0.18em] text-neutral-700 font-semibold">${color.name}</span></div></div>`).join('')}</div>
+                        </div>
+                    </div>` : '';
                 const gallery = images.map((imgUrl, index) => {
                     const imageLabel = (data.imageNames && data.imageNames[index]) ? data.imageNames[index] : `${data.title} ${index + 1}`;
                     return `
@@ -2952,15 +3238,13 @@ body{
                     <div class="max-w-7xl mx-auto px-6 md:px-8">
                         <button type="button" onclick="showPage('earring-selection')" class="mb-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar a aretes</button>
                         ${buildSectionChrome(`Aretes ${data.title}`, 'Cada modelo vive en su propia sección, con presencia visual, detalles de color y una galería más protagonista para que se sienta como una colección completa.', 'Colección independiente')}
+                        ${margaritaTopFill}
                         <div class="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-10 items-stretch">
                             <div class="rounded-[2.5rem] border border-[#ece4d6] bg-white/90 p-5 md:p-7 shadow-[0_30px_80px_rgba(0,0,0,0.06)]">
-                                <div class="aspect-[4/4.3] rounded-[2rem] overflow-hidden bg-[radial-gradient(circle_at_top,#f6f0e5_0%,#fbfaf8_45%,#f4efe7_100%)] border border-neutral-100 p-4 md:p-6">
+                                <div class="aspect-square rounded-[1.75rem] overflow-hidden bg-[radial-gradient(circle_at_top,#f6f0e5_0%,#fbfaf8_45%,#f4efe7_100%)] border border-neutral-100 p-4 md:p-5">
                                     <img id="earring-main-image-${key}" data-earring-image="${key}" src="${images[0] || defaultEarringImage}" alt="${data.title}" class="w-full h-full object-contain transition-opacity duration-300" loading="eager" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
                                 </div>
-                                <div class="mt-6 grid grid-cols-3 gap-3">
-                                    ${images.slice(0,3).map((imgUrl, index) => `<div class="rounded-[1.25rem] border border-neutral-100 bg-[#faf8f2] p-3 aspect-square"><img src="${imgUrl}" alt="${data.title} miniatura ${index+1}" class="w-full h-full object-contain" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>`).join('')}
-                                </div>
-                                <div class="mt-6 grid grid-cols-3 gap-4">
+                                <div class="mt-5 grid grid-cols-3 gap-4">
                                     ${buildMetricCard(images.length, 'Variantes')}
                                     ${buildMetricCard((data.colors || []).length || 'A pedido', 'Colores')}
                                     ${buildMetricCard('100%', 'Artesanal')}
@@ -2991,7 +3275,7 @@ body{
                                     </div>
                                     <div class="rounded-[2rem] border border-[#ece4d6] bg-[#faf6ee] p-6">
                                         <span class="text-[9px] uppercase tracking-[0.4em] text-neutral-400 font-bold">Lectura visual</span>
-                                        <p class="mt-4 text-sm leading-7 text-neutral-600">Esta sección fue reforzada para que el modelo se sienta completo: imagen principal, miniaturas, métricas, galería con nombres y bloques editoriales que elevan la percepción de marca.</p>
+                                        <p class="mt-4 text-sm leading-7 text-neutral-600">Esta sección fue reforzada para que el modelo se sienta completo: imagen principal, métricas, galería con nombres y bloques editoriales más limpios que elevan la percepción de marca.</p>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
@@ -3009,6 +3293,7 @@ body{
                             ${buildEditorialPanel('Compra personalizada', 'Consulta acabados, tonos y pedidos', 'Puedes usar esta zona para dirigir a WhatsApp y mantener una sensación de atención más exclusiva, como una marca boutique.')}
                             ${buildEditorialPanel('Narrativa de marca', 'Haz que cada modelo cuente algo', 'Si luego quieres, aquí mismo puedo añadir historias distintas por modelo: inspiración floral, andina, ritual o contemporánea, para que cada sección se sienta única de verdad.')}
                         </div>
+                        ${margaritaBottomFill}
                     </div>
                 </section>`;
             }).join('');
@@ -3017,21 +3302,35 @@ body{
                 <section id="page-${getIndependentPageId('collar', key)}" class="view-section pt-24 md:pt-32 pb-24 md:pb-32 text-black bg-[linear-gradient(180deg,#fcfbf8_0%,#ffffff_42%,#f8f5ef_100%)]">
                     <div class="max-w-7xl mx-auto px-6 md:px-8">
                         <button type="button" onclick="showPage('collection')" class="mb-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 transition flex items-center gap-2 font-bold text-black">← Regresar a catálogo</button>
-                        ${buildSectionChrome(`Collar ${data.title}`, 'Una sección con más cuerpo visual, bloques de información y presencia editorial para que cada collar se sienta como una pieza protagonista.', 'Línea collares')}
+                        ${buildSectionChrome(`${data.title}`, 'Colección Orbis Andino. Seis collares con lectura editorial, composición elegante y presencia boutique dentro del universo MunayChatika.', 'Colección collares')}
                         <div class="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
                             <div class="rounded-[2.5rem] bg-neutral-950 p-5 md:p-7 shadow-[0_30px_90px_rgba(0,0,0,0.18)] border border-neutral-800">
                                 <div class="aspect-[4/4.2] rounded-[2rem] overflow-hidden bg-neutral-900">
                                     <img src="${data.img || defaultEarringImage}" alt="${data.title}" class="w-full h-full object-cover" loading="eager" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'">
                                 </div>
                                 <div class="mt-6 grid grid-cols-3 gap-4">
-                                    ${buildMetricCard('Boutique', 'Estilo')}
-                                    ${buildMetricCard('Premium', 'Lectura')}
-                                    ${buildMetricCard('Lista', 'Consulta')}
+                                    ${buildMetricCard('Orbis', 'Colección')}
+                                    ${buildMetricCard('Lujo', 'Lectura')}
+                                    ${buildMetricCard('Autor', 'Pieza')}
                                 </div>
-                                <div class="mt-6 grid grid-cols-3 gap-3">
-                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 1" class="w-full h-full object-cover" style="object-position:center top" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
-                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 2" class="w-full h-full object-cover" style="object-position:center center" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
-                                    <div class="rounded-[1.25rem] overflow-hidden border border-neutral-800 aspect-square"><img src="${data.img || defaultEarringImage}" alt="${data.title} detalle 3" class="w-full h-full object-cover" style="object-position:center bottom" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${defaultEarringImage}'"></div>
+                                <div class="mt-6 rounded-[1.75rem] border border-neutral-800 bg-neutral-900/70 px-5 py-5 md:px-6 md:py-6">
+                                    <span class="text-[9px] uppercase tracking-[0.38em] text-neutral-500 block mb-3 font-bold">Lectura editorial</span>
+                                    <h3 class="text-2xl serif italic text-white font-bold">${data.title}</h3>
+                                    <p class="mt-3 text-sm md:text-[15px] leading-7 text-neutral-300">${data.desc || ''}</p>
+                                    <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                                        <div class="rounded-[1.2rem] border border-neutral-800 bg-black/20 px-4 py-4">
+                                            <span class="text-[9px] uppercase tracking-[0.28em] text-neutral-500 block mb-2 font-bold">Colección</span>
+                                            <p class="text-sm leading-6 text-neutral-200">Orbis Andino reúne modelos independientes con presencia limpia y composición boutique.</p>
+                                        </div>
+                                        <div class="rounded-[1.2rem] border border-neutral-800 bg-black/20 px-4 py-4">
+                                            <span class="text-[9px] uppercase tracking-[0.28em] text-neutral-500 block mb-2 font-bold">Diseño</span>
+                                            <p class="text-sm leading-6 text-neutral-200">Una sola imagen protagonista para que el collar se sienta más fuerte, elegante y editorial.</p>
+                                        </div>
+                                        <div class="rounded-[1.2rem] border border-neutral-800 bg-black/20 px-4 py-4">
+                                            <span class="text-[9px] uppercase tracking-[0.28em] text-neutral-500 block mb-2 font-bold">Acabado</span>
+                                            <p class="text-sm leading-6 text-neutral-200">Lectura visual más limpia, sin miniaturas distractoras y con mejor jerarquía de texto.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="rounded-[2.5rem] border border-neutral-200 bg-white p-8 md:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.06)] flex flex-col justify-between">
@@ -3041,8 +3340,8 @@ body{
                                     <h1 class="text-5xl md:text-7xl serif mb-4 leading-tight italic font-bold">${data.title}</h1>
                                     <p class="text-lg md:text-xl text-neutral-500 font-light leading-relaxed mb-8">${data.desc || ''}</p>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                                        ${buildInfoCard('Estilo', 'Diseñado para dar una lectura más sofisticada al cuello y elevar la composición completa del look.')}
-                                        ${buildInfoCard('Presentación', 'La sección añade más profundidad, mejor jerarquía y una sensación de catálogo de marca.')}
+                                        ${buildInfoCard('Colección', 'Orbis Andino reúne seis modelos independientes pensados como piezas protagonistas dentro de una lectura más editorial y pulida.')}
+                                        ${buildInfoCard('Presencia', 'Cada collar fue integrado como modelo individual para que la navegación se sienta más clara, lujosa y coherente con una marca premium.')}
                                     </div>
                                     <div class="rounded-[1.75rem] border border-[#ece4d6] bg-[#faf6ee] p-6 mb-8">
                                         <span class="text-[9px] uppercase tracking-[0.35em] text-neutral-400 block mb-3 font-bold">Inversión</span>
@@ -3056,9 +3355,9 @@ body{
                             </div>
                         </div>
                         <div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            ${buildEditorialPanel('Impacto visual', 'Una ficha más protagonista', 'El collar ahora ocupa mejor la pantalla con una composición más lujosa, menos vacía y más coherente con una marca premium.')}
-                            ${buildEditorialPanel('Jerarquía clara', 'Más elegante al recorrer', 'El título, el precio, la imagen y los bloques informativos tienen más orden para que la página se sienta profesional.')}
-                            ${buildEditorialPanel('Marca boutique', 'Más sensación de colección', 'Aunque sea un solo modelo, la presentación ahora lo hace ver como una pieza central dentro de una colección cuidada.')}
+                            ${buildEditorialPanel('Colección cerrada', 'Seis modelos protagonistas', 'La línea de collares ahora se presenta como una colección completa, no como piezas sueltas, lo que eleva la percepción de marca.')}
+                            ${buildEditorialPanel('Jerarquía editorial', 'Más lujo al recorrer', 'Título, imagen, precio y bloques de apoyo quedaron mejor ordenados para dar una lectura más limpia y boutique.')}
+                            ${buildEditorialPanel('Presencia premium', 'Más coherencia visual', 'Cada modelo tiene una ficha más protagonista para que los collares se sientan valiosos, exclusivos y listos para catálogo internacional.')}
                         </div>
                     </div>
                 </section>`).join('');
@@ -3117,7 +3416,6 @@ body{
             mount.dataset.rendered = 'true';
         }
 
-
         function showPage(pageId) {
             closeDropdowns(null, true);
             document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
@@ -3135,7 +3433,6 @@ body{
                 revealElements();
             });
         }
-
 
         /* =========================================================
            VISOR DE IMAGEN DEL MODELO PRINCIPAL
@@ -3190,7 +3487,12 @@ body{
             const promise = new Promise((resolve) => {
                 const img = new Image();
                 img.decoding = 'async';
-                img.onload = () => resolve(safeSrc);
+                img.loading = 'eager';
+                try { img.fetchPriority = 'low'; } catch (e) {}
+                img.onload = async () => {
+                    try { if (img.decode) await img.decode(); } catch (e) {}
+                    resolve(safeSrc);
+                };
                 img.onerror = () => resolve(defaultEarringImage);
                 img.src = safeSrc;
             });
@@ -3820,7 +4122,6 @@ viewBox="0 0 21000 29700"
 </svg>
 `;
         let customizerState = { ...DEFAULT_CUSTOMIZER_STATE, selectedComboIndex: 0 };
-
 
         function getActiveLayerKeys() {
             const meta = CUSTOMIZER_MODEL_META[customizerState.activeModel];
@@ -4586,14 +4887,22 @@ viewBox="0 0 21000 29700"
         }
 
         function markImagesForPerformance() {
+            const viewportHeight = window.innerHeight || 900;
             document.querySelectorAll('img').forEach((img, index) => {
                 img.decoding = 'async';
-                if (index === 0) {
+                const rect = img.getBoundingClientRect();
+                const nearViewport = rect.top < viewportHeight * 1.35;
+
+                if (index === 0 || nearViewport || img.closest('#page-home')) {
                     img.loading = 'eager';
-                    img.setAttribute('fetchpriority', 'high');
+                    img.setAttribute('fetchpriority', index < 3 ? 'high' : 'auto');
                 } else {
                     if (!img.hasAttribute('loading')) img.loading = 'lazy';
                     if (!img.hasAttribute('fetchpriority')) img.setAttribute('fetchpriority', 'low');
+                }
+
+                if (!img.hasAttribute('sizes')) {
+                    img.setAttribute('sizes', '(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw');
                 }
 
                 if (img.dataset.errorBound === 'true') return;
@@ -4606,10 +4915,9 @@ viewBox="0 0 21000 29700"
                     }
                     img.style.opacity = '0.25';
                     img.alt = 'Imagen no disponible';
-                });
+                }, { passive: true });
             });
         }
-
 
         function initClickableDivAccessibility() {
             document.querySelectorAll('div[onclick]').forEach(el => {
@@ -4696,6 +5004,23 @@ viewBox="0 0 21000 29700"
             }
         });
 
+        function warmImportantCatalogImages() {
+            const warmup = () => {
+                [
+                    defaultEarringImage,
+                    catalog?.margarita?.images?.[0],
+                    catalog?.coca?.images?.[0],
+                    catalog?.garras?.images?.[0],
+                    catalog?.girasoles?.images?.[0]
+                ].filter(Boolean).forEach(preloadSingleImage);
+            };
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(warmup, { timeout: 1200 });
+            } else {
+                setTimeout(warmup, 500);
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             renderIndependentProductPages();
             initAllEarringColors();
@@ -4708,6 +5033,7 @@ viewBox="0 0 21000 29700"
             initCustomizerEnhancements();
             revealElements();
             markImagesForPerformance();
+            warmImportantCatalogImages();
             initReviewsPerformance();
             setMenuA11yState(false);
             relocateCustomizerControls();
@@ -4726,19 +5052,18 @@ viewBox="0 0 21000 29700"
             const descNode = document.querySelector('[data-earring-color-desc="margarita"]');
 
             if (mainImage) {
-                mainImage.style.opacity = '0.25';
-                const nextImage = new Image();
-                nextImage.onload = () => {
-                    mainImage.src = color.image || defaultEarringImage;
+                mainImage.style.opacity = '0.55';
+                preloadSingleImage(color.image || defaultEarringImage).then((readySrc) => {
+                    mainImage.src = readySrc;
                     mainImage.alt = `Margaritas ${color.name}`;
-                    mainImage.style.opacity = '1';
-                };
-                nextImage.onerror = () => {
+                    requestAnimationFrame(() => {
+                        mainImage.style.opacity = '1';
+                    });
+                }).catch(() => {
                     mainImage.src = defaultEarringImage;
                     mainImage.alt = 'Margaritas';
                     mainImage.style.opacity = '1';
-                };
-                nextImage.src = color.image || defaultEarringImage;
+                });
             }
 
             if (nameNode) nameNode.textContent = color.name || 'Margaritas';
@@ -4750,7 +5075,6 @@ viewBox="0 0 21000 29700"
                 btn.setAttribute('aria-pressed', String(isActive));
             });
         };
-
 
         function setActiveEarringSwatch(key, activeIndex) {
             document.querySelectorAll(`[data-earring-key="${key}"][data-earring-swatch]`).forEach((btn) => {
